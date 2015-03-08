@@ -31,10 +31,12 @@ html{
   margin-right:auto;
   border-color:#AD9101;
   background-color:#FFDA61;
-  border:inset #AD9101 0.5em;
+  border:solid #AD9101 0.5em;
+  border-radius:3em;
   width: 60em;
   padding-right: 1em;
   padding-left: 1em;
+  padding-bottom:2em;
 }
 #footerL{
 float:left;
@@ -42,6 +44,7 @@ border-radius:1em;
 background-color: #FFEB00;
 padding:2em;
 display:inline-block;
+width:5em;
 }
 #footerR{
 float:right;
@@ -49,16 +52,48 @@ border-radius:1em;
 background-color: #FFEB00;
 padding:2em;
 display:inline-block;
+width:5em;
+}
+.left {
+    float:left;
+    width: 10%;
+    text-align:center;
+    border-radius:1em;
+background-color: #FFEB00;
+padding:2em;
+/*display:inline-block;*/
+}
+.right {
+    float:right;
+    width: 10%;
+    text-align: center;
+    border-radius:1em;
+background-color: #FFEB00;
+padding:2em;
+/*display:inline-block;*/
+}
+.center{
+    float: left;
+    width: 10%;
+    text-align: center;
+    border-radius:1em;
+background-color: #FFEB00;
+padding:2em;
+margin-left:25%;
+margin-right:25%;
 }
 #footerM{
-clear:both;
+/*clear:both;
+float:center;*/
 border-radius:1em;
 background-color: #FFEB00;
 padding:2em;
 display:inline-block;
-margin-right:20em;
-margin-left:28em;
-
+width: 5em;
+/*position:relative;*/
+margin-left:auto;
+margin-right:auto;
+text-align: center;
 }
 a{
   color: red;
