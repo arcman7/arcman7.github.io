@@ -33,6 +33,32 @@ html{
   background-color:#FFDA61;
   border:inset #AD9101 0.5em;
   width: 60em;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+#footerL{
+float:left;
+border-radius:1em;
+background-color: #FFEB00;
+padding:2em;
+display:inline-block;
+}
+#footerR{
+float:right;
+border-radius:1em;
+background-color: #FFEB00;
+padding:2em;
+display:inline-block;
+}
+#footerM{
+clear:both;
+border-radius:1em;
+background-color: #FFEB00;
+padding:2em;
+display:inline-block;
+margin-right:20em;
+margin-left:28em;
+
 }
 a{
   color: red;
@@ -46,4 +72,7 @@ a:hover{
 a:visited{
   color:#6804CF;
 };
-
+a:visted:hover{
+  color:#6804CF;
+  font-weight: bolder;
+}
