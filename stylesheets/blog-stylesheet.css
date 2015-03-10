@@ -95,6 +95,17 @@ margin-left:auto;
 margin-right:auto;
 text-align: center;
 }
+.center2{
+    position:static;
+    width: 10%;
+    text-align: center;
+    border-radius:1em;
+background-color: #FFEB00;
+padding:2em;
+margin-left:42%;
+margin-right:;
+}
+
 a{
   color: red;
   font-weight: bold;
