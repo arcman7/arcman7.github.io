@@ -54,29 +54,36 @@ p{
 
 }
 #facebook{
-  background:url(../imgs/svg-b/facebook-square.svg);
+  background:url(../med-svg/facebook-square.svg);
   width:3em;
   height:3em;
   display:inline-block;
 
 }
 #twitter{
-  background:url(../imgs/svg-b/twitter.svg);
+  background:url(../med-svg/twitter.svg);
   width:3em;
   height:3em;
   display:inline-block;
 
 }
 #linkedin{
-  background:url(../imgs/svg-b/linkedin.svg);
+  background:url(../med-svg/linkedin.svg);
   width:3em;
   height:3em;
   display:inline-block;
 
 }
 #mail{
-  background:url(../imgs/svg-b/mail.svg);
+  background:url(../med-svg/mail.svg);
   width:3em;
   height:3em;
   display:inline-block;
+}
+#home{
+  background:url(../imgs/svg-b/home.svg);
+  width:2em;
+  height:2em;
+  display:inline-block;
+  padding-top:-1em;
 }
