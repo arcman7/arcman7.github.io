@@ -40,6 +40,7 @@ padding-bottom:4em;
 div>details{
   display:inline-block;
   margin-top:0.7em;
+  vertical-align:top;
 }
 
 #body{
