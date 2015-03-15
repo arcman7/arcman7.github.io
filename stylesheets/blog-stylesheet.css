@@ -42,6 +42,9 @@ div>details{
   margin-top:0.7em;
   vertical-align:top;
 }
+div>p{
+  vertical-align:top;
+}
 
 #body{
   margin-top:1em;
