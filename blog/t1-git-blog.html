@@ -8,19 +8,22 @@
 <main>
    <div id="title"> Andrew's Blogs </div>
   <div id="nav">
-    <table>
-        <tr>
-          <td style="border: solid 3px #CF7903">
-            <a href="../c1-chefs-kitchen.html"> Cultural </a>
-          </td>
-          <td style="border: solid 3px #CF7903">
-            <a href="../blog/t1-git-blog.html"> Technical </a>
-          </td>
-          <td style="border: solid 3px #CF7903">
-            <a href="../blog/about-me.html"> About Author </a>
-          </td>
-        </tr>
-    </table>
+         <details>
+            <summary><code> Cultural </code></summary>
+            <p><a href="../c1-chefs-kitchen.html"> Chef vs Kitchen mentality </a></p>
+         </details>
+
+         <details>
+            <summary><code> Technical </code></summary>
+            <p><a href="../blog/t1-git-blog.html"> Git & GitHub </a></p>
+            <p><a href="../blog/t2-css-design.html"> Classes vs. Id's </a></p>
+            <p><a href="../blog/t3-arrays-hashes.html"> Arrays & Hashes </a></p>
+         </details>
+
+         <details>
+            <summary><code> About Author </code></summary>
+            <p><a href="../blog/about-me.html"> About Author </a></p>
+         </details>
   </div>
   <div id="body">
   <h1>DBC Phase-0 Arc Tech Blog</h1>
@@ -40,8 +43,8 @@
 
       <!-- copy and paste as many sections as you want to add paragraphs -->
   </div>
-  <div class="left"><a href ="./t1-git-blog.html"> Previous </a> </div>
- <div class="center"><a href="../index.html"> Home </a></div>
- <div class="right"><a href="#"> Next Post </a></div>
+  <a href ="./t1-git-blog.html"><div id="left"> Previous  </div> </a>
+  <a href="../index.html"><div id="center"> Home </div></a>
+  <a href="./t2-css-design.html"> <div id="right"> Next Post </div></a>
 </body>
 </main>

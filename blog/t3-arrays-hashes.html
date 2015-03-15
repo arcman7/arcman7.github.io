@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Andrew's DBC Adventures</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+<body>
+  <div id="nav">
+         <details>
+            <summary><code> Cultural </code></summary>
+            <p><a href="../c1-chefs-kitchen.html"> Chef vs Kitchen mentality </a></p>
+         </details>
+
+         <details>
+            <summary><code> Technical </code></summary>
+            <p><a href="../blog/t1-git-blog.html"> Git & GitHub </a></p>
+            <p><a href="../blog/t2-css-design.html"> Classes vs. Id's </a></p>
+            <p><a href="../blog/t3-arrays-hashes.html"> Arrays & Hashes </a></p>
+         </details>
+
+         <details>
+            <summary><code> About Author </code></summary>
+            <p><a href="../blog/about-me.html"> About Author </a></p>
+         </details>
+  </div>
+ <div id="body">
+  <h1>DBC Phase-0 Arc Tech Blog </h1>
+  <h2>Week 2: My adventures with HTML & CSS </h2>
+  <h3>Skipper's log 3/14/2015:</h3>
+
+  <p>
+    Happy pie day! Today at 9:26 (am & pm) and 53 seconds we have the first 10 digits of pie in sequential order: 3/14/15 9:26:53 or 3.141592653. This only happens once in a century!
+  </p>
+  <p>
+    Today's topic covers the usage of arrays and hashes in Ruby. Both can be thought of as data containers used for storing useful information. Arrays are quite simple, and can be thought of as a connected sequential chain of boxes or containers that each hold a single value. Say we want to build an array containing the first 10 digits of the number pi, we would simply enter:
+  </p>
+  <code> pi = [3,1,4,1,5,9,2,6,5,3] </code>
+  <p>We can access any of those values by refering to the index of the value we want. An index value in the contet of an array is sort of like the address of where that value lives inside of the array. For example, the first value of an array lives at index value 0, and the last number of this array lives at index value 9. In the context of ruby code you would use the index address with this syntax: </p>
+<div id="codeblock">
+  <code> pi[0] = 3       # the first value in the array 'pi' is 3                           </code><br>
+  <code> pi[1] = 1       # the second value in the array is 1, and lives at index address 1 </code><br>
+  <code> pi[2] = 4       # the third value in the array is 4, and lives at index address 2  </code> <br>
+  <code> pi[9] = 3       # the last value in the array is 3, and lives at index address 9, one less than 10 </code>
+</div>
+</span>
+  <!--<details>
+          <summary><code> pi[9] = 3       </code></summary>
+          <p># the last value in the array is 3, and lives at index address 9, one less than 10</p>
+  </details> -->
+
+  <p>
+    I'm sure you've noticed that indexs actually count up from 0 to the last index value of the array. So for our array that contanins 10 values we have the index numbers 0..9. The last index number will always be one less than the total length of the array and by length I mean the number of values wich the array holds.
+  </p>
+  <div id="codeblock">
+    <code> array.length = number_of_values_the_array_holds </code> <br>
+    <code> pi.length = 10 </code>
+  </div>
+  <p>
+    In fact in many languages, it's a common practice to reference the end of the array when you're not sure how long it is by using an index value defined as the array's length minus one:
+  </p>
+  <code> last_value = pi[ (pi.length) -1] = pi[10 - 1] = 3 </code>
+  <p> However, Ruby gives us an even better short hand way to reference the last value: </p>
+  <code> last_value = pi[-1] = 3 </code>
+  <p> Ruby will take the index value of '-1' to mean the last value of the array. The index value '-2' will refer to the second to the last value of the array and so forth all the way back to the front of the array where in our example, pi[-10] referes to the first value, 3.
+  </p>
+  <p> Ruby has many built in array methods to provide a versatile interface that allows you to do nearly any operation you can imagine on an array. For the purposes of this blog post we will stick to just the basics and only talk about different methods to add or remove values to or from an array. First off, any value of an array can be overwritten with the following syntax:
+  </p>
+
+  <div id="codeblock">
+     <code> abc = ["a","b","c"] # defined simple array that holds 3 string values</code><br>
+     <code> abc[2] = "d"        # changed the value at index 2 to "d"          </code>
+  </div>
+  <p> If you are not overwriting pre-existing values, then you are either adding values to the array or removing them. The methods unshift,shift, push and pop are the most commonly used. The method unshift will add or append a value to the front of the array, and it's counterpart, shift, will remove values from the front of the array. Like-wise, push will stick a value onto the end of the array and it's counterpart, pop, will remove a value from the end of the array. Here's a diagram that you can use to easily remember and visualize these pairs:
+  </p>
+    <div class="array-methods"></div>
+
+  <!--
+   <div id="codeblock">
+
+  </div>
+  -->
+  <p></p>
+
+</div>
+  <a href ="./t2-css-design.html"><div id="left"> Previous  </div> </a>
+  <a href="../index.html"><div id="center"> Home </div></a>
+  <a href="./t3-arrays-hashes.html"> <div id="right"> Next Post </div></a>
+</body>
+</html>
