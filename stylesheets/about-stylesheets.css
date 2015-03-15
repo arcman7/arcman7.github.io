@@ -44,6 +44,39 @@ p{
   height:380px;
   border:1px solid #199C78;
   width: 80%;
-
 }
 
+#github{
+  background:url(../med-svg/github.svg);
+  width:3em;
+  height:3em;
+  display:inline-block;
+
+}
+#facebook{
+  background:url(../imgs/svg-b/facebook-square.svg);
+  width:3em;
+  height:3em;
+  display:inline-block;
+
+}
+#twitter{
+  background:url(../imgs/svg-b/twitter.svg);
+  width:3em;
+  height:3em;
+  display:inline-block;
+
+}
+#linkedin{
+  background:url(../imgs/svg-b/linkedin.svg);
+  width:3em;
+  height:3em;
+  display:inline-block;
+
+}
+#mail{
+  background:url(../imgs/svg-b/mail.svg);
+  width:3em;
+  height:3em;
+  display:inline-block;
+}
