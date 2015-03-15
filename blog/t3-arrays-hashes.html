@@ -71,7 +71,7 @@
      <code> abc = ["a","b","c"] # defined simple array that holds 3 string values</code><br>
      <code> abc[2] = "d"        # changed the value at index 2 to "d"          </code>
   </div>
-  <p> If you are not overwriting pre-existing values, then you are either adding values to the array or removing them. The methods unshift,shift, push and pop are the most commonly used. The method unshift will add or append a value to the front of the array, and it's counterpart, shift, will remove values from the front of the array. Like-wise, push will stick a value onto the end of the array and it's counterpart, pop, will remove a value from the end of the array. Here's a diagram that you can use to easily remember and visualize these pairs:
+  <p> If you are not overwriting pre-existing values, then you are either adding values to the array or removing them. The methods unshift,shift, push and pop are the most commonly used. The method unshift will add or append a value to the front of the array, and it's counterpart, shift, will remove values from the front of the array. Like-wise, push will stick a value onto the end of the array and it's counterpart, pop, will remove a value from the end of the array. It's important to remember that the methods which remove elements from an array will output those removed values as a return value. Here's a diagram that you can use to easily remember and visualize these pairs:
   </p>
     <div class="array-methods"></div>
 
@@ -80,8 +80,79 @@
 
   </div>
   -->
-  <p></p>
+  <div id="codeblock">
+    <code> letters = ["a","b","c"] </code> <br>
+    <code> letters.push("d") </code> <br>
+    <code> => ["a","b","c","d"] </code> <br>
+    <code> letters.unshift("A") </code> <br>
+    <code> => ["A","a","b","c","d"] </code> <br>
+    <code> letters.pop </code> <br>
+    <code> => "d"   # pop's return value is "d" which it removed from the array</code> <br>
+    <code> puts letters </code> <br>
+    <code> => ["A","a","b","c"] </code> <br>
+    <code> leters.shift </code> <br>
+    <code> => "A"  # shift's return value is "A" which it removed from the array</code> <br>
+    <code> puts letters </code> <br>
+    <code> => ["a","b","c"] </code>
+  </div>
+    <p>That's it for array basics. The next topic is Hashes or Hash-tables. I would like to first talk about how to use hashes and then why they are useful and under what circumstances they are best used.
+    </p>
+    <p> Hashes are anothery type of data container that Ruby provides and have a similar structure to arrays except the indexs of hashes can take on the form of any ruby object as opposed to just integers. There are four ways to create a hash:
+    </p>
+    <div id="codeblock">
+      <code> {} #(A) the literal constructor </code> <br>
+      <code> Hash.new #(B) class method of class Hash </code> <br>
+      <code> Hash.[] # (C)another class method of class Hash </code> <br>
+      <code> Hash # (D) a top level method with the name hash </code>
+    </div>
 
+      <div id="codeblock">
+        <code> a = {} #same as a = Hash.new, a = Hash.[], a = Hash[]</code> <br>
+        <code> => {} </code> <br>
+        <code> a = Hash </code> <br>
+        <code> => Hash # the output is different from the rest, but a is still a hash </code>
+      </div>
+      <p>
+        In choice (A), where we use the literal constuctor, we can assign what are called key-value pairs like so:
+      </p>
+      <code> a = {"one" => 1, "two" => 2, "three" => 3} </code>
+      <p>
+        These key-value pairs are the essence of what makes a hash a hash. When using this method of assignment, the key will always be on the left hand side of the arrow, and the value it corresponds to will always be on the left hand side. Once you have keys defined in the hash you can look up their values the same way you would in an array, you use their index address wich is exactly what the 'key' in key/value pair is.
+      </p>
+      <div id="codeblock">
+        <code> test_number = a["one"] </code> <br>
+        <code> => 1 # now the variable test_number = 1 </code> <br>
+      </div>
+      <p>
+        If we use choice (C), we can define a hash using an array provided the array has an even number of elements.
+      </p>
+      <div id="codeblock">
+        <code> favorite_colors = Hash["Billy","blue","Tess","teal","Randy","red"] </code> <br>
+        <code> => {"Billy" => "teal", "Tess" => "teal", "Randy" => "red"} </code> <br>
+        <code> favorite_numbers = Hash[ ["Billy",7], ["Tess",6], ["Randy",15.98]] </code> <br>
+        <code> => {"Billy" => 7, "Tess" => 6, "Randy" => 15.98} </code>
+      </div>
+
+     <p>
+      If we use choice (B) we can set default values to keys that have not been created yet.
+      <div id="codeblock">
+        <code> breakfast = Hash.new("biscuits") </code><br>
+        <code> => {} </code> <br>
+        <code> breakfast["Monday"] = "eggs toast"; breakfast["Tuesday"] = "bacon and toast" ; breakfast["Wednesday"] = "pancakes and toast" </code> <br>
+        <code>puts breakfast["Friday"]  </code> <br>
+        <code> => "biscuits" # Since we haven't defined what value the key "Friday" holds it will automatically be set to our default value </code>
+      </div>
+      <p>Consequently everyday in our example besides Monday, Tuesday and Wednesday will have a default value of "biscuits".
+      </p>
+      <p> Hashes also take symbols as keys which are easier to type out than strings. </p>
+      <div id="codeblock">
+        <code> prey[:snakes] = "puppies and kittens" </code> <br>
+        <code> => {:snakes => "puppies and kittens"} </code> <br>
+        <code> prey[:lions => "antelope", :crocodiles => "zebra"] </code> <br>
+        <code> => {:snakes => "puppies and kittens", :lions => antelope", :crocodiles => "zebra"} </code>
+      <p>
+        Hashes are very useful for storing large sets of data that have no numercial pattern associated with them. For example, if you stored a thousand different people's favorite colors in an array such as favorite_colors[n] ="Billy Joe, blue". Now say you want to find what color Jill Smith likes, you would literally have to iterate through each value in the array untill you found one who's string value contains "Jill Smith". You would have to write a bit of code that loops through each value in the array, and just wait for it to hit the right index value. Hashes, however, provide you with a quick look-up method, you simply get it from favorite_colors["Jill Smith"]. Hashes provide you with faster than linear search time.
+      </p>
 </div>
   <a href ="./t2-css-design.html"><div id="left"> Previous  </div> </a>
   <a href="../index.html"><div id="center"> Home </div></a>
