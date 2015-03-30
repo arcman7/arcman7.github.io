@@ -1,0 +1,2 @@
+
+Perhaps you are analyzing the results of a simulation you were running and would like to know what initial conditions led to the outcome you're interested in, or perhaps you are just trying to recreate the behavior of any program that makes use of Ruby's class Random. In either case it is good to know how to save the
