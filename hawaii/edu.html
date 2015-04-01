@@ -17,7 +17,7 @@
 
     <link href="http://www.hawaii.edu/site/scripts/homepage/galleria/themes/homepage/galleria.homepage.css" media="screen" rel="stylesheet" type="text/css">
     <link rel="alternate" href="http://feeds.feedburner.com/UHawaiiSystemHome" title="UH News Headlines" type="application/rss+xml">    <style type="text/css">
-  @import url(/site/styles/2007/homepage.css);
+  @import url(http://www.hawaii.edu/site/styles/2007/homepage.css);
     </style>    <script type="text/javascript">
     /* <![CDATA[ */
   campuses_arr = [
@@ -28,7 +28,7 @@
 
   function campuses_swap (campus) {
       img = document.getElementById('campuses_img');
-      img.src='site/images/' + campuses_arr[0][campus];
+      img.src='http://www.hawaii.edu/site/images/' + campuses_arr[0][campus];
       alt_title = campuses_arr[1][campus];
       var okina = "&#145;";
       // Pageserver strips out the codes if diacritical is set to none.
@@ -55,10 +55,10 @@
   function banner_motto_swap (lang) {
       img = document.getElementById('banner1_img');
       if (lang == 'eng') {
-    img.src='site/images/banner_motto_english.gif';
+    img.src='http://www.hawaii.edu/site/images/banner_motto_english.gif';
     alt_title = "Above all nations is humanity.";
       } else {
-    img.src='site/images/banner_motto_hawaiian.gif';
+    img.src='http://www.hawaii.edu/site/images/banner_motto_hawaiian.gif';
     alt_title = "Ma luna a&#145;e o na lahui a pau ke ola o ke kanaka";
       }
       var okina = "&#145;";
@@ -97,7 +97,7 @@
 <body cz-shortcut-listen="true">
 <ul id="config">
     <li id="text-version"><a href="?pv=text">Text Version</a></li>
-    <li id="diacritics"><a href="/site/info/diacritics.php">Hawaiian language online</a></li>
+    <li id="diacritics"><a href="http://www.hawaii.edu/site/info/diacritics.php">Hawaiian language online</a></li>
 </ul>
 <div id="header">
     <div id="header-title"><a href="http://www.hawaii.edu/"><span>University of Hawaii System</span></a></div>
@@ -110,7 +110,7 @@
     <input type="hidden" name="cx" value="008945998903415758105:4nrwh9-26ni">
     <input type="hidden" name="cof" value="FORID:11">
     <input id="q" type="text" name="q" size="17" maxlength="255" value="SEARCH" onblur="if (this.value=='') {this.value='SEARCH';};" onfocus="if (this.value=='SEARCH') {this.value='';};">
-    <input id="btn_search" name="submit" type="image" alt="go!" src="/site/images/navbar/btn_search.gif">
+    <input id="btn_search" name="submit" type="image" alt="go!" src="http://www.hawaii.edu/site/images/navbar/btn_search.gif">
       </form>
   </div> <!-- search-box -->
     </div> <!-- header-search -->
@@ -300,7 +300,7 @@
 
 
 
-                <h3 id="headlines-header"><a href="/news/" title="Go to UH News"><strong>UH News</strong></a> Headlines&nbsp;<a href="http://feeds.feedburner.com/UHawaiiSystemHome"><img src="/site/images/rss12.jpg" height="12" width="12" alt="University News Headlines Feed" title="Go to UH News Headlines Feed" border="0"></a></h3>
+                <h3 id="headlines-header"><a href="/news/" title="Go to UH News"><strong>UH News</strong></a> Headlines&nbsp;<a href="http://feeds.feedburner.com/UHawaiiSystemHome"><img src="http://www.hawaii.edu/site/images/rss12.jpg" height="12" width="12" alt="University News Headlines Feed" title="Go to UH News Headlines Feed" border="0"></a></h3>
    <!--PIN Story to top of UH News Story list  -->
 <!--<p style="font-size:11px">Notice: <a href="http://vod.its.hawaii.edu/uh_presidential_candidate_forum/">Watch the videos from the UH president finalists forums</a> </p>  -->
 
