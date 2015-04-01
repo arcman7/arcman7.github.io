@@ -1,0 +1,405 @@
+/* Needed to make the photogallery reposition when resizing the window using IE. */
+body {
+    position: relative;
+}
+
+#section-campuses-wrapper {
+    float: left;
+    width: 770px;
+    margin: 1px 0 0 0;
+    padding: 0;
+    background: #fff;
+    border-bottom: 1px solid #d1bda6;
+}
+
+#section-campuses {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+#section-campuses img {
+    float: left;
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 115px;
+}
+
+#section-campuses #campuses-10campuses {
+    float: left;
+    width: 220px;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+#section-campuses #campuses-10campuses h2 {
+    display: block;
+    float: left;
+    width: 218px;
+    margin: 10px 0 3px 0;
+    padding: 0 0 5px 0;
+    color: #814f11;
+    background: url(/site/images/campuses_horiz_divider.gif) repeat-x bottom left;
+}
+
+#section-campuses #campuses-10campuses-left h3,
+#section-campuses #campuses-10campuses-right h3 {
+    font-weight: normal;
+}
+
+
+#section-campuses #campuses-10campuses-left {
+    float: left;
+    width: 73px;
+    margin: 0;
+    padding: 0;
+}
+
+#section-campuses #campuses-10campuses-right {
+    float: left;
+    width: 130px;
+    margin: 0 0 0 1em;
+    padding: 0;
+}
+
+#section-campuses #campuses-more {
+    float: left;
+    width: 130px;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+#section-campuses #campuses-more h3 {
+    display: block;
+    float: left;
+    width: 130px;
+    margin: 9px 0 5px 0;
+    padding: 0 0 5px 0;
+    color: #814f11;
+    font-weight: normal;
+    background: url(/site/images/campuses_horiz_divider.gif) repeat-x bottom left;
+}
+
+#section-campuses .campuses-list {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#section-campuses .cc2 {
+    margin-left: 15px;
+}
+
+#section-campuses .campuses-list li a {
+    font-size: 9pt;
+    color: #000;
+}
+
+#section-campuses #campuses-right-col-ftr {
+    float: left;
+    width: 216px;
+    margin: 0;
+    padding: 0;
+}
+
+#left-content-wrapper {
+    float: left;
+    width: 154px;
+    margin: 0 0 3px;
+    padding: 0;
+}
+
+#left-content-wrapper #nav4 {
+    float: left;
+    text-align: left;
+    width: 154px;
+    margin: 0 0 7px 0;
+    padding: 0;
+    border:none;
+}
+
+#left-content-wrapper #nav4 ul {
+    list-style: none;
+    margin: 7px 0 1.5em 0;
+    padding: 0;
+}
+
+#left-content-wrapper #nav4 ul li h3 {
+    display: block;
+    width: 154px;
+    margin: 0;
+    padding: 4px 0 7px 0;
+    background: url(/site/images/leftnav_underscore.gif) repeat-x bottom left;
+}
+
+#left-content-wrapper #nav4 ul li a {
+    display: block;
+    width: 154px;
+    margin: 0;
+    padding: 4px 0 7px 0;
+    color: #000;
+    font-size: 8.5pt;
+    background: url(/site/images/leftnav_underscore.gif) repeat-x bottom left;
+}
+
+#left-content-wrapper #nav4 ul li.last a {
+    margin-bottom:12px;
+    /* background: none; */
+}
+
+#left-content-wrapper #nav4 ul li a:hover {
+    text-decoration: none;
+    background: #e3d5b4 url(/site/images/leftnav_underscore.gif) repeat-x bottom left;
+    color: #000;
+}
+
+#left-content-wrapper #banner1,
+#left-content-wrapper #banner2 {
+    float: left;
+    text-align: center;
+    width: 154px;
+    margin: 0 0 7px;
+    padding: 0;
+    border: none;
+}
+
+#left-content-wrapper #banner1 a,
+#left-content-wrapper #banner2 a {
+    display: block;
+    width: 100%;
+}
+
+#left-content-wrapper #banner1 img,
+#left-content-wrapper #banner2 img {
+    border: none;
+}
+
+#right-content-wrapper {
+    float: left;
+    width: 596px;
+    margin: 0;
+    padding: 20px 0 20px 19px;
+    border-left: 1px solid #d1bda6;
+}
+
+#right-content-wrapper h3 {
+    padding-bottom: 3px;
+    margin-bottom: .75em;
+    background: url(/site/images/h3_underscore.gif) repeat-x bottom left;
+}
+
+#right-content-col1 {
+    float: left;
+    width: 160px;
+    margin: 0 8px 0 0;
+    padding: 0 5px 0 10px;
+}
+
+#right-content-col2 {
+    float: left;
+    width: 410px;
+    margin: 0;
+    padding: 0;
+}
+
+#section-events {
+    width: 180px;
+    float: left;
+    margin: 0 0 1.5em 0;
+    padding: 0 25px 0 3px;
+}
+
+#section-events #events-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#section-events #events-list li {
+    margin: 0 0 1em 0;
+    padding: 0;
+    font-size: 8pt;
+}
+
+#section-events #events-list li .dte {
+    font-weight: bold;
+}
+
+#section-events #events-footer h3 a {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 2px 0 1em 0;
+  padding: 0;
+  color: #814f11;
+}
+
+#section-events #events-footer h3 {
+    margin-bottom: 1em;
+}
+
+#section-sports-news {
+    width: 100%;
+    margin: 0 0 1.5em 0;
+    padding: 4px 0px 0px 0px;
+}
+
+#section-publications {
+    float: right;
+    width: 101px;
+    margin: 0px 10px 15px 0px;
+    padding: 0;
+}
+
+#section-publications img {
+    display:block;
+}
+
+
+#section-publications p {
+    text-align:left;
+}
+
+
+#section-sports-news ul,
+#section-publications ul {
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0px;
+}
+
+#section-sports-news ul li,
+#section-publications ul li {
+    float: left;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#section-sports-news ul li a,
+#section-publications ul li a {
+    float: left;
+    margin: 3px 0 0 0;
+    padding-right: 7px;
+    text-align: left;
+}
+
+#section-sports-news img,
+#section-publications img {
+    border: none;
+}
+
+#section-photogallery {
+    float: right;
+    width: 593px;
+    height:334px;
+    margin: 0 0 48px 0;
+    padding: 0;
+    font-size: 11px;
+    text-align: center;
+    background-color: none;
+}
+
+#photogallery-photo-wrapper {
+    float: left;
+    width: 310px;
+    margin: 0 0 1em 0;
+    padding: 0;
+    text-align: left;
+    font-size: 8pt;
+}
+
+#photogallery-photo-wrapper img {
+    display: block;
+    margin-bottom: 6px;
+}
+
+#photogallery-list-wrapper {
+    float: left;
+    width: 80px;
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+#photogallery-list li {
+    font-size: 8pt;
+}
+
+#photogallery-list li img {
+    border: none;
+    width: 70px;
+    height: 50px;
+}
+
+#emergency-box {
+    width: 576px;
+    text-align: left;
+    font-size: 10pt;
+}
+
+/* Safari 2.0.x doesn't allow you to click on the "More photos" link
+   unless position is relative and z-index is set higher than the prev
+   and next buttons of the jcarousel object.
+
+   NOTE: ":root" is only recognized by Safari and FireFox so the other
+   browsers should ignore this code.
+   Ref: http://cssbeauty.com/skillshare/discussion/1014/safari-css-hack/
+ */
+:root #photogallery-link {
+    position: relative;
+    right: 0%;
+    bottom: 100%;
+    z-index: 5;
+}
+
+#section-headlines {
+    float: left;
+    width: 264px;
+    margin: 0;
+    padding:0 0 15px 0;
+}
+
+#section-headlines #headlines-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#section-headlines #headlines-list li {
+    margin: 0 0 1em 0;
+    padding: 0;
+    font-size: 8pt;
+}
+
+#section-headlines #headlines-footer {
+    font-size: 8pt;
+}
+
+#section-weather {
+    float: right;
+    width: 101px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#section-weather h3 {
+    text-align: left;
+}
+
+#section-weather img {
+    border: none;
+    display: inline;
+}
+
+#section-weather #weather-temperature {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    vertical-align: 100%;
+}
