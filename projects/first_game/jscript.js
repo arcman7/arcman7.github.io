@@ -14,15 +14,15 @@
     }
 
 //undead
-arthus = person(110,100,15,"plate","Death Knight",1,"arthus",[14,15],"undead");
-nec = person(80,100,9,"cloth","Necromancer",1,"nec",[8,9],"undead");
-timmy = person(90,100,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
+arthus = new person(110,100,15,"plate","Death Knight",1,"arthus",[14,15],"undead");
+nec = new person(80,100,9,"cloth","Necromancer",1,"nec",[8,9],"undead");
+timmy = new person(90,100,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
 
-skel = person(50,100,13,"cloth","skeleton",1,"skel",[10,11,12,13],"undead");
+skel =  new person(50,100,13,"cloth","skeleton",1,"skel",[10,11,12,13],"undead");
 //humans
-uther = person(110,100,16,"plate","Palatine",1,"uther",[10,11,12,13],"human");
-mage = person(80,100,10,"cloth","Sorcerer",1,"mage",[5,6,7,8],"human");
-arch = person(90,100,11,"leather","Archer",1,"arch",[10,11,12,13,14,15,16,17],"human");
+uther =  new person(110,100,16,"plate","Palatine",1,"uther",[10,11,12,13],"human");
+mage = new person(80,100,10,"cloth","Sorcerer",1,"mage",[5,6,7,8],"human");
+arch = new person(90,100,11,"leather","Archer",1,"arch",[10,11,12,13,14,15,16,17],"human");
 
 
 arthus.mana = 80;
