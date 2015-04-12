@@ -97,7 +97,7 @@ function attackSetRecieversNewHealth(){
   }
 }
 
-//$(document).ready(function(){
+$(document).ready(function(){
 var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
 if(race == "humans"){race = human; otherteam = undead;}else{race = undead; otherteam = human;}
@@ -131,4 +131,4 @@ while(game == 1){
  turn_counter++;
 }
 
-//});
+});
