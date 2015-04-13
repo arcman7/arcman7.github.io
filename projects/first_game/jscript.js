@@ -79,7 +79,7 @@ var turn_counter = 0;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
   $('img').click(function(){
-        if(this.className == race[0].klass || race[1].klass || race[2].klass){ 
+        if(this.class == race[0].klass || race[1].klass || race[2].klass){ 
             giver = this.className;
             action = "";
         }
@@ -87,7 +87,7 @@ var turn_counter = 0;
   
    $('img').click(function(){
         if( (this.id == "attack" || "spell" )&& giver != ""){
-            this.className = "highlighted";
+            this.class = "highlighted";
             action = this.id;
         }
     });
@@ -95,7 +95,7 @@ var turn_counter = 0;
     $('img').click(function(){         //damage_reciever and health_id set
      if(action != "" && giver != ""){
             for(person in otherteam){
-                if(this.className == otherteam[person].klass){
+                if(this.class == otherteam[person].klass){
                     damage_reciever = otherteam[person];
                     health_id = "#" + damage_reciever.replace(/\s+/g, '') + "Health";
                 }
