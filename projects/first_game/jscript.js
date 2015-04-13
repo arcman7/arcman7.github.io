@@ -76,7 +76,7 @@ else{
 
 var game = 1;
 var turn_counter = 0;
-
+alert("hello")
   var turn = 1;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
