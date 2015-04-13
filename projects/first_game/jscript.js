@@ -138,9 +138,10 @@ var turn_counter = 0;
               alert(team[person].klass + "   giver ="+giver);
             if(team[person].klass == giver){
                 var damage = team[person].damage[Math.floor(Math.random()*team[person].damage.length)];
-                damage_reciever.health = health - damage;
+                damage_reciever.health = damage_reciever.health - damage;
                 damage_reciever.health_percentage = damage_reciever.health / damage_reciever.original_health;
                 //code for slice animation
+                alert(damage.reciever.health + "  "+damage_reciever.health + "   "+damage);
                 $(health_id).width(String(damage_reciever.health_percentage)+"%");
                 $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
                 turn++;
