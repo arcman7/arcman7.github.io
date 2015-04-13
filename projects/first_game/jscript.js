@@ -113,14 +113,14 @@ var turn_counter = 0;
   });
 
   $(race2tag + "spell").click(function(){
-    if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
+    if(giver !="" && ("."+giver+"spell") == (race2tag + "spell")){
       $(this).addClass('highlighted');
       action = $(this).attr('id');
     }
   });
 
    $(race3tag + "spell").click(function(){
-    if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
+    if(giver !="" && ("."+giver+"spell") == (race3tag + "spell")){
       $(this).addClass('highlighted');
       action = $(this).attr('id');
     }
