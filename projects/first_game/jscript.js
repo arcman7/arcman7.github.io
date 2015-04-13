@@ -85,34 +85,34 @@ var turn_counter = 0;
   
   $(race1tag).click(function(){
         giver = $(this).attr('class');
-        alert($(this).attr('class'));
+        alert(giver);
         action = "";
     });
     $(race2tag).click(function(){
         giver = $(this).attr('class');
-        alert($(this).attr('class'));
+        alert(giver);
         action = "";
     });
   $(race3tag).click(function(){
         giver = $(this).attr('class');
-        alert($(this).attr('class'));
+        alert(giver);
         action = "";
     });
     
    $((race1tag + "attack")).click(function(){
-        if( giver != "" && (giver+"attack") == (race1tag + "attack") ){
+        if( giver != "" && ("."+giver+"attack") == (race1tag + "attack") ){
             $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
     });
     $((race2tag + "attack")).click(function(){
-        if( giver != "" && (giver+"attack") == (race2tag + "attack") ){
+        if( giver != "" && ("."+giver+"attack") == (race2tag + "attack") ){
             $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
     });
     $((race3tag + "attack")).click(function(){
-        if( giver != "" && (giver+"attack") == (race3tag + "attack") ){
+        if( giver != "" && ("."+giver+"attack") == (race3tag + "attack") ){
             $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
