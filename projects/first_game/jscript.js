@@ -82,22 +82,22 @@ var turn_counter = 0;
   var race1tag = "." +race[0].klass; 
   var race2tag = "." + race[1].klass;
   var race3tag = "." + race[2].klass;
-  alert("race1tag = "+race1tag +", race2tag = " + race2tag +", race3tag= " +race3tag);
+  //alert("race1tag = "+race1tag +", race2tag = " + race2tag +", race3tag= " +race3tag);
   $(race1tag).click(function(){
         giver = $(this).attr('class');
-        alert("giver = " + giver);
+        //alert("giver = " + giver);
         action = "";
         $('.highlighted').removeClass('highlighted');
     });
     $(race2tag).click(function(){
         giver = $(this).attr('class');
-        alert("giver = " + giver);
+        //alert("giver = " + giver);
         action = "";
         $('.highlighted').removeClass('highlighted');
     });
   $(race3tag).click(function(){
         giver = $(this).attr('class');
-        alert("giver = " + giver);
+        //alert("giver = " + giver);
         action = "";
         $('.highlighted').removeClass('highlighted');
     });
@@ -122,10 +122,10 @@ var turn_counter = 0;
     });
     alert(race3tag+"attack");
     
-    $('Archer').click(function(){         //damage_reciever and health_id set
+    $('Archer').click(function(){  alert("clicked " +$(this).attr('class'))       //damage_reciever and health_id set
      if(action != "" && giver != ""){
             for(person in otherteam){
-                if($(this).attr('class') == otherteam[person].klass){
+                if($(this).attr('class') == ("."+otherteam[person].klass)){
                     damage_reciever = otherteam[person];
                     health_id = "#" + damage_reciever.klass + "Health";
                 }
