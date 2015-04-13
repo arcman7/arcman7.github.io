@@ -130,7 +130,7 @@ var turn_counter = 0;
                         if(target == (otherteam[person].klass)){
                                 damage_reciever = otherteam[person];
                                 health_id = "#" + damage_reciever.klass + "Health";
-                                alert(otherteam[person].klass + "   health_id ="+health_id);
+                                //alert(otherteam[person].klass + "   health_id ="+health_id);
                         }
                 }
         }
@@ -138,13 +138,13 @@ var turn_counter = 0;
               //alert(team[person].klass + "   giver ="+giver);
             if(team[person].klass == giver){
                     var index = Math.floor(Math.random()*team[person].damage.length);
-                    alert(team[person].klass + "   giver ="+giver+"   index="+index);
+                    //alert(team[person].klass + "   giver ="+giver+"   index="+index);
                     var damage = team[person].damage[index];
-                    alert("damage = "+damage+"  damage_reciever.health = "+damage_reciever.health);
+                    //alert("damage = "+damage+"  damage_reciever.health = "+damage_reciever.health);
                     damage_reciever.health = damage_reciever.health - damage;
-                    damage_reciever.health_percentage = damage_reciever.health / damage_reciever.original_health;
+                    damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
                         //code for slice animation
-                    alert(damage_reciever.health + "  "+damage_reciever.health_percentage + "   "+damage);
+                    //alert(damage_reciever.health + "  "+damage_reciever.health_percentage + "   "+damage);
                     $(health_id).width(String(damage_reciever.health_percentage)+"%");
                     $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
                     turn++;
