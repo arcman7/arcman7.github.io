@@ -126,6 +126,7 @@ var turn_counter = 0;
          alert("clicked " +target+" giver = "+giver+" action= "+action);
         if(action != "" && giver != ""){
             for(person in otherteam){
+                    alert(otherteam[person].klass + "   person ="+person);
                 if(target == (otherteam[person].klass)){
                     damage_reciever = otherteam[person];
                     health_id = "#" + damage_reciever.klass + "Health";
@@ -133,6 +134,7 @@ var turn_counter = 0;
             }
         }
       for(person in team){
+              alert(team[person].klass + "   person ="+person);
             if(team[person].klass == giver){
                 var damage = team[person].damage[Math.floor(Math.random()*team[person].damage.length)];
                 damage_reciever.health = health - damage;
