@@ -9,13 +9,13 @@
     <title> Battle </title>
    </head>
   <body>
-    <table>
+ <table>
     <tr class="human">
     <td>
       <div class="stats_box">
         <div class="char_container">
-          <div><img src="./uther.png"></div>
-          <div class="health"></div>
+          <div><img class="Palatine" src="./uther.png"></div>
+          <div class="health" id="PalatineHealth"></div>
         </div>
          <p>
         <pre>
@@ -34,8 +34,8 @@ Class: Palatine
     <td>
       <div class="stats_box">
         <div class="char_container">
-          <div><img src="./archeredited.jpg"></div>
-          <div class="health"></div>
+          <div><img class="Archer" src="./archeredited.jpg"></div>
+          <div class="health" id="ArcherHealth"></div>
         </div>
         <p>
         <pre>
@@ -54,8 +54,8 @@ Class: Archer
        <td>
       <div class="stats_box">
         <div class="char_container">
-          <div><img src="./human_mageedited.jpg"></div>
-          <div class="health"></div>
+          <div><img class="Sorcerer" src="./human_mageedited.jpg"></div>
+          <div class="health" id="SorcererHealth"></div>
         </div>
         <p>
         <pre>
@@ -76,8 +76,8 @@ Class: Sorcerer
     <td>
       <div class="stats_box">
         <div class="char_container">
-          <div><img src="./undead_warlockedited.jpg"></div>
-          <div class="health"></div>
+          <div><img id="Necromancer" src="./undead_warlockedited.jpg"></div>
+          <div class="health" id="NecromancerHealth"></div>
         </div>
          <p>
         <pre>
@@ -98,8 +98,8 @@ Class: Necromancer
     <td>
       <div class="stats_box">
         <div class="char_container">
-          <div><img src="./ghouledited.jpg"></div>
-          <div class="health"></div>
+          <div><img class="Ghoul" src="./ghouledited.jpg"></div>
+          <div class="health" id="GhoulHealth"></div>
         </div>
         <p>
         <pre>
@@ -119,8 +119,8 @@ Class: Ghoul
        <td>
       <div class="stats_box">
         <div class="char_container">
-          <div><img src="./arthusedited.jpg"></div>
-          <div class="health"></div>
+          <div><img class="Death Knight" src="./arthusedited.jpg"></div>
+          <div class="health" id="DeathKnightHealth"></div>
         </div>
         <p>
         <pre>
@@ -134,8 +134,8 @@ plate
 Class: Death Knight
         </pre>
         </p>
-        <div class="icon"> <img src="./spell_cast.png"></div>
-        <div class="icon"> <img src="./attack.png"></div>
+        <div class="icon"> <img id="spell" src="./spell_cast.png"></div>
+        <div class="icon"> <img id="attack" src="./attack.png"></div>
       </div>
     </td>
    </tr>
@@ -147,6 +147,7 @@ Class: Death Knight
     Battle start!
   </p>
 </div>
+
 
   </body>
 </html>
