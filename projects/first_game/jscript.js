@@ -69,7 +69,7 @@ else{
     otherteam = humans;
     
 }
-//$('div').fadeOut('fast')
+
  $('#combat_log').html("Battle start! Your turn, select a character and then an action.");
 
 var game = 1;
