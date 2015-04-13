@@ -12,6 +12,7 @@ function person(health,health_percentage,armor,armor_type,klass,level,id,damage,
         this.race = race;
         this.attack = "";
         this.original_health = this.health;
+        this.turn = 1;
     }
 
 //undead
@@ -107,14 +108,15 @@ var turn_counter = 0;
   //spells
  $(race1tag + "spell").click(function(){
     if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
+      $('.highlighted').removeClass('highlighted');
       $(this).addClass('highlighted');
       action = $(this).attr('id');
-      alert("action = "+action);
     }
   });
 
   $(race2tag + "spell").click(function(){
     if(giver !="" && ("."+giver+"spell") == (race2tag + "spell")){
+      $('.highlighted').removeClass('highlighted');
       $(this).addClass('highlighted');
       action = $(this).attr('id');
     }
@@ -122,35 +124,44 @@ var turn_counter = 0;
 
    $(race3tag + "spell").click(function(){
     if(giver !="" && ("."+giver+"spell") == (race3tag + "spell")){
+      $('.highlighted').removeClass('highlighted');
       $(this).addClass('highlighted');
       action = $(this).attr('id');
-      alert("action = "+action);
     }
   });
 
   //attack
  $((race1tag + "attack")).click(function(){
       if( giver != "" && ("."+giver+"attack") == (race1tag + "attack") ){
-          $(this).addClass('highlighted');
-          action = $(this).attr('id');
+        $('.highlighted').removeClass('highlighted');
+        $(this).addClass('highlighted');
+        action = $(this).attr('id');
       }
   });
   $((race2tag + "attack")).click(function(){
       if( giver != "" && ("."+giver+"attack") == (race2tag + "attack") ){
-          $(this).addClass('highlighted');
-          action = $(this).attr('id');
+        $('.highlighted').removeClass('highlighted');
+        $(this).addClass('highlighted');
+        action = $(this).attr('id');
       }
   });
   $((race3tag + "attack")).click(function(){
       if( giver != "" && ("."+giver+"attack") == (race3tag + "attack") ){
-          $(this).addClass('highlighted');
-          action = $(this).attr('id');
+        $('.highlighted').removeClass('highlighted');
+        $(this).addClass('highlighted');
+        action = $(this).attr('id');
       }
   });
 
+//implement turn control
+  function highlightRED(teamMember){
+      if(teamMember.turn == 0){
+        $("."+teamMember.klass).addClass('highlightedRED');
+      }
+  }
+
   // implement attack
     function get_DamageRecieverInfo(target){
-      alert("action = "+action);
       if(action == "attack" && giver != ""){
         for(person in otherteam){
           if(target == (otherteam[person].klass)){
@@ -170,6 +181,8 @@ var turn_counter = 0;
                 //code for slice animation
             $(health_id).width(String(damage_reciever.health_percentage)+"%");
             $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
+            team[person].turn -=1;
+            highlightRED(team[person]);
             turn++;
           }
         }
@@ -183,6 +196,12 @@ var turn_counter = 0;
         }
       }
     }
+
+    function AIattack(){
+
+    }
+
+
 
     $("."+otherteam[0].klass).click(function(){         //damage_reciever and health_id set
         target = $(this).attr('class');

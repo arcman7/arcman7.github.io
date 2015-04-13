@@ -135,6 +135,12 @@ border-radius: 0 50% 50% 0;
     -moz-box-shadow: 0 0 10px #21a6ff;
     box-shadow: 0 0 15px #21a6ff;
 }
+
+.highlightedRED{
+    -webkit-box-shadow: 0 0 10px red;
+    -moz-box-shadow: 0 0 10px red;
+    box-shadow: 0 0 15px red;
+}
 html{
   background-color: grey;
 }
