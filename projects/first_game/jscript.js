@@ -71,7 +71,6 @@ else{
    $("tr.human > div.icon").fadeOut('fast');
    $('#combat_log').html("You have chosen Undead. Battle start! Select a character and then an action.");
   otherteam = humans;
-
 }
 var team = race; //quick fix for problems below
  //$('#combat_log').html("Battle start! Your turn, select a character and then an action.");
@@ -105,7 +104,7 @@ var turn_counter = 0;
         $('.highlighted').removeClass('highlighted');
     });
 //action selector functions
- $(race1tag + "spell").click(function{
+ $(race1tag + "spell").click(function(){
     if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
       $(this).addClass('highlighted');
       action = $(this).attr('id');
