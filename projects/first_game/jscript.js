@@ -95,7 +95,7 @@ var turn_counter = 0;
     $('img').click(function(){         //damage_reciever and health_id set
      if(action != "" && giver != ""){
             for(person in otherteam){
-                if(this.klass == otherteam[person].klass){
+                if(this.className == otherteam[person].klass){
                     damage_reciever = otherteam[person];
                     health_id = "#" + damage_reciever.replace(/\s+/g, '') + "Health";
                 }
@@ -122,53 +122,7 @@ var turn_counter = 0;
         }
     });
     
-    
-    
-    
-    
-  function getGiver(){
- $('img').click(function(){
-    if(this.className == race[0].klass || race[1].klass || race[2].klass){ giver = this.className;}
-  });
-}
 
-function getAction(){
-  if(giver!= ""){
-    $('img').click(function(){
-      if(this.id == "attack" || "spell"){
-        this.className = "highlighted";
-        action = this.id;
-      }
-    });
-  }
-}
-
-function getDamageReciever(){
-  if(action == "attack" || "spell"){
-    $('img').click(function(){
-      for(person in otherteam){
-        if(this.klass == otherteam[person].klass){
-          damage_reciever = otherteam[person];
-          health_id = "#" + damage_reciever.replace(/\s+/g, '') + "Health";
-        }
-      }
-    });
-  }
-}
-
-function attackSetRecieversNewHealth(){
-  for(person in team){
-    if(team[person].klass == giver){
-      var damage = team[person].damage[Math.floor(Math.random()*team[person].damage.length)];
-      damage_reciever.health = health - damage;
-      damage_reciever.health_percentage = damage_reciever.health / 100;
-      //code for slice animation
-      $(damage_reiever).width(String(damage_reciever.health_percentage)+"%");
-      $('#combat_log').html =(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
-      turn++;
-    }
-  }
-}
   if(turn_counter == 0){
     $('#combat_log').html("Battle start! Your turn, select a character and then an action...");
   }
