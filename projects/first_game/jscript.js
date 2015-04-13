@@ -61,20 +61,20 @@ var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
 
 if(race == "humans"){
-    $("tr.undead > icon").fadeOut('fast');
-    race = humans;
-     $('#combat_log').html("You have chosen Humans. Battle start! Select a character and then an action.");
-    otherteam = undead;
+  $("tr.undead > div.icon").fadeOut('fast');
+  race = humans;
+   $('#combat_log').html("You have chosen Humans. Battle start! Select a character and then an action.");
+  otherteam = undead;
 }
 else{
-    race = undead;
-     $("tr.human > icon").fadeOut('fast');
-     $('#combat_log').html("You have chosen Undead. Battle start! Select a character and then an action.");
-    otherteam = humans;
+  race = undead;
+   $("tr.human > div.icon").fadeOut('fast');
+   $('#combat_log').html("You have chosen Undead. Battle start! Select a character and then an action.");
+  otherteam = humans;
 
 }
 var team = race; //quick fix for problems below
- $('#combat_log').html("Battle start! Your turn, select a character and then an action.");
+ //$('#combat_log').html("Battle start! Your turn, select a character and then an action.");
 
 var game = 1;
 var turn_counter = 0;
@@ -84,7 +84,8 @@ var turn_counter = 0;
   var race1tag = "." +race[0].klass;
   var race2tag = "." + race[1].klass;
   var race3tag = "." + race[2].klass;
-  //alert("race1tag = "+race1tag +", race2tag = " + race2tag +", race3tag= " +race3tag);
+
+  //character selector functions
   $(race1tag).click(function(){
         giver = $(this).attr('class');
         //alert("giver = " + giver);
@@ -103,54 +104,54 @@ var turn_counter = 0;
         action = "";
         $('.highlighted').removeClass('highlighted');
     });
+//action selector functions
+ $(race1tag + "spell").click(function{
+    if(giver !="" && ("."+giver+"spell") == (race1tag + "spell"))
+  });
 
-   $((race1tag + "attack")).click(function(){
-        if( giver != "" && ("."+giver+"attack") == (race1tag + "attack") ){
-            $(this).addClass('highlighted');
-            action = $(this).attr('id');
-        }
-    });
-    $((race2tag + "attack")).click(function(){
-        if( giver != "" && ("."+giver+"attack") == (race2tag + "attack") ){
-            $(this).addClass('highlighted');
-            action = $(this).attr('id');
-        }
-    });
-    $((race3tag + "attack")).click(function(){
-        if( giver != "" && ("."+giver+"attack") == (race3tag + "attack") ){
-            $(this).addClass('highlighted');
-            action = $(this).attr('id');
-        }
-    });
+ $((race1tag + "attack")).click(function(){
+      if( giver != "" && ("."+giver+"attack") == (race1tag + "attack") ){
+          $(this).addClass('highlighted');
+          action = $(this).attr('id');
+      }
+  });
+  $((race2tag + "attack")).click(function(){
+      if( giver != "" && ("."+giver+"attack") == (race2tag + "attack") ){
+          $(this).addClass('highlighted');
+          action = $(this).attr('id');
+      }
+  });
+  $((race3tag + "attack")).click(function(){
+      if( giver != "" && ("."+giver+"attack") == (race3tag + "attack") ){
+          $(this).addClass('highlighted');
+          action = $(this).attr('id');
+      }
+  });
 
+  // implement attack
     function get_DamageRecieverInfo(target){
-         //alert("clicked " +target+" giver = "+giver+" action= "+action);
-        if(action != "" && giver != ""){
-            for(person in otherteam){
-                    //alert(otherteam[person].klass + "   person ="+person);
-                        if(target == (otherteam[person].klass)){
-                                damage_reciever = otherteam[person];
-                                health_id = "#" + damage_reciever.klass + "Health";
-                                //alert(otherteam[person].klass + "   health_id ="+health_id);
-                        }
-                }
+      if(action != "" && giver != ""){
+        for(person in otherteam){
+          if(target == (otherteam[person].klass)){
+            damage_reciever = otherteam[person];
+            health_id = "#" + damage_reciever.klass + "Health";
+            //alert(otherteam[person].klass + "   health_id ="+health_id);
+          }
         }
+      }
       for(person in team){
-              //alert(team[person].klass + "   giver ="+giver);
-            if(team[person].klass == giver){
-                    var index = Math.floor(Math.random()*team[person].damage.length);
-                    //alert(team[person].klass + "   giver ="+giver+"   index="+index);
-                    var damage = team[person].damage[index];
-                    //alert("damage = "+damage+"  damage_reciever.health = "+damage_reciever.health);
-                    damage_reciever.health = damage_reciever.health - damage;
-                    damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
-                        //code for slice animation
-                    //alert(damage_reciever.health + "  "+damage_reciever.health_percentage + "   "+damage);
-                    $(health_id).width(String(damage_reciever.health_percentage)+"%");
-                    $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
-                    turn++;
-                }
+          //alert(team[person].klass + "   giver ="+giver);
+        if(team[person].klass == giver){
+          var index = Math.floor(Math.random()*team[person].damage.length);
+          var damage = team[person].damage[index];
+          damage_reciever.health = damage_reciever.health - damage;
+          damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
+              //code for slice animation
+          $(health_id).width(String(damage_reciever.health_percentage)+"%");
+          $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
+          turn++;
         }
+      }
         if(race[0].health && race[1].health && race[2].health <=0){
             game = 0;
             alert("Your whole team died, you lost.");
