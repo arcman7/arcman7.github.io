@@ -79,8 +79,9 @@ var turn_counter = 0;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
   $('img').click(function(){
-        if(this.class == race[0].klass || race[1].klass || race[2].klass){ 
-            giver = this.className;
+        if($(this).attr('class') == race[0].klass || race[1].klass || race[2].klass){ 
+            giver = $(this).attr('class');
+            alert($(this).attr('class'));
             action = "";
         }
     });
