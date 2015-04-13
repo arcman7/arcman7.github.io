@@ -53,7 +53,20 @@ spells = {
    }
 };
 
-function getGiver(){
+
+
+$(document).ready(function(){
+var race = prompt("Chose your race, 'undead' or 'humans'.");
+var otherteam;
+if(race == "humans"){race = human; otherteam = undead;}else{race = undead; otherteam = human;}
+var game = 1;
+var turn_counter = 0;
+
+//while(game == 1){
+  var turn = 1;
+  var giver = ""; var action = "";
+  var damage_reciever = ""; var health_id = "";
+  function getGiver(){
  $('img').click(function(){
     if(this.className == race[0].klass || race[1].klass || race[2].klass){ giver = this.className;}
   });
@@ -96,18 +109,6 @@ function attackSetRecieversNewHealth(){
     }
   }
 }
-
-$(document).ready(function(){
-var race = prompt("Chose your race, 'undead' or 'humans'.");
-var otherteam;
-if(race == "humans"){race = human; otherteam = undead;}else{race = undead; otherteam = human;}
-var game = 1;
-var turn_counter = 0;
-
-//while(game == 1){
-  var turn = 1;
-  var giver = ""; var action = "";
-  var damage_reciever = ""; var health_id = "";
   if(counter == 0){
     $('#combat_log').html =("Battle start! Your turn, select a character and then an action.");
   }
