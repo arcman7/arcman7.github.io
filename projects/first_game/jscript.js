@@ -82,6 +82,7 @@ var turn_counter = 0;
   var damage_reciever = ""; var health_id = "";
   var race1tag = "." +race[0].klass;
   var race2tag = "." + race[1].klass;
+  alert(race2tag);
   var race3tag = "." + race[2].klass;
   
   $(race1tag).click(function(){
