@@ -79,10 +79,10 @@ var turn_counter = 0;
   var turn = 1;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
-  var race1tag = "." +race[0].klass; alert("race1tag = "+race1tag);
+  var race1tag = "." +race[0].klass; 
   var race2tag = "." + race[1].klass;
   var race3tag = "." + race[2].klass;
-  
+  alert("race1tag = "+race1tag +", race2tag = " + race2tag +", race3tag= " +race3tag);
   $(race1tag).click(function(){
         giver = $(this).attr('class');
         alert("giver = " + giver);
