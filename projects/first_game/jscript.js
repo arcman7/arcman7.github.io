@@ -109,6 +109,7 @@ var turn_counter = 0;
     if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
       $(this).addClass('highlighted');
       action = $(this).attr('id');
+      alert("action = "+action);
     }
   });
 
@@ -123,6 +124,7 @@ var turn_counter = 0;
     if(giver !="" && ("."+giver+"spell") == (race3tag + "spell")){
       $(this).addClass('highlighted');
       action = $(this).attr('id');
+      alert("action = "+action);
     }
   });
 
@@ -156,28 +158,29 @@ var turn_counter = 0;
             //alert(otherteam[person].klass + "   health_id ="+health_id);
           }
         }
-      }
-      for(person in team){
-          //alert(team[person].klass + "   giver ="+giver);
-        if(team[person].klass == giver){
-          var index = Math.floor(Math.random()*team[person].damage.length);
-          var damage = team[person].damage[index];
-          damage_reciever.health = damage_reciever.health - damage;
-          damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
-              //code for slice animation
-          $(health_id).width(String(damage_reciever.health_percentage)+"%");
-          $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
-          turn++;
+
+        for(person in team){
+            //alert(team[person].klass + "   giver ="+giver);
+          if(team[person].klass == giver){
+            var index = Math.floor(Math.random()*team[person].damage.length);
+            var damage = team[person].damage[index];
+            damage_reciever.health = damage_reciever.health - damage;
+            damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
+                //code for slice animation
+            $(health_id).width(String(damage_reciever.health_percentage)+"%");
+            $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
+            turn++;
+          }
         }
-      }
-        if(race[0].health && race[1].health && race[2].health <=0){
+        if((race[0].health && race[1].health && race[2].health) <=0){
             game = 0;
             alert("Your whole team died, you lost.");
         }
-        if(otherteam[0].health && otherteam[1].health && otherteam[2].health <= 0){
+        if((otherteam[0].health && otherteam[1].health && otherteam[2].health) <= 0){
             game = 0;
             alert("You have defeated the enemy team!");
         }
+      }
     }
 
     $("."+otherteam[0].klass).click(function(){         //damage_reciever and health_id set
