@@ -104,6 +104,7 @@ var turn_counter = 0;
         $('.highlighted').removeClass('highlighted');
     });
 //action selector functions
+  //spells
  $(race1tag + "spell").click(function(){
     if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
       $(this).addClass('highlighted');
@@ -111,6 +112,21 @@ var turn_counter = 0;
     }
   });
 
+  $(race2tag + "spell").click(function(){
+    if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
+      $(this).addClass('highlighted');
+      action = $(this).attr('id');
+    }
+  });
+
+   $(race3tag + "spell").click(function(){
+    if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
+      $(this).addClass('highlighted');
+      action = $(this).attr('id');
+    }
+  });
+
+  //attack
  $((race1tag + "attack")).click(function(){
       if( giver != "" && ("."+giver+"attack") == (race1tag + "attack") ){
           $(this).addClass('highlighted');
@@ -179,7 +195,7 @@ var turn_counter = 0;
 
 
   if(turn_counter == 0){
-    $('#combat_log').html("Battle start! Your turn, select a character and then an action...");
+    //$('#combat_log').html("Battle start! Your turn, select a character and then an action...");
   }
 
     //each team gets 3 turns (one for each character)
