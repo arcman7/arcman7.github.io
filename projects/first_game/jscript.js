@@ -61,12 +61,12 @@ var otherteam;
 $('div').fadeOut('fast')
 if(race == "humans"){race = humans; otherteam = undead;}else{race = undead; otherteam = humans;}
  $('#combat_log').html =("Battle start! Your turn, select a character and then an action.");
-$('div').fadeIn('fast')
+
 var game = 1;
 var turn_counter = 0;
 
 
-//while(game == 1){
+
   var turn = 1;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
@@ -116,13 +116,13 @@ function attackSetRecieversNewHealth(){
   if(turn_counter == 0){
     $('#combat_log').html =("Battle start! Your turn, select a character and then an action...");
   }
-  //while(turn < 3){
+ 
     //each team gets 3 turns (one for each character)
    getGiver();
    getAction();
    getDamageReciever();
    attackSetRecieversNewHealth();//once target person has recieved damage its the next character's turn
-  //}
+
 
   if(race[0].health && race[1].health && race[2].health <=0){
     game = 0;
@@ -134,6 +134,6 @@ function attackSetRecieversNewHealth(){
   }
 
  turn_counter++;
-//}
+
 
 });
