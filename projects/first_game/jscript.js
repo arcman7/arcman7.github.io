@@ -185,6 +185,7 @@ var turn_counter = 0;
 
        var index2 = Math.floor(Math.random()*enemycharacter.damage.length);
        var damage = enemycharacter.damage[index2];
+       damage = damageCalculator(damage,target.armor,target.armor_type);
        target.health = target.health - damage;
        target.health_percentage = 100*target.health / target.original_health;
           //code for slice animation
@@ -199,12 +200,20 @@ var turn_counter = 0;
         AIattack(otherteam[person]);
       }
       turn = 0;
-    }
-    $('.highlightedRED').removeClass('highlightedRED');
-    for(person in team){
-      team[person].turn = 1;
+      $('.highlightedRED').removeClass('highlightedRED');
+      for(person in team){
+        team[person].turn = 1;
+      }
     }
   }
+
+ //calculate damage on target
+     function damageCalculator(damage,armor,armorType){
+      var reductionByType = {cloth: 0.05, leather: 0.06, mail: 0.07, plate: 0.08};
+      var c = reductionByType[armorType]
+      damage = damage*( (armor*c)/(1+(armor*c)) );
+      return damage;
+    }
 
  //implement attack
   function get_DamageRecieverInfo(target){
@@ -220,6 +229,7 @@ var turn_counter = 0;
         if(team[person].klass == giver){
           var index = Math.floor(Math.random()*team[person].damage.length);
           var damage = team[person].damage[index];
+          damage = damageCalculator(damage,damage_reciever.armor,damage_reciever.armor_type);
           damage_reciever.health = damage_reciever.health - damage;
           damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
               //code for slice animation
