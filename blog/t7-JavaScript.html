@@ -191,7 +191,7 @@ Math.cbrt = function(x) {
     }
   </style>
 
-
+</body>
 <body>
 
 
@@ -633,6 +633,21 @@ a = [b, b = a][0] // do not try at home :-)
       hljs.initHighlightingOnLoad();
     });
   </script>
+</div>
+
+ It's very important to note that JavaScript does not have destructive enumerables and you must set a variable equal to the result of using the enumerable so that you can store the result. Also, the return values do not quite work the same either. When you include a JavaScript enumerable inside of a function you define, the enumerable returns it's value to the scope of the enclosing function, not outside to the scope of where the enclosing function was called. For example:
+ <div id="codeblock">
+  <code><pre>
+    function onlyEven(array){
+        return array.filter(function(n){
+           return n % 2 == 0;
+        });
+    }
+  </code>
+ </div>
+ <p>
+   As you can see I had to include that extra return statement in front of array.filter so that I could get any output from the function onlyEven.
+ </p>
 </div>
  <a href ="./t2-css-design.html"><div id="left"> Previous  </div> </a>
   <a href="../index.html"><div id="center"> Home </div></a>
