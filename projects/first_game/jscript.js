@@ -58,9 +58,19 @@ spells = {
 $(document).ready(function(){
 var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
-$('div').fadeOut('fast')
-if(race == "humans"){race = humans; otherteam = undead;}else{race = undead; otherteam = humans;}
- $('#combat_log').html =("Battle start! Your turn, select a character and then an action.");
+
+if(race == "humans"){
+    race = humans;
+    otherteam = undead;
+    
+}
+else{
+    race = undead;
+    otherteam = humans;
+    
+}
+//$('div').fadeOut('fast')
+ $('#combat_log').html("Battle start! Your turn, select a character and then an action.");
 
 var game = 1;
 var turn_counter = 0;
