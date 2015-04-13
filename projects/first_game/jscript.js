@@ -14,7 +14,7 @@ function person(health,health_percentage,armor,armor_type,klass,level,id,damage,
     }
 
 //undead
-arthus = new person(110,100,15,"plate","Death Knight",1,"arthus",[14,15],"undead");
+arthus = new person(110,100,15,"plate","DeathKnight",1,"arthus",[14,15],"undead");
 nec = new person(80,100,9,"cloth","Necromancer",1,"nec",[8,9],"undead");
 timmy = new person(90,100,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
 
@@ -123,7 +123,7 @@ var turn_counter = 0;
             for(person in otherteam){
                 if(this.class == otherteam[person].klass){
                     damage_reciever = otherteam[person];
-                    health_id = "#" + damage_reciever.replace(/\s+/g, '') + "Health";
+                    health_id = "#" + damage_reciever + "Health";
                 }
             }
         }
