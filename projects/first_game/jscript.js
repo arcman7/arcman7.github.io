@@ -135,13 +135,15 @@ var turn_counter = 0;
                 }
         }
       for(person in team){
-              alert(team[person].klass + "   giver ="+giver);
+              //alert(team[person].klass + "   giver ="+giver);
             if(team[person].klass == giver){
+                    var index = Math.floor(Math.random()*team[person].damage.length);
+                    alert(team[person].klass + "   giver ="+giver+"   index="+index);
                 var damage = team[person].damage[Math.floor(Math.random()*team[person].damage.length)];
                 damage_reciever.health = damage_reciever.health - damage;
                 damage_reciever.health_percentage = damage_reciever.health / damage_reciever.original_health;
                 //code for slice animation
-                alert(damage.reciever.health + "  "+damage_reciever.health + "   "+damage);
+                alert(damage.reciever.health + "  "+damage_reciever.health_percentage + "   "+damage);
                 $(health_id).width(String(damage_reciever.health_percentage)+"%");
                 $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
                 turn++;
