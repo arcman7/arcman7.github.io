@@ -123,6 +123,7 @@ var turn_counter = 0;
     });
     
     function get_DamageRecieverInfo(){
+         alert("clicked " +$(this).attr('class')+" giver = "+giver+" action= "+attack);
         if(action != "" && giver != ""){
             for(person in otherteam){
                 if($(this).attr('class') == ("."+otherteam[person].klass)){
@@ -137,7 +138,7 @@ var turn_counter = 0;
                 damage_reciever.health = health - damage;
                 damage_reciever.health_percentage = damage_reciever.health / damage_reciever.original_health;
                 //code for slice animation
-                $(damage_reiever).width(String(damage_reciever.health_percentage)+"%");
+                $(health_id).width(String(damage_reciever.health_percentage)+"%");
                 $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
                 turn++;
             }
@@ -152,13 +153,13 @@ var turn_counter = 0;
         }
     }
     
-    $("."+otherteam[0].klass).click(function(){  alert("clicked " +$(this).attr('class'))       //damage_reciever and health_id set
+    $("."+otherteam[0].klass).click(function(){         //damage_reciever and health_id set
         get_DamageRecieverInfo();
     });
-     $("."+otherteam[1].klass).click(function(){  alert("clicked " +$(this).attr('class'))       //damage_reciever and health_id set
+     $("."+otherteam[1].klass).click(function(){      //damage_reciever and health_id set
         get_DamageRecieverInfo();
     });
-     $("."+otherteam[2].klass).click(function(){  alert("clicked " +$(this).attr('class'))       //damage_reciever and health_id set
+     $("."+otherteam[2].klass).click(function(){       //damage_reciever and health_id set
         get_DamageRecieverInfo();
     });
     
