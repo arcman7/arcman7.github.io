@@ -58,7 +58,7 @@ spells = {
 $(document).ready(function(){
 var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
-if(race == "humans"){race = human; otherteam = undead;}else{race = undead; otherteam = human;}
+if(race == "humans"){race = humans; otherteam = undead;}else{race = undead; otherteam = humans;}
  $('#combat_log').html =("Battle start! Your turn, select a character and then an action.");
 var game = 1;
 var turn_counter = 0;
@@ -111,8 +111,8 @@ function attackSetRecieversNewHealth(){
     }
   }
 }
-  if(counter == 0){
-    $('#combat_log').html =("Battle start! Your turn, select a character and then an action.");
+  if(turn_counter == 0){
+    $('#combat_log').html =("Battle start! Your turn, select a character and then an action...");
   }
   //while(turn < 3){
     //each team gets 3 turns (one for each character)
