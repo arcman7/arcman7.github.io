@@ -139,15 +139,16 @@ var turn_counter = 0;
             if(team[person].klass == giver){
                     var index = Math.floor(Math.random()*team[person].damage.length);
                     alert(team[person].klass + "   giver ="+giver+"   index="+index);
-                var damage = team[person].damage[Math.floor(Math.random()*team[person].damage.length)];
-                damage_reciever.health = damage_reciever.health - damage;
-                damage_reciever.health_percentage = damage_reciever.health / damage_reciever.original_health;
-                //code for slice animation
-                alert(damage.reciever.health + "  "+damage_reciever.health_percentage + "   "+damage);
-                $(health_id).width(String(damage_reciever.health_percentage)+"%");
-                $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
-                turn++;
-            }
+                    var damage = team[person].damage[index];
+                    alert("damage = "+damage+"  damage_reciever.health = "+damage_reciever.health);
+                    damage_reciever.health = damage_reciever.health - damage;
+                    damage_reciever.health_percentage = damage_reciever.health / damage_reciever.original_health;
+                        //code for slice animation
+                    alert(damage_reciever.health + "  "+damage_reciever.health_percentage + "   "+damage);
+                    $(health_id).width(String(damage_reciever.health_percentage)+"%");
+                    $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
+                    turn++;
+                }
         }
         if(race[0].health && race[1].health && race[2].health <=0){
             game = 0;
