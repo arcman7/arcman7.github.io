@@ -80,6 +80,55 @@ var turn_counter = 0;
   var turn = 1;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
+  $('img').click(function(){
+    if(this.className == race[0].klass || race[1].klass || race[2].klass){ 
+        giver = this.className;
+        action = "";
+    }
+    
+  });
+  
+   $('img').click(function(){
+      if( (this.id == "attack" || "spell" && giver != ""){
+        this.className = "highlighted";
+        action = this.id;
+      }
+    });
+    
+    $('img').click(function(){         //damage_reciever and health_id set
+     if(action != "" && giver != ""){
+       for(person in otherteam){
+         if(this.klass == otherteam[person].klass){
+           damage_reciever = otherteam[person];
+           health_id = "#" + damage_reciever.replace(/\s+/g, '') + "Health";
+         }
+        }
+      }
+      for(person in team){
+            if(team[person].klass == giver){
+                var damage = team[person].damage[Math.floor(Math.random()*team[person].damage.length)];
+                damage_reciever.health = health - damage;
+                damage_reciever.health_percentage = damage_reciever.health / 100;
+                //code for slice animation
+                $(damage_reiever).width(String(damage_reciever.health_percentage)+"%");
+                $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
+                turn++;
+            }
+        }
+        if(race[0].health && race[1].health && race[2].health <=0){
+             game = 0;
+             alert("Your whole team died, you lost.");
+        }
+        if(otherteam[0].health && otherteam[1].health && otherteam[2].health <= 0){
+            game = 0;
+            alert("You have defeated the enemy team!")
+        }
+    });
+    
+    
+    
+    
+    
   function getGiver(){
  $('img').click(function(){
     if(this.className == race[0].klass || race[1].klass || race[2].klass){ giver = this.className;}
@@ -124,7 +173,7 @@ function attackSetRecieversNewHealth(){
   }
 }
   if(turn_counter == 0){
-    $('#combat_log').html =("Battle start! Your turn, select a character and then an action...");
+    $('#combat_log').html("Battle start! Your turn, select a character and then an action...");
   }
  
     //each team gets 3 turns (one for each character)
