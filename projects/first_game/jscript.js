@@ -85,17 +85,17 @@ var turn_counter = 0;
   
   $(race1tag).click(function(){
         giver = $(this).attr('class');
-        alert(giver);
+        alert("giver = " + giver);
         action = "";
     });
     $(race2tag).click(function(){
         giver = $(this).attr('class');
-        alert(giver);
+        alert("giver = " + giver);
         action = "";
     });
   $(race3tag).click(function(){
         giver = $(this).attr('class');
-        alert(giver);
+        alert("giver = " + giver);
         action = "";
     });
     
