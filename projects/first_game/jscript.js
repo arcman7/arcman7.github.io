@@ -106,7 +106,10 @@ var turn_counter = 0;
     });
 //action selector functions
  $(race1tag + "spell").click(function{
-    if(giver !="" && ("."+giver+"spell") == (race1tag + "spell"))
+    if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
+      $(this).addClass('highlighted');
+      action = $(this).attr('id');
+    }
   });
 
  $((race1tag + "attack")).click(function(){
@@ -130,7 +133,7 @@ var turn_counter = 0;
 
   // implement attack
     function get_DamageRecieverInfo(target){
-      if(action != "" && giver != ""){
+      if(action == "attack" && giver != ""){
         for(person in otherteam){
           if(target == (otherteam[person].klass)){
             damage_reciever = otherteam[person];
