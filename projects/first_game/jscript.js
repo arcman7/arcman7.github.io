@@ -200,7 +200,10 @@ var turn_counter = 0;
       }
       turn = 0;
     }
-    $('highlightedRED').removeClass('highlightedRED');
+    $('.highlightedRED').removeClass('highlightedRED');
+    for(person in team){
+      team[person].turn = 1;
+    }
   }
 
  //implement attack
