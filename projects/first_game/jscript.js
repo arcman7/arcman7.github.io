@@ -59,6 +59,7 @@ $(document).ready(function(){
 var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
 if(race == "humans"){race = human; otherteam = undead;}else{race = undead; otherteam = human;}
+ $('#combat_log').html =("Battle start! Your turn, select a character and then an action.");
 var game = 1;
 var turn_counter = 0;
 
