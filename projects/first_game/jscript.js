@@ -123,18 +123,19 @@ var turn_counter = 0;
     });
     
     function get_DamageRecieverInfo(target){
-         alert("clicked " +target+" giver = "+giver+" action= "+action);
+         //alert("clicked " +target+" giver = "+giver+" action= "+action);
         if(action != "" && giver != ""){
             for(person in otherteam){
-                    alert(otherteam[person].klass + "   person ="+person);
-                if(target == (otherteam[person].klass)){
-                    damage_reciever = otherteam[person];
-                    health_id = "#" + damage_reciever.klass + "Health";
+                    //alert(otherteam[person].klass + "   person ="+person);
+                        if(target == (otherteam[person].klass)){
+                                damage_reciever = otherteam[person];
+                                health_id = "#" + damage_reciever.klass + "Health";
+                                alert(otherteam[person].klass + "   health_id ="+health_id);
+                        }
                 }
-            }
         }
       for(person in team){
-              alert(team[person].klass + "   person ="+person);
+              alert(team[person].klass + "   giver ="+giver);
             if(team[person].klass == giver){
                 var damage = team[person].damage[Math.floor(Math.random()*team[person].damage.length)];
                 damage_reciever.health = health - damage;
