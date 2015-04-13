@@ -62,6 +62,7 @@ if(race == "humans"){race = human; otherteam = undead;}else{race = undead; other
 var game = 1;
 var turn_counter = 0;
 
+
 //while(game == 1){
   var turn = 1;
   var giver = ""; var action = "";
