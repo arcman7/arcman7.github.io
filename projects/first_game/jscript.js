@@ -122,11 +122,11 @@ var turn_counter = 0;
         }
     });
     
-    function get_DamageRecieverInfo(){
-         alert("clicked " +$(this).attr('class')+" giver = "+giver+" action= "+attack);
+    function get_DamageRecieverInfo(target){
+         alert("clicked " +target+" giver = "+giver+" action= "+action);
         if(action != "" && giver != ""){
             for(person in otherteam){
-                if($(this).attr('class') == ("."+otherteam[person].klass)){
+                if(target == ("."+otherteam[person].klass)){
                     damage_reciever = otherteam[person];
                     health_id = "#" + damage_reciever.klass + "Health";
                 }
@@ -154,13 +154,16 @@ var turn_counter = 0;
     }
     
     $("."+otherteam[0].klass).click(function(){         //damage_reciever and health_id set
-        get_DamageRecieverInfo();
+        target = $(this).attr('class');
+        get_DamageRecieverInfo(target);
     });
      $("."+otherteam[1].klass).click(function(){      //damage_reciever and health_id set
-        get_DamageRecieverInfo();
+        target = $(this).attr('class');
+        get_DamageRecieverInfo(target);
     });
      $("."+otherteam[2].klass).click(function(){       //damage_reciever and health_id set
-        get_DamageRecieverInfo();
+        target = $(this).attr('class');
+        get_DamageRecieverInfo(target);
     });
     
 
