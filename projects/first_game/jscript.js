@@ -61,11 +61,13 @@ var otherteam;
 
 if(race == "humans"){
     race = humans;
+    alert("you chose humans");
     otherteam = undead;
     
 }
 else{
     race = undead;
+    alert("you chose undead");
     otherteam = humans;
     
 }
@@ -87,9 +89,9 @@ var turn_counter = 0;
     });
   
    $('img').click(function(){
-        if( (this.id == "attack" || "spell" )&& giver != ""){
-            this.class = "highlighted";
-            action = this.id;
+        if( ( $(this).attr('id') == "attack" || "spell" )&& giver != ""){
+            $(this).attr('class') = "highlighted";
+            action = $(this).attr('id');
         }
     });
     
