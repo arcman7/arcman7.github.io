@@ -178,7 +178,7 @@ var turn_counter = 0;
         alert("You have defeated the enemy team!");
     }
   }
- // AI actions
+ //AI actions - attack
  function AIattack(enemycharacter){
        var index1 = Math.floor(Math.random()*team.length);
        var target = team[index1];
@@ -190,16 +190,16 @@ var turn_counter = 0;
           //code for slice animation
        $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
        var log = $('#combat_log').html();
-       $('#combat_log').html(log+" "+enemycharacter.klass + " dealt " + String(damage) + " to " + target.klass + "!");
+       $('#combat_log').html(log+" "+enemycharacter.klass + " dealt " + String(damage) + " to " + target.klass + "! ");
     }
-
-  function enemyActions(turn){
+ //AI actions - team actions
+  function enemyActions(){
     if(turn >= 3){
       for(person in otherteam){
         AIattack(otherteam[person]);
       }
+      turn = 0;
     }
-    turn = 0;
     $('highlightedRED').removeClass('highlightedRED');
   }
 
@@ -210,12 +210,10 @@ var turn_counter = 0;
         if(target == (otherteam[person].klass)){
           damage_reciever = otherteam[person];
           health_id = "#" + damage_reciever.klass + "Health";
-          //alert(otherteam[person].klass + "   health_id ="+health_id);
         }
       }
 
       for(person in team){
-          //alert(team[person].klass + "   giver ="+giver);
         if(team[person].klass == giver){
           var index = Math.floor(Math.random()*team[person].damage.length);
           var damage = team[person].damage[index];
@@ -223,12 +221,14 @@ var turn_counter = 0;
           damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
               //code for slice animation
           $(health_id).width(String(damage_reciever.health_percentage)+"%");
-          $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
+          $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass+"! ");
           team[person].turn -=1;
           highlightRED(team[person]);
           checkIfBattleOver();
           turn++;
-          enemyActions(turn);
+          giver = "";
+          action = "";
+          enemyActions();
         }
       }
 
