@@ -91,7 +91,7 @@ var turn_counter = 0;
     });
     $(race2tag).click(function(){
         giver = $(this).attr('class');
-        //alert($(this).attr('class'));
+        alert($(this).attr('class'));
         action = "";
     });
   $(race3tag).click(function(){
