@@ -129,6 +129,12 @@ border-radius: 0 50% 50% 0;
   height: 100%;
   width: 100%;
 }
+
+.highlighted{
+    -webkit-box-shadow: 0 0 10px #21a6ff;
+    -moz-box-shadow: 0 0 10px #21a6ff;
+    box-shadow: 0 0 15px #21a6ff;
+}
 html{
   background-color: grey;
 }
