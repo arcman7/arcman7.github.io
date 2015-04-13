@@ -174,7 +174,8 @@ var turn_counter = 0;
  function AIattack(enemycharacter){
        var index1 = Math.floor(Math.random()*team.length);
        var target = team[index1];
-       var index2 = Math.floor(Math.random()*team[person].damage.length);
+
+       var index2 = Math.floor(Math.random()*enemycharacter.damage.length);
        var damage = enemycharacter.damage[index2];
        target.health = target.health - damage;
        target.health_percentage = 100*target.health / target.original_health;
@@ -185,7 +186,7 @@ var turn_counter = 0;
     }
 
   function enemyActions(turn){
-    if(turn == 3){
+    if(turn >= 3){
       for(person in otherteam){
         AIattack(otherteam[person]);
       }
