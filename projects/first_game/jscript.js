@@ -120,10 +120,9 @@ var turn_counter = 0;
             action = $(this).attr('id');
         }
     });
-    alert(race3tag+"attack");
     
-    $('Archer').click(function(){  alert("clicked " +$(this).attr('class'))       //damage_reciever and health_id set
-     if(action != "" && giver != ""){
+    function get_DamageRecieverInfo(){
+        if(action != "" && giver != ""){
             for(person in otherteam){
                 if($(this).attr('class') == ("."+otherteam[person].klass)){
                     damage_reciever = otherteam[person];
@@ -150,6 +149,16 @@ var turn_counter = 0;
             game = 0;
             alert("You have defeated the enemy team!");
         }
+    }
+    
+    $("."+otherteam[0].klass).click(function(){  alert("clicked " +$(this).attr('class'))       //damage_reciever and health_id set
+        get_DamageRecieverInfo();
+    });
+     $("."+otherteam[1].klass).click(function(){  alert("clicked " +$(this).attr('class'))       //damage_reciever and health_id set
+        get_DamageRecieverInfo();
+    });
+     $("."+otherteam[2].klass).click(function(){  alert("clicked " +$(this).attr('class'))       //damage_reciever and health_id set
+        get_DamageRecieverInfo();
     });
     
 
