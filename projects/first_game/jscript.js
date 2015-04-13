@@ -79,29 +79,28 @@ var turn_counter = 0;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
   $('img').click(function(){
-    if(this.className == race[0].klass || race[1].klass || race[2].klass){ 
-        giver = this.className;
-        action = "";
-    }
-    
-  });
+        if(this.className == race[0].klass || race[1].klass || race[2].klass){ 
+            giver = this.className;
+            action = "";
+        }
+    });
   
    $('img').click(function(){
-      if( (this.id == "attack" || "spell" && giver != ""){
-        this.className = "highlighted";
-        action = this.id;
-      }
+        if( (this.id == "attack" || "spell" )&& giver != ""){
+            this.className = "highlighted";
+            action = this.id;
+        }
     });
     
     $('img').click(function(){         //damage_reciever and health_id set
      if(action != "" && giver != ""){
-       for(person in otherteam){
-         if(this.klass == otherteam[person].klass){
-           damage_reciever = otherteam[person];
-           health_id = "#" + damage_reciever.replace(/\s+/g, '') + "Health";
-         }
+            for(person in otherteam){
+                if(this.klass == otherteam[person].klass){
+                    damage_reciever = otherteam[person];
+                    health_id = "#" + damage_reciever.replace(/\s+/g, '') + "Health";
+                }
+            }
         }
-      }
       for(person in team){
             if(team[person].klass == giver){
                 var damage = team[person].damage[Math.floor(Math.random()*team[person].damage.length)];
@@ -114,8 +113,8 @@ var turn_counter = 0;
             }
         }
         if(race[0].health && race[1].health && race[2].health <=0){
-             game = 0;
-             alert("Your whole team died, you lost.");
+            game = 0;
+            alert("Your whole team died, you lost.");
         }
         if(otherteam[0].health && otherteam[1].health && otherteam[2].health <= 0){
             game = 0;
