@@ -126,7 +126,7 @@ var turn_counter = 0;
          alert("clicked " +target+" giver = "+giver+" action= "+action);
         if(action != "" && giver != ""){
             for(person in otherteam){
-                if(target == ("."+otherteam[person].klass)){
+                if(target == (otherteam[person].klass)){
                     damage_reciever = otherteam[person];
                     health_id = "#" + damage_reciever.klass + "Health";
                 }
