@@ -118,7 +118,7 @@ var turn_counter = 0;
         }
     });
     
-    $('img').click(function(){         //damage_reciever and health_id set
+    $('archer').click(function(){         //damage_reciever and health_id set
      if(action != "" && giver != ""){
             for(person in otherteam){
                 if(this.class == otherteam[person].klass){
@@ -154,10 +154,7 @@ var turn_counter = 0;
   }
  
     //each team gets 3 turns (one for each character)
-   getGiver();
-   getAction();
-   getDamageReciever();
-   attackSetRecieversNewHealth();//once target person has recieved damage its the next character's turn
+//once target person has recieved damage its the next character's turn
 
 
   if(race[0].health && race[1].health && race[2].health <=0){
