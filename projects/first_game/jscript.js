@@ -209,10 +209,10 @@ var turn_counter = 0;
 
  //calculate damage on target
      function damageCalculator(damage,armor,armorType){
-      var reductionByType = {cloth: 0.05, leather: 0.06, mail: 0.07, plate: 0.08};
+      var reductionByType = {cloth: 0.01, leather: 0.012, mail: 0.014, plate: 0.016};
       var c = reductionByType[armorType]
       damage = damage*(1-( (armor*c)/(1+(armor*c)) ) );
-      return damage;
+      return Math.ceil(damage);
     }
 
  //implement attack
