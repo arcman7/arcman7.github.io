@@ -191,7 +191,7 @@ var turn_counter = 0;
           //code for slice animation
        $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
        var log = $('#combat_log').html();
-       $('#combat_log').html(log+" "+enemycharacter.klass + " dealt " + String(damage) + " to " + target.klass + "! ");
+       $('#combat_log').html(log+"<br>"+" "+enemycharacter.klass + " dealt " + String(damage) + " to " + target.klass + "! ");
     }
  //AI actions - team actions
   function enemyActions(){
@@ -211,7 +211,7 @@ var turn_counter = 0;
      function damageCalculator(damage,armor,armorType){
       var reductionByType = {cloth: 0.05, leather: 0.06, mail: 0.07, plate: 0.08};
       var c = reductionByType[armorType]
-      damage = damage*( (armor*c)/(1+(armor*c)) );
+      damage = damage*(1-( (armor*c)/(1+(armor*c)) ) );
       return damage;
     }
 
