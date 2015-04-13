@@ -87,23 +87,31 @@ var turn_counter = 0;
 
   //character selector functions
   $(race1tag).click(function(){
+      if(race[0].turn > 0){
         giver = $(this).attr('class');
         //alert("giver = " + giver);
         action = "";
         $('.highlighted').removeClass('highlighted');
+      }
     });
+
     $(race2tag).click(function(){
-        giver = $(this).attr('class');
-        //alert("giver = " + giver);
-        action = "";
-        $('.highlighted').removeClass('highlighted');
+        if(race[1].turn > 0){
+          giver = $(this).attr('class');
+          //alert("giver = " + giver);
+          action = "";
+          $('.highlighted').removeClass('highlighted');
+        }
     });
+
   $(race3tag).click(function(){
+      if(race[2].turn > 0){
         giver = $(this).attr('class');
         //alert("giver = " + giver);
         action = "";
         $('.highlighted').removeClass('highlighted');
-    });
+      }
+  });
 //action selector functions
   //spells
  $(race1tag + "spell").click(function(){
@@ -220,7 +228,7 @@ var turn_counter = 0;
           highlightRED(team[person]);
           checkIfBattleOver();
           turn++;
-          enemyActions();
+          enemyActions(turn);
         }
       }
 
