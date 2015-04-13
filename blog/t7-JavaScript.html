@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Andrew's DBC Adventures</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/default.min.css">
+</head>
+<body>
+  <div id="nav">
+         <details>
+            <summary><code> Cultural </code></summary>
+            <p><a href="../c1-chefs-kitchen.html"> Chef vs Kitchen</a></p>
+            <p><a href="../c3-thinking-style.html">Thinking Style </a></p>
+            <p><a href="../blog/c4-tech-issues.html"> Tech issues </a></p>
+            <p><a href="../blog/c5-feedback.html"> Pairing issues </a></p>
+            <p><a href="../blog/c6-stereotype-threat.html"> Stereotype Labels </a></p>
+         </details>
+
+         <details>
+            <summary><code> Technical </code></summary>
+            <p><a href="../blog/t1-git-blog.html"> Git & GitHub </a></p>
+            <p><a href="../blog/t2-css-design.html"> Classes vs. Id's </a></p>
+            <p><a href="../blog/t3-arrays-hashes.html"> Arrays & Hashes </a></p>
+            <p><a href="../blog/t4-enumerable-methods.html">Enumerables </a></p>
+            <p><a href="../blog/t5-ruby-classes.html">Ruby Classes </a></p>
+            <p><a href="../blog/t6-oop-concepts.html">Class Inheritance vs. Class Composition </a></p>
+            <p><a href="../blog/t7-JavaScript.html">JavaScript vs. Ruby Enumerables </a></p>
+         </details>
+
+         <details>
+            <summary><code> About Author </code></summary>
+            <p><a href="../blog/about-me.html"> About Author </a></p>
+         </details>
+  </div>
+ <div id="body">
+  <h1>DBC Phase-0 Arc Tech Blog </h1>
+  <h2>Week 7: JavaScript vs Ruby Enumerables</h2>
+  <h3>Skipper's log 4/12/2015:</h3>
+  <p>
+     In this post I'll be comparing Ruby and JavaScript enumerable methods. The key difference is in the way they are called. With Ruby we pass blocks to the enumerable that carry out whatever operation is contained in the block. Well you can think of that block as an anonymous function in JavaScript. That anonymous function is the argument you give to the JavaScript enumerator. Depending on how many parameters you declare in the anonymous function, the Javascript enumerator will pass that many variables to the function, unless you declare more parameters than the enumerator has to pass. In ruby, you declare those variables inbetween the '| |' pipes, in JavaScript they are implicitly passed from the enumerator to the function. From <a href="http://agentcooper.github.io/js-ruby-comparison/">agentcooper</a> on GitHub we have a very nice visual comparison in their usage and syntax:
+   </p>
+   <p> Agentcooper's <a href="https://github.com/agentcooper">github</a> incase you're interested.
+
+   <script>
+
+
+// http://ruby-doc.org/core-1.9.3/Array.html
+
+var Array_unshift = Array.prototype.unshift;
+Array.prototype.unshift = function() { Array_unshift.apply(this, arguments); return this; }
+
+Object.defineProperty(Array.prototype, "first", { get: function() { return this[0]; } });
+Object.defineProperty(Array.prototype, "last",  { get: function() { return this[this.length - 1]; } });
+
+Object.defineProperty(Array.prototype, "clear", { get: function() { this.splice(0, this.length); return this; } });
+
+Array.prototype.collect = Array.prototype.map;
+
+Array.prototype.count = function(arg) {
+  var f = function(el) { return el == arg; };
+  if (typeof arg == 'function') f = arg;
+  return this.filter(f).length;
+}
+
+Object.defineProperty(Array.prototype, "uniq", { get: function() {
+  var uniq = [], len = this.length, j, el;
+  for (j = 0; j < len; j++) {
+      el = this[j]; if (uniq.indexOf(el) == -1) uniq.push(el);
+  }
+  return uniq;
+}});
+
+Array.prototype.drop = function(n) { return this.slice(n); }
+Array.prototype.take = function(n) { return this.slice(0, n); }
+
+Array.prototype.index = function(arg) { var pos = this.indexOf(arg); return (pos != -1) ? pos : null; }
+Array.prototype.rindex = function(arg) { var pos = this.lastIndexOf(arg); return (pos != -1) ? pos : null; }
+
+Array.prototype.include = function(el) { return this.indexOf(el) != -1; }
+
+Array.prototype.delete_at = function(n) { var r = this.splice(n, 1); return (r.length > 0) ? r[0] : null }
+
+
+
+// http://ruby-doc.org/core-1.9.3/String.html
+
+Object.defineProperty(String.prototype, "capitalize", { get: function() {
+  return this[0].toUpperCase() + this.slice(1).toLowerCase()
+} });
+
+Object.defineProperty(String.prototype, "size", { get: function() { return this.length; } });
+
+Object.defineProperty(String.prototype, "chr", { get: function() { return this[0]; } });
+
+Object.defineProperty(String.prototype, "lstrip", { get: function() { return this.trimLeft(); } });
+Object.defineProperty(String.prototype, "rstrip", { get: function() { return this.trimRight(); } });
+
+Object.defineProperty(String.prototype, "reverse", { get: function() { return this.split('').reverse().join('') } });
+
+String.prototype.start_with = function(s) { return this.slice(0, s.length) == s; }
+
+
+
+// http://ruby-doc.org/core-1.9.3/Hash.html
+
+Object.defineProperty(Object.prototype, "length", { get: function() { return Object.keys(this).length; } });
+Object.defineProperty(Object.prototype, "size", { get: function() { return this.length; } });
+
+Object.defineProperty(Object.prototype, "keys", { get: function() { return Object.keys(this); } });
+
+Object.defineProperty(Object.prototype, "delete", { get: function() {
+  return function(key) {
+    if (this.hasOwnProperty(key)) {
+      var value = this[key];
+      delete this[key];
+      return value;
+    } else {
+      return null;
+    }
+  };
+}, enumerable: false });
+
+Object.defineProperty(Object.prototype, "has_key", { get: function() {
+  return this.hasOwnProperty;
+}, enumerable: false });
+
+Object.defineProperty(Object.prototype, "merge", { get: function() {
+  return function(obj) {
+    var res = {};
+    for (key in this.valueOf()) if (this.hasOwnProperty(key) && !res.hasOwnProperty(key)) res[key] = this[key];
+    for (key in obj) if (obj.hasOwnProperty(key) && !res.hasOwnProperty(key)) res[key] = obj[key];
+    return res;
+  };
+}, enumerable: false });
+
+Object.defineProperty(Object.prototype, "select", { get: function() {
+  return function(test) {
+    var res = {};
+    for (key in this.valueOf()) if (this.hasOwnProperty(key) && test(key, this[key])) res[key] = this[key];
+    return res;
+  };
+}, enumerable: false });
+
+
+// http://ruby-doc.org/core-1.9.3/Integer.html
+// http://ruby-doc.org/core-1.9.3/Fixnum.html
+
+Object.defineProperty(Number.prototype, "odd", { get: function() { return this.valueOf() % 2 != 0 }, enumerable: false });
+Object.defineProperty(Number.prototype, "even", { get: function() { return this.valueOf() % 2 == 0 }, enumerable: false });
+
+Object.defineProperty(Number.prototype, "times", { get: function() {
+  var n = this.valueOf();
+  return function(iterator) {
+    for (var i = 0; i <= n; i++) { iterator && iterator(i); }
+    return n;
+  };
+}, enumerable: false });
+
+Object.defineProperty(Number.prototype, "upto", { get: function() {
+  var n = this.valueOf();
+  return function(to, iterator) {
+    for (var i = n; i <= to; i++) { iterator && iterator(i); }
+    return to;
+  };
+}, enumerable: false });
+
+// http://gotochriswest.com/blog/2011/05/06/cube-root-an-beyond/
+function nthroot(x, n) {
+  try {
+    var negate = n % 2 == 1 && x < 0;
+    if(negate)
+      x = -x;
+    var possible = Math.pow(x, 1 / n);
+    n = Math.pow(possible, n);
+    if(Math.abs(x - n) < 1 && (x > 0 == n > 0))
+      return negate ? -possible : possible;
+  } catch(e){}
+}
+
+Math.cbrt = function(x) {
+  return nthroot(x, 3);
+}
+</script>
+
+  <style>
+    table, tr, td {
+      padding-left: 20px;
+      padding-top: 20px;
+      vertical-align: top;
+    }
+  </style>
+
+
+<body>
+
+
+<div class="containter">
+  <table>
+    <tr>
+      <td><h1>Ruby</h1></td>
+      <td><h1>Javascript</h1></td>
+    </tr>
+
+
+    <tr><td colspan="2"><h2>Arrays</h2></td></tr>
+
+    <tr>
+
+      <td><pre><code class="ruby">
+a = ["1", "2"]
+a.push("3")
+
+a.map!(&:to_i) # [1, 2, 3]
+
+a.delete_at(1)
+a # [1, 3]
+
+a.reverse! # [3, 1]
+
+a.unshift(777) # [777, 3, 1]
+
+
+
+
+a.last # [1]
+
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+var a = ["1", "2"];
+a.push("3");
+
+a = a.map(function(n) { return parseInt(n, 10); });
+
+a.splice(1, 1 /* how much */);
+a; // [1, 3]
+
+a.reverse() // [3, 1]
+
+a.unshift(777); // 3
+a; // [777, 3, 1]
+
+/* or in place: */ var b = [3, 1];
+                   [777].concat(b); // [777, 3, 1]
+a.slice(-1)[0]; // 1
+/* or */ a[a.length - 1]; // 1
+      </code></pre></td>
+
+    </tr>
+
+    <tr>
+
+      <td><pre><code class="ruby">
+a = [1, 2, 3]
+
+a.index(2) # 1
+
+a.all?{|n| n > 4} # false
+a.any?{|n| n > 2} # true
+
+a.keep_if{|n| n > 1} # [2, 3]
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+var a = [1, 2, 3];
+
+a.indexOf(2); // 1
+
+a.every(function(n) { return n > 4; }); // false
+a.some(function(n) { return n > 2; });  // true
+
+a.filter(function(n) { return n > 1;}); // [2, 3]
+      </code></pre></td>
+
+    </tr>
+
+
+
+      <td><pre><code class="ruby">
+a = ["aaa  ", "  bbb", "  ccc  "]
+
+a.map(&:strip) # ["aaa", "bbb", "ccc"]
+
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+var a = ["aaa  ", "  bbb", "  ccc  "]
+
+a.map(function(x) { return x.trim(); });               // ['aaa', 'bbb', 'ccc']
+a.map(Function.prototype.call, String.prototype.trim); // ['aaa', 'bbb', 'ccc']
+      </code></pre></td>
+
+    </tr>
+
+
+
+    <tr>
+
+      <td><pre><code class="ruby">
+a = [1, 2, 3, 4, 5]
+
+a.slice(1..-2)  # [2, 3, 4]
+a[1..-2]        # [2, 3, 4]
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+var a = [1, 2, 3, 4, 5];
+
+a.slice(1, -1); // [2, 3, 4]
+
+      </code></pre></td>
+
+    </tr>
+
+
+
+    <tr>
+
+      <td><pre><code class="ruby">
+a = [1, 2, 3]
+
+a.each {|n| puts n}
+
+a.each do |n|
+    puts n
+end
+
+
+for i in 0..(a.length - 1) do
+  puts a[i]
+end
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+var a = [1, 2, 3];
+
+a.forEach(function(n) { console.log(n); })
+
+
+
+
+
+
+for (var i = 0; i < a.length; i++) {
+  console.log(a[i]);
+}
+      </code></pre></td>
+
+    </tr>
+
+    <tr><td colspan="2"><h2>Strings</h2></td></tr>
+
+    <tr>
+
+      <td><pre><code class="ruby">
+'hello'.index('e')    # 1
+'hello'.rindex('l')   # 3
+
+if 'hello'.include? 'lo' then puts 'found' end
+
+'hello' * 3           # 'hellohellohello'
+
+'a/b/c'.split('/')    # ['a', 'b', 'c']
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+'hello'.indexOf('e')             // 1
+'hello'.lastIndexOf('l')         // 3
+
+if (~'hello'.indexOf('lo')) { console.log('found'); }
+
+(new Array(3 + 1)).join('hello') // 'hellohellohello'
+
+'a/b/c'.split('/')               // ['a', 'b', 'c']
+      </code></pre></td>
+
+    </tr>
+
+    <tr><td colspan="2"><h2>Hash</h2></td></tr>
+
+    <tr>
+
+      <td><pre><code class="ruby">
+h = {}
+h['a'] = 1
+h['b'] = 2
+
+h.each {|key, value| puts "#{key} #{value}" }
+
+h.keys # ['a', 'b']
+h.has_key?('c') # false
+
+h.length # 2
+
+h.delete("b")
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+var h = {};
+h['a'] = 1;
+h['b'] = 2;
+
+for (key in h) { console.log(key, h[key]); }
+
+Object.keys(h); // ['a', 'b']
+h.hasOwnProperty('c') // false
+
+Object.keys(h).length // 2
+
+delete h.b
+      </code></pre></td>
+
+    </tr>
+
+    <tr><td colspan="2"><h2>Functions</h2></td></tr>
+    <tr>
+
+      <td><pre><code class="ruby">
+def plus_5(num = 0) num + 5 end
+
+plus_5     # 5
+plus_5(10) # 15
+
+[5, 10, 15].map { |k| plus_5(k) } # [10, 15, 20]
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+function plus_5(num) { return (num || 0) + 5; }
+
+plus_5();   // 5
+plus_5(10); // 15
+
+[5, 10, 15].map(plus_5); // [10, 15, 20]
+      </code></pre></td>
+
+    </tr>
+
+        <tr>
+
+      <td><pre><code class="ruby">
+def f(*args)
+  puts args
+end
+
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+function f() {
+  var args = Array.prototype.slice.call(arguments);
+  console.log(args);
+}
+      </code></pre></td>
+
+    </tr>
+
+    <tr>
+      <td><pre><code class="ruby">
+sample_func
+
+def sample_func
+  puts "Hello World"
+end
+
+# => NameError: undefined local
+# variable or method `sample_func'
+      </code></pre></td>
+      <td><pre><code class="javascript">
+sample_func();
+
+function sample_func() {
+  console.log("Hello World");
+};
+
+// => Hello World
+
+      </code></pre></td>
+    </tr>
+
+    <tr><td colspan="2"><h2>Classes</h2></td></tr>
+    <tr>
+
+      <td><pre><code class="ruby">
+class Person
+  attr_accessor :firstName, :lastName
+
+  def initialize(firstName, lastName)
+    @firstName = firstName
+    @lastName = lastName
+  end
+
+  def fullName
+    @firstName + " " + @lastName
+  end
+end
+
+john = Person.new("John", "Malkovic")
+john.fullName # "John Malkovic"
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+
+
+
+Person.prototype.fullName = function() {
+  return this.firstName + " " + this.lastName;
+}
+
+
+var john = new Person("John", "Malkovic");
+john.fullName(); // "John Malkovic"
+      </code></pre></td>
+
+    </tr>
+
+
+    <tr><td colspan="2"><h2>Math</h2></td></tr>
+    <tr>
+
+      <td><pre><code class="ruby">
+[-5, -1, -8].max            # -1
+
+[-5, 15, 20].reduce(0, &:+) # 30
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+Math.max.apply(null, [-5, -1, -8]) // -1
+
+[-5, 15, 20].reduce(function(sum, value) { return sum + value; }, 0) // 30
+      </code></pre></td>
+
+    </tr>
+
+
+    <tr><td colspan="2"><h2>Other</h2></td></tr>
+    <tr>
+
+      <td><pre><code class="ruby">
+prng = Random.new()
+prng.rand(5..9) # one of [5, 6, 7, 8, 9]
+
+a, b = b, a # switch a and b
+      </code></pre></td>
+
+      <td><pre><code class="javascript">
+function rand(a, b) { return Math.floor(Math.random() * (b - a + 1) + a); }
+rand(5, 9); // one of [5, 6, 7, 8, 9]
+
+a = [b, b = a][0] // do not try at home :-)
+      </code></pre></td>
+
+    </tr>
+  </table>
+
+  <script>
+    var js = {
+      'splice': 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/splice',
+      'reverse': 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/reverse',
+
+      'every' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every',
+      'some' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some',
+      'filter' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/filter',
+      'map' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/map',
+      'forEach' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach',
+
+      'reduce': 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/Reduce',
+
+      'push': 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/push',
+      'unshift': 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/unshift',
+      'concat': 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/concat',
+
+      'hasOwnProperty' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/HasOwnProperty',
+      'Object.keys' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys',
+
+      'indexOf' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String/indexOf',
+      'lastIndexOf' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String/lastIndexOf',
+
+      'trim' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String/Trim',
+
+      'parseInt' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/parseInt',
+
+      'call' : 'https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/call',
+
+      'delete': 'https://developer.mozilla.org/en/JavaScript/Reference/Operators/delete'
+    }
+
+    var ruby = {
+      'unshift' : 'http://ruby-doc.org/core-1.9.3/Array.html#method-i-unshift',
+      'push' : 'http://ruby-doc.org/core-1.9.3/Array.html#method-i-push',
+      'delete_at' : 'http://ruby-doc.org/core-1.9.3/Array.html#method-i-delete_at',
+
+      'each' : 'http://ruby-doc.org/core-1.9.3/Array.html#method-i-each',
+      'map' : 'http://ruby-doc.org/core-1.9.3/Array.html#method-i-map',
+
+      'reverse' : 'http://ruby-doc.org/core-1.9.3/Array.html#method-i-reverse',
+
+      'all' : 'http://ruby-doc.org/core-1.9.3/Enumerable.html#method-i-all-3F',
+      'any' : 'http://ruby-doc.org/core-1.9.3/Enumerable.html#method-i-any-3F',
+      'keep_if' : 'http://ruby-doc.org/core-1.9.3/Array.html#method-i-keep_if',
+
+      'reduce' : 'http://ruby-doc.org/core-1.9.3/Enumerable.html#method-i-inject',
+
+      'split' : 'http://ruby-doc.org/core-1.9.3/String.html#method-i-split',
+      'index' : 'http://ruby-doc.org/core-1.9.3/String.html#method-i-index',
+      'rindex' : 'http://ruby-doc.org/core-1.9.3/String.html#method-i-rindex',
+      'include?' : 'http://ruby-doc.org/core-1.9.3/String.html#method-i-include-3F',
+
+      'strip' : 'http://ruby-doc.org/core-1.9.3/String.html#method-i-strip',
+      'slice' : 'http://ruby-doc.org/core-1.9.3/Array.html#method-i-slice',
+
+      'has_key?' : 'http://ruby-doc.org/core-1.9.3/Hash.html#method-i-has_key-3F',
+      'keys' : 'http://ruby-doc.org/core-1.9.3/Hash.html#method-i-keys'
+    }
+
+    $(function() {
+      $('.javascript').each(function(index, el) {
+        var inner = $(el).html();
+        for (f in js) inner = inner.replace(f, f.link(js[f]));
+        $(el).html(inner);
+      });
+
+      $('.ruby').each(function(index, el) {
+        var inner = $(el).html();
+        for (f in ruby) inner = inner.replace(f, f.link(ruby[f]));
+        $(el).html(inner);
+      });
+
+      hljs.initHighlightingOnLoad();
+    });
+  </script>
+</div>
+ <a href ="./t2-css-design.html"><div id="left"> Previous  </div> </a>
+  <a href="../index.html"><div id="center"> Home </div></a>
+  <a href="./t4-enumerable-methods.html"> <div id="right"> Next Post </div></a>
+</body>
+</html>
