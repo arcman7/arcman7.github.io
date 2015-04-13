@@ -1,6 +1,6 @@
 
 
-    function person(health,health_percentage,armor,armor_type,klass,level,id,damage,race){
+function person(health,health_percentage,armor,armor_type,klass,level,id,damage,race){
         this.health = health;
         this.health_percentage = health_percentage;
         this.armor = armor;
@@ -83,42 +83,37 @@ var turn_counter = 0;
   var race1tag = "." +race[0].klass;
   var race2tag = "." + race[1].klass;
   var race3tag = "." + race[2].klass;
+  
   $(race1tag).click(function(){
-        
-            giver = $(this).attr('class');
-            alert($(this).attr('class'));
-            action = "";
-        
+        giver = $(this).attr('class');
+        //alert($(this).attr('class'));
+        action = "";
     });
     $(race2tag).click(function(){
-        
-            giver = $(this).attr('class');
-            alert($(this).attr('class'));
-            action = "";
-        
+        giver = $(this).attr('class');
+        //alert($(this).attr('class'));
+        action = "";
     });
   $(race3tag).click(function(){
-        
-            giver = $(this).attr('class');
-            alert($(this).attr('class'));
-            action = "";
-        
+        giver = $(this).attr('class');
+        //alert($(this).attr('class'));
+        action = "";
     });
     
    $((race1tag + "attack")).click(function(){
-        if( giver != "" && (giver+"attack") == (race1tag + "attack") ){
+        if( giver != "" && ("."+giver+"attack") == (race1tag + "attack") ){
             $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
     });
     $((race2tag + "attack")).click(function(){
-        if( giver != "" && (giver+"attack") == (race2tag + "attack") ){
+        if( giver != "" && ("."+giver+"attack") == (race2tag + "attack") ){
             $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
     });
     $((race3tag + "attack")).click(function(){
-        if( giver != "" && (giver+"attack") == (race3tag + "attack") ){
+        if( giver != "" && ("."+giver+"attack") == (race3tag + "attack") ){
             $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
