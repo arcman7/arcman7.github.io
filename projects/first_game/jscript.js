@@ -150,6 +150,7 @@ var turn_counter = 0;
 
   // implement attack
     function get_DamageRecieverInfo(target){
+      alert("action = "+action);
       if(action == "attack" && giver != ""){
         for(person in otherteam){
           if(target == (otherteam[person].klass)){
@@ -172,11 +173,11 @@ var turn_counter = 0;
             turn++;
           }
         }
-        if((race[0].health && race[1].health && race[2].health) <=0){
+        if((race[0].health + race[1].health + race[2].health) <=0){
             game = 0;
             alert("Your whole team died, you lost.");
         }
-        if((otherteam[0].health && otherteam[1].health && otherteam[2].health) <= 0){
+        if((otherteam[0].health + otherteam[1].health + otherteam[2].health) <= 0){
             game = 0;
             alert("You have defeated the enemy team!");
         }
