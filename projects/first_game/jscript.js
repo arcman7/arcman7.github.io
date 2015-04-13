@@ -78,7 +78,7 @@ var team = race; //quick fix for problems below
 
 var game = 1;
 var turn_counter = 0;
-  var turn = 1;
+  var turn = 0;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
   var race1tag = "." +race[0].klass;
@@ -153,53 +153,79 @@ var turn_counter = 0;
       }
   });
 
-//implement turn control
+ //implement turn control
   function highlightRED(teamMember){
       if(teamMember.turn == 0){
         $("."+teamMember.klass).addClass('highlightedRED');
       }
   }
+  //check if battle over
+  function checkIfBattleOver(){
+    if((race[0].health + race[1].health + race[2].health) <=0){
+        game = 0;
+        alert("Your whole team died, you lost.");
+    }
+    if((otherteam[0].health + otherteam[1].health + otherteam[2].health) <= 0){
+        game = 0;
+        alert("You have defeated the enemy team!");
+    }
+  }
+ // AI actions
+ function AIattack(enemycharacter){
+       var index1 = Math.floor(Math.random()*team.length);
+       var target = team[index1];
+       var index2 = Math.floor(Math.random()*team[person].damage.length);
+       var damage = enemycharacter.damage[index2];
+       target.health = target.health - damage;
+       target.health_percentage = 100*target.health / target.original_health;
+          //code for slice animation
+       $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
+       var log = $('#combat_log').html();
+       $('#combat_log').html(log+" "+enemycharacter.klass + " dealt " + String(damage) + " to " + target.klass + "!");
+    }
 
-  // implement attack
-    function get_DamageRecieverInfo(target){
-      if(action == "attack" && giver != ""){
-        for(person in otherteam){
-          if(target == (otherteam[person].klass)){
-            damage_reciever = otherteam[person];
-            health_id = "#" + damage_reciever.klass + "Health";
-            //alert(otherteam[person].klass + "   health_id ="+health_id);
-          }
-        }
-
-        for(person in team){
-            //alert(team[person].klass + "   giver ="+giver);
-          if(team[person].klass == giver){
-            var index = Math.floor(Math.random()*team[person].damage.length);
-            var damage = team[person].damage[index];
-            damage_reciever.health = damage_reciever.health - damage;
-            damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
-                //code for slice animation
-            $(health_id).width(String(damage_reciever.health_percentage)+"%");
-            $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
-            team[person].turn -=1;
-            highlightRED(team[person]);
-            turn++;
-          }
-        }
-        if((race[0].health + race[1].health + race[2].health) <=0){
-            game = 0;
-            alert("Your whole team died, you lost.");
-        }
-        if((otherteam[0].health + otherteam[1].health + otherteam[2].health) <= 0){
-            game = 0;
-            alert("You have defeated the enemy team!");
-        }
+  function enemyActions(turn){
+    if(turn == 3){
+      for(person in otherteam){
+        AIattack(otherteam[person]);
       }
     }
+    turn = 0;
+    $('highlightedRED').removeClass('highlightedRED');
+  }
 
-    function AIattack(){
+ //implement attack
+  function get_DamageRecieverInfo(target){
+    if(action == "attack" && giver != ""){
+      for(person in otherteam){
+        if(target == (otherteam[person].klass)){
+          damage_reciever = otherteam[person];
+          health_id = "#" + damage_reciever.klass + "Health";
+          //alert(otherteam[person].klass + "   health_id ="+health_id);
+        }
+      }
+
+      for(person in team){
+          //alert(team[person].klass + "   giver ="+giver);
+        if(team[person].klass == giver){
+          var index = Math.floor(Math.random()*team[person].damage.length);
+          var damage = team[person].damage[index];
+          damage_reciever.health = damage_reciever.health - damage;
+          damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
+              //code for slice animation
+          $(health_id).width(String(damage_reciever.health_percentage)+"%");
+          $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
+          team[person].turn -=1;
+          highlightRED(team[person]);
+          checkIfBattleOver();
+          turn++;
+          enemyActions();
+        }
+      }
 
     }
+  }
+
 
 
 
