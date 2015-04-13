@@ -61,16 +61,17 @@ var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
 
 if(race == "humans"){
+    $("tr.undead > icon").fadeOut('fast');
     race = humans;
-    alert("you chose humans");
+     $('#combat_log').html("You have chosen Humans. Battle start! Select a character and then an action.");
     otherteam = undead;
-    
 }
 else{
     race = undead;
-    alert("you chose undead");
+     $("tr.human > icon").fadeOut('fast');
+     $('#combat_log').html("You have chosen Undead. Battle start! Select a character and then an action.");
     otherteam = humans;
-    
+
 }
 var team = race; //quick fix for problems below
  $('#combat_log').html("Battle start! Your turn, select a character and then an action.");
@@ -80,7 +81,7 @@ var turn_counter = 0;
   var turn = 1;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
-  var race1tag = "." +race[0].klass; 
+  var race1tag = "." +race[0].klass;
   var race2tag = "." + race[1].klass;
   var race3tag = "." + race[2].klass;
   //alert("race1tag = "+race1tag +", race2tag = " + race2tag +", race3tag= " +race3tag);
@@ -102,7 +103,7 @@ var turn_counter = 0;
         action = "";
         $('.highlighted').removeClass('highlighted');
     });
-    
+
    $((race1tag + "attack")).click(function(){
         if( giver != "" && ("."+giver+"attack") == (race1tag + "attack") ){
             $(this).addClass('highlighted');
@@ -121,7 +122,7 @@ var turn_counter = 0;
             action = $(this).attr('id');
         }
     });
-    
+
     function get_DamageRecieverInfo(target){
          //alert("clicked " +target+" giver = "+giver+" action= "+action);
         if(action != "" && giver != ""){
@@ -159,7 +160,7 @@ var turn_counter = 0;
             alert("You have defeated the enemy team!");
         }
     }
-    
+
     $("."+otherteam[0].klass).click(function(){         //damage_reciever and health_id set
         target = $(this).attr('class');
         get_DamageRecieverInfo(target);
@@ -172,12 +173,12 @@ var turn_counter = 0;
         target = $(this).attr('class');
         get_DamageRecieverInfo(target);
     });
-    
+
 
   if(turn_counter == 0){
     $('#combat_log').html("Battle start! Your turn, select a character and then an action...");
   }
- 
+
     //each team gets 3 turns (one for each character)
 //once target person has recieved damage its the next character's turn
 
@@ -191,5 +192,5 @@ var turn_counter = 0;
     alert("You have defeated the enemy team!");
   }
  turn_counter++;
- 
+
 });
