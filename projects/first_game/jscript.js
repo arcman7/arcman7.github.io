@@ -80,17 +80,46 @@ var turn_counter = 0;
   var turn = 1;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
-  $('img').click(function(){
-        if($(this).attr('class') == race[0].klass || race[1].klass || race[2].klass){ 
+  var race1tag = "." +race[0].klass;
+  var race2tag = "." + race[1].klass;
+  var race3tag = "." + race[2].klass;
+  $(race1tag).click(function(){
+        
             giver = $(this).attr('class');
             alert($(this).attr('class'));
             action = "";
+        
+    });
+    $(race2tag).click(function(){
+        
+            giver = $(this).attr('class');
+            alert($(this).attr('class'));
+            action = "";
+        
+    });
+  $(race3tag).click(function(){
+        
+            giver = $(this).attr('class');
+            alert($(this).attr('class'));
+            action = "";
+        
+    });
+    
+   $((race1tag + "attack")).click(function(){
+        if( giver != "" && (giver+"attack") == (race1tag + "attack") ){
+            $(this).addClass('highlighted');
+            action = $(this).attr('id');
         }
     });
-  
-   $('img').click(function(){
-        if( ( $(this).attr('id') == "attack" || "spell" )&& giver != ""){
-            $(this).attr('class') = "highlighted";
+    $((race2tag + "attack")).click(function(){
+        if( giver != "" && (giver+"attack") == (race2tag + "attack") ){
+            $(this).addClass('highlighted');
+            action = $(this).attr('id');
+        }
+    });
+    $((race3tag + "attack")).click(function(){
+        if( giver != "" && (giver+"attack") == (race3tag + "attack") ){
+            $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
     });
