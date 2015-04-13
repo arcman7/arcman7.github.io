@@ -76,13 +76,11 @@ else{
 
 var game = 1;
 var turn_counter = 0;
-alert("hello");
   var turn = 1;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
-  var race1tag = "." +race[0].klass;
+  var race1tag = "." +race[0].klass; alert("race1tag = "+race1tag);
   var race2tag = "." + race[1].klass;
-  alert(race2tag);
   var race3tag = "." + race[2].klass;
   
   $(race1tag).click(function(){
@@ -102,19 +100,19 @@ alert("hello");
     });
     
    $((race1tag + "attack")).click(function(){
-        if( giver != "" && ("."+giver+"attack") == (race1tag + "attack") ){
+        if( giver != "" && (giver+"attack") == (race1tag + "attack") ){
             $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
     });
     $((race2tag + "attack")).click(function(){
-        if( giver != "" && ("."+giver+"attack") == (race2tag + "attack") ){
+        if( giver != "" && (giver+"attack") == (race2tag + "attack") ){
             $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
     });
     $((race3tag + "attack")).click(function(){
-        if( giver != "" && ("."+giver+"attack") == (race3tag + "attack") ){
+        if( giver != "" && (giver+"attack") == (race3tag + "attack") ){
             $(this).addClass('highlighted');
             action = $(this).attr('id');
         }
