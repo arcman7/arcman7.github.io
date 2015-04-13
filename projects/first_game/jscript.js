@@ -87,16 +87,19 @@ var turn_counter = 0;
         giver = $(this).attr('class');
         alert("giver = " + giver);
         action = "";
+        $('.highlighted').removeClass('highlighted');
     });
     $(race2tag).click(function(){
         giver = $(this).attr('class');
         alert("giver = " + giver);
         action = "";
+        $('.highlighted').removeClass('highlighted');
     });
   $(race3tag).click(function(){
         giver = $(this).attr('class');
         alert("giver = " + giver);
         action = "";
+        $('.highlighted').removeClass('highlighted');
     });
     
    $((race1tag + "attack")).click(function(){
@@ -117,13 +120,14 @@ var turn_counter = 0;
             action = $(this).attr('id');
         }
     });
+    alert(race3tag+"attack");
     
-    $('archer').click(function(){         //damage_reciever and health_id set
+    $('Archer').click(function(){         //damage_reciever and health_id set
      if(action != "" && giver != ""){
             for(person in otherteam){
-                if(this.class == otherteam[person].klass){
+                if($(this).attr('class') == otherteam[person].klass){
                     damage_reciever = otherteam[person];
-                    health_id = "#" + damage_reciever + "Health";
+                    health_id = "#" + damage_reciever.klass + "Health";
                 }
             }
         }
