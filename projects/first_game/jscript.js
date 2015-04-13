@@ -75,8 +75,6 @@ else{
 var game = 1;
 var turn_counter = 0;
 
-
-
   var turn = 1;
   var giver = ""; var action = "";
   var damage_reciever = ""; var health_id = "";
@@ -121,7 +119,7 @@ var turn_counter = 0;
         }
         if(otherteam[0].health && otherteam[1].health && otherteam[2].health <= 0){
             game = 0;
-            alert("You have defeated the enemy team!")
+            alert("You have defeated the enemy team!");
         }
     });
     
@@ -189,10 +187,8 @@ function attackSetRecieversNewHealth(){
   }
   if(otherteam[0].health && otherteam[1].health && otherteam[2].health <= 0){
     game = 0;
-    alert("You have defeated the enemy team!")
+    alert("You have defeated the enemy team!");
   }
-
  turn_counter++;
-
-
+ 
 });
