@@ -72,7 +72,7 @@ else{
     otherteam = humans;
     
 }
-
+var team = race; //quick fix for problems below
  $('#combat_log').html("Battle start! Your turn, select a character and then an action.");
 
 var game = 1;
