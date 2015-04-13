@@ -11,6 +11,7 @@ function person(health,health_percentage,armor,armor_type,klass,level,id,damage,
         this.damage = damage;
         this.race = race;
         this.attack = "";
+        this.original_health = this.health;
     }
 
 //undead
@@ -134,7 +135,7 @@ var turn_counter = 0;
             if(team[person].klass == giver){
                 var damage = team[person].damage[Math.floor(Math.random()*team[person].damage.length)];
                 damage_reciever.health = health - damage;
-                damage_reciever.health_percentage = damage_reciever.health / 100;
+                damage_reciever.health_percentage = damage_reciever.health / damage_reciever.original_health;
                 //code for slice animation
                 $(damage_reiever).width(String(damage_reciever.health_percentage)+"%");
                 $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass);
