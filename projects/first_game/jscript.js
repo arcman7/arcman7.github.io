@@ -197,8 +197,12 @@ var turn_counter = 0;
     }
     playSound(spellSounds["Holylight"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
-    uther.turn -=1;
-    highlightRED(uther);
+    for(person in team){
+        if(team[person].klass == "Palatine"){
+          team[person].turn -=1;
+          highlightRED(team[person]);
+        }
+    }
     checkIfBattleOver();
     turn++;
     giver = "";
@@ -221,8 +225,12 @@ var turn_counter = 0;
     $('#combat_log').html(log+"<br><br>"+" Sorcerer dealt " + String(damage) + " damage to " + target.klass + "! ");
     playSound(spellSounds["Fireball"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
-    mage.turn -=1;
-    highlightRED(mage);
+    for(person in team){
+        if(team[person].klass == "Sorcerer"){
+          team[person].turn -=1;
+          highlightRED(team[person]);
+        }
+    }
     checkIfBattleOver();
     turn++;
     giver = "";
@@ -253,8 +261,12 @@ var turn_counter = 0;
     }
     playSound(spellSounds["Deathcoil"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
-    arthus.turn -=1;
-    highlightRED(arthus);
+    for(person in team){
+        if(team[person].klass == "DeathKnight"){
+          team[person].turn -=1;
+          highlightRED(team[person]);
+        }
+    }
     checkIfBattleOver();
     turn++;
     giver = "";
@@ -277,6 +289,8 @@ var turn_counter = 0;
       }
       checkForDead(); //affects number of turns before AI acts
       enemyActions();
+      giver = "";
+      action = "";
       return spells.RaiseDead();
     }
   });
