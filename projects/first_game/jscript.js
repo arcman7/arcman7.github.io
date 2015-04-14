@@ -18,7 +18,7 @@ function person(health,health_percentage,armor,armor_type,klass,level,id,damage,
 //undead
 arthus = new person(110,100,14,"plate","DeathKnight",1,"arthus",[14,15],"undead");
 nec = new person(80,100,9,"cloth","Necromancer",1,"nec",[8,9],"undead");
-timmy = new person(1,100,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
+timmy = new person(0,100,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
 
 skel =  new person(50,100,13,"cloth","Skeleton",1,"skel",[10,11,12,13],"undead");
 //humans
@@ -51,8 +51,11 @@ spells = {
   "RaiseDead": function(){
     for(person in team){
       if(team[person].health <= 0){
+        alert(team[person].klass +"0");
         $("."+team[person].klass).attr("src","./skeletonedited.jpg");
+        alert(team[person].klass + "1");
         var klass = team[person].klass;
+        alert(team[person].klass + "2");
         team[person] = skel;
         alert(team[person].klass);
         team[person].klass = klass;
