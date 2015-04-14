@@ -234,7 +234,6 @@ var turn_counter = 0;
   });
 
   function fireball(target){
-    alert("cast fireball");
     target.health = target.health - 20;
     target.health_percentage = 100*target.health / target.original_health;
      var log = $('#combat_log').html();
@@ -274,7 +273,7 @@ var turn_counter = 0;
      target.health = target.health - spells["Deathcoil"][0];
      target.health_percentage = 100*target.health / target.original_health;
       var log = $('#combat_log').html();
-     $('#combat_log').html(log+"<br><br>"+" DeathKnight dealt " + String(spells["Deathcoil"][0]) + " damage to " + target.klass + "! ");
+     $('#combat_log').html(log+"<br><br>"+"DeathKnight dealt "+String(spells["Deathcoil"][0]) + " damage to " + target.klass + "! ");
     }
     playSound(spellSounds["Deathcoil"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
