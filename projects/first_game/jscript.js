@@ -99,6 +99,12 @@ spells = { // had to define raise dead here, because declaring functions require
   "Holylight": [13,"undead",16,"human"],
   "Fireball": 20,
   "RaiseDead": function(){
+    var me;
+    for(person in team){
+        if(team[person].klass == "Necromancer"){
+           me = team[person]
+        }
+    }
     for(person in team){
       if(team[person].health <= 0){
         playSound(spellSounds["RaiseDead"]);
@@ -106,6 +112,13 @@ spells = { // had to define raise dead here, because declaring functions require
         var klass = team[person].klass;
         team[person] = skel; team[person].health = 50; team[person].health_percentage = 100;
         team[person].klass = klass;
+        turn ++;
+      me.turn -=1;
+      highlightRED(me);
+      checkForDead(); //affects number of turns before AI acts
+      enemyActions();
+      giver = "";
+      action = "";
       }
     }
   }
@@ -280,17 +293,6 @@ var turn_counter = 0;
       $('.highlighted').removeClass('highlighted');
       $(this).addClass('highlighted');
       action = $(this).attr('id');
-      turn ++;
-      for(person in team){
-        if(team[person].klass == "Necromancer"){
-          team[person].turn -=1;
-          highlightRED(team[person]);
-        }
-      }
-      checkForDead(); //affects number of turns before AI acts
-      enemyActions();
-      giver = "";
-      action = "";
       return spells.RaiseDead();
     }
   });
