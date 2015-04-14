@@ -51,7 +51,7 @@ spells = {
   "RaiseDead": function(){
     for(person in team){
       if(team[person].health <= 0){
-        $("."+team[person].klass).attr ("src","./skeletonedited.jpg")
+        $("."+team[person].klass).attr("src","./skeletonedited.jpg");
         var klass = team[person].klass;
         team[person] = skel;
         team[person].klass = klass;
@@ -209,6 +209,15 @@ var turn_counter = 0;
         $("."+teamMember.klass).addClass('highlightedRED');
       }
   }
+  //check if one of your characters is dead, and update turn counter
+  var maxTurn  = 3;
+  function checkForDead(){
+    for(person in team){
+      if(team[person].heath < 0){
+         maxTurn -= 1;
+      }
+    }
+  }
   //check if battle over
   function checkIfBattleOver(){
     if((race[0].health + race[1].health + race[2].health) <=0){
@@ -237,7 +246,7 @@ var turn_counter = 0;
     }
  //AI actions - team actions
   function enemyActions(){
-    if(turn >= 3){
+    if(turn >= maxTurn){
       for(person in otherteam){
         if(otherteam[person].health > 0){
           AIattack(otherteam[person]);
