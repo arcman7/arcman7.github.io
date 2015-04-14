@@ -220,7 +220,7 @@ var turn_counter = 0;
   function checkForDead(){
     maxTurn = 0;
     for(person in team){
-      if(team[person].health >= 0){
+      if(team[person].health > 0){
          maxTurn +=1;
          alert("maxTurn = " + maxTurn);
       }
