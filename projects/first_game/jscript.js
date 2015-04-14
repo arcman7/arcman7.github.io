@@ -269,11 +269,11 @@ var turn_counter = 0;
       $('.highlighted').removeClass('highlighted');
       $(this).addClass('highlighted');
       action = $(this).attr('id');
-      return spells.RaiseDead();
       turn ++;
       highlightRED(nec);
       checkForDead(); //affects number of turns before AI acts
       enemyActions();
+      return spells.RaiseDead();
     }
   });
 
@@ -432,5 +432,4 @@ var turn_counter = 0;
    //once target person has recieved damage its the next character's turn
 
  turn_counter++;
-
 });
