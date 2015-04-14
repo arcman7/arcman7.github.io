@@ -106,7 +106,6 @@ spells = { // had to define raise dead here, because declaring functions require
         var klass = team[person].klass;
         team[person] = skel; team[person].health = 50; team[person].health_percentage = 100;
         team[person].klass = klass;
-        nec.turn -=1;
       }
     }
   }
@@ -270,7 +269,12 @@ var turn_counter = 0;
       $(this).addClass('highlighted');
       action = $(this).attr('id');
       turn ++;
-      highlightRED(nec);
+      for(person in team){
+        if(team[person].klass == "Necromancer"){
+          team[person].turn -=1;
+          highlightRED(team[person]);
+        }
+      }
       checkForDead(); //affects number of turns before AI acts
       enemyActions();
       return spells.RaiseDead();
