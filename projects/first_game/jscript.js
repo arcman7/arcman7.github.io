@@ -75,17 +75,12 @@ spells = {
   "Fireball": 20,
   "RaiseDead": function(){
     for(person in team){
-      alert(" "+team[person].klass+" = "+team[person].health );
       if(team[person].health <= 0){
-        alert(team[person].klass +"0");
+        playSound(spellSounds["RaiseDead"]);
         $("."+team[person].klass).attr("src","./skeletonedited.jpg");
-        alert(team[person].klass + "1");
         var klass = team[person].klass;
-        alert(team[person].klass + "2");
         team[person] = skel;
-        alert(team[person].klass);
         team[person].klass = klass;
-        alert(team[person].klass);
       }
     }
   }
@@ -181,7 +176,6 @@ var turn_counter = 0;
       $('.highlighted').removeClass('highlighted');
       $(this).addClass('highlighted');
       action = $(this).attr('id');
-      playSound(spellSounds["RaiseDead"]);
       return spells.RaiseDead();
     }
   });
