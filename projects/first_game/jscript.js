@@ -18,7 +18,7 @@ function person(health,health_percentage,armor,armor_type,klass,level,id,damage,
 //undead
 arthus = new person(110,100,14,"plate","DeathKnight",1,"arthus",[14,15],"undead");
 nec = new person(80,100,9,"cloth","Necromancer",1,"nec",[8,9],"undead");
-timmy = new person(0,0,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
+timmy = new person(1,100,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
 
 skel =  new person(50,100,13,"cloth","Skeleton",1,"skel",[10,11,12,13],"undead");
 //humans
@@ -49,9 +49,9 @@ spells = {
   "Holylight": [13,"undead",16,"human"],
   "Fireball": 20,
   "RaiseDead": function(){
-    alert("RaiseDead casted");
     for(person in team){
       if(team[person].health <= 0){
+        alert("RaiseDead casted");
         $("."+team[person].klass).attr("src","./skeletonedited.jpg");
         var klass = team[person].klass;
         team[person] = skel;
@@ -216,6 +216,7 @@ var turn_counter = 0;
     for(person in team){
       if(team[person].heath <= 0){
          maxTurn -= 1;
+         alert("maxTurn = " + maxTurn);
       }
     }
   }
