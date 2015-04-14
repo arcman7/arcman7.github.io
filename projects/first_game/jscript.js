@@ -196,7 +196,7 @@ var turn_counter = 0;
     }
   });
 
-  function Holylight(race,target){
+  function holylight(race,target){
    if(race == "human"){
      target.health = target.health + spells["Holylight"][2];
      target.health_percentage = 100*target.health / target.original_health;
@@ -232,7 +232,8 @@ var turn_counter = 0;
     }
   });
 
-  function Fireball(target){
+  function fireball(target){
+    alert("cast fireball")
     target.health = target.health - spells["Fireball"];
     target.health_percentage = 100*target.health / target.original_health;
     $('#combat_log').html(log+"<br><br>"+" Sorcerer dealt " + String(damage) + " damage to " + target.klass + "! ");
@@ -260,7 +261,7 @@ var turn_counter = 0;
     }
   });
 
-  function Deathcoil(race,target){
+  function deathcoil(race,target){
     if(race == "undead"){
      target.health = target.health + spells["Deathcoil"][0];
      target.health_percentage = 100*target.health / target.original_health;
@@ -429,23 +430,23 @@ var turn_counter = 0;
     $("."+otherteam[0].klass).click(function(){         //damage_reciever and health_id set
         target = $(this).attr('class');
         if(action == "attack") get_DamageRecieverInfo(target);
-        if(action == "Holylight") Holylight(otherteam[0].race,otherteam[0]);
-        if(action == "Deathcoil") Death(otherteam[0].race,otherteam[0]);
-        if(action == "Fireball")  Fireball(otherteam[0]);
+        if(action == "Holylight") holylight(otherteam[0].race,otherteam[0]);
+        if(action == "Deathcoil") deathcoil(otherteam[0].race,otherteam[0]);
+        if(action == "Fireball")  fireball(otherteam[0]);
     });
      $("."+otherteam[1].klass).click(function(){      //damage_reciever and health_id set
         target = $(this).attr('class');
         if(action == "attack") get_DamageRecieverInfo(target);
-        if(action == "Holylight") Holylight(otherteam[1].race,otherteam[1]);
-        if(action == "Deathcoil") Death(otherteam[1].race,otherteam[1]);
-        if(action == "Fireball")  Fireball(otherteam[1]);
+        if(action == "Holylight") holylight(otherteam[1].race,otherteam[1]);
+        if(action == "Deathcoil") death(otherteam[1].race,otherteam[1]);
+        if(action == "Fireball")  fireball(otherteam[1]);
     });
      $("."+otherteam[2].klass).click(function(){       //damage_reciever and health_id set
         target = $(this).attr('class');
         if(action == "attack") get_DamageRecieverInfo(target);
-        if(action == "Holylight") Holylight(otherteam[2].race,otherteam[2]);
-        if(action == "Deathcoil") Death(otherteam[2].race,otherteam[2]);
-        if(action == "Fireball")  Fireball(otherteam[2]);
+        if(action == "Holylight") holylight(otherteam[2].race,otherteam[2]);
+        if(action == "Deathcoil") death(otherteam[2].race,otherteam[2]);
+        if(action == "Fireball")  fireball(otherteam[2]);
     });
 
     //each team gets 3 turns (one for each character)
