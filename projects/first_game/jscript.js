@@ -82,7 +82,8 @@ else{
 }
 var team = race; //quick fix for problems below
  //$('#combat_log').html("Battle start! Your turn, select a character and then an action.");
-$(".DeathKnight").src = "#";
+$(".DeathKnight").attr("src","#");
+
 var game = 1;
 var turn_counter = 0;
   var turn = 0;
