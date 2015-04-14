@@ -150,7 +150,7 @@ var turn_counter = 0;
       action = $(this).attr('id');
     }
   });
-  //spell selectors
+  //spell selectors && effects
   $("#Holylight").click(function(){
     if(giver !="" && (giver == "Palatine")){
       $('.highlighted').removeClass('highlighted');
@@ -158,6 +158,23 @@ var turn_counter = 0;
       action = $(this).attr('id');
     }
   });
+
+  function Holylight(race,target){
+   if(race == "human"){
+     target.health = target.health + spells["Holylight"][2];
+     target.health_percentage = 100*target.health / target.original_health;
+     var log = $('#combat_log').html();
+       $('#combat_log').html(log+"<br><br>"+"Palatine healed "+target.klass+ "for"+String(damage) + " damage! ");
+   }
+   if(race == "undead"){
+     target.health = target.health - spells["Holylight"][0];
+     target.health_percentage = 100*target.health / target.original_health;
+     $('#combat_log').html(log+"<br><br>"+" Palatine dealt " + String(damage) + " damage to " + target.klass + "! ");
+    }
+    playSound(spellSounds["Holylight"]);
+   $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
+  }
+
   $("#Fireball").click(function(){
     if(giver !="" && (giver == "Sorcerer")){
       $('.highlighted').removeClass('highlighted');
@@ -165,6 +182,16 @@ var turn_counter = 0;
       action = $(this).attr('id');
     }
   });
+
+  function Fireball(target){
+    target.health = target.health - spells["Fireball"];
+    target.health_percentage = 100*target.health / target.original_health;
+    $('#combat_log').html(log+"<br><br>"+" Sorcerer dealt " + String(damage) + " damage to " + target.klass + "! ");
+    }
+    playSound(spellSounds["Fireball"]);
+   $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
+  }
+
   $("#Deathcoil").click(function(){
     if(giver !="" && (giver == "DeathKnight")){
       $('.highlighted').removeClass('highlighted');
@@ -172,6 +199,23 @@ var turn_counter = 0;
       action = $(this).attr('id');
     }
   });
+
+  function Deathcoil(target){
+    if(race == "undead"){
+     target.health = target.health + spells["Deathcoil"][0];
+     target.health_percentage = 100*target.health / target.original_health;
+     var log = $('#combat_log').html();
+       $('#combat_log').html(log+"<br><br>"+"DeathKnight healed "+target.klass+ "for"+String(damage) + " damage! ");
+   }
+   if(race == "human"){
+     target.health = target.health - spells["Deathcoil"][2];
+     target.health_percentage = 100*target.health / target.original_health;
+     $('#combat_log').html(log+"<br><br>"+" DeathKnight dealt " + String(damage) + " damage to " + target.klass + "! ");
+    }
+    playSound(spellSounds["Deathcoil"]);
+   $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
+  }
+
   $("#RaiseDead").click(function(){
     if(giver !="" && (giver == "Necromancer")){
       $('.highlighted').removeClass('highlighted');
@@ -340,15 +384,24 @@ var turn_counter = 0;
 
     $("."+otherteam[0].klass).click(function(){         //damage_reciever and health_id set
         target = $(this).attr('class');
-        get_DamageRecieverInfo(target);
+        if(action == "attack") get_DamageRecieverInfo(target);
+        if(action == "Holylight")
+        if(action == "Deathcoil")
+        if(action == "Fireball")
     });
      $("."+otherteam[1].klass).click(function(){      //damage_reciever and health_id set
         target = $(this).attr('class');
-        get_DamageRecieverInfo(target);
+        if(action == "attack") get_DamageRecieverInfo(target);
+        if(action == "Holylight")
+        if(action == "Deathcoil")
+        if(action == "Fireball")
     });
      $("."+otherteam[2].klass).click(function(){       //damage_reciever and health_id set
         target = $(this).attr('class');
-        get_DamageRecieverInfo(target);
+        if(action == "attack") get_DamageRecieverInfo(target);
+        if(action == "Holylight")
+        if(action == "Deathcoil")
+        if(action == "Fireball")
     });
 
 
