@@ -64,6 +64,7 @@ spells = {
 
 $(document).ready(function(){
 $(".Spell").fadeOut('fast');
+$("#")
 var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
 
