@@ -68,6 +68,31 @@ else{
 }
 var team = race; //quick fix for problems below
 
+ //attack sound effect
+ attackSounds={
+    DeathKnight: "./gameSounds/MetalHeavySliceMetal3.wav",
+    Archer:      "./gameSounds/ArrowAttack1.wav",
+    Necromancer: "./gameSounds/NecromancerMissileLaunch2.wav",
+    Ghoul:       "./gameSounds/MetalLightChopFlesh2.wav",
+    Sorcerer:    "./gameSounds/SorceressMissileHit1.wav",
+    Palatine:    "./gameSounds/MetalHeavyBashFlesh2.wav"
+  };
+  //response sound effects
+  responseSounds ={
+    DeathKnight: "./gameSounds/HeroFirelordWhat2.wav",
+    Archer:      "./gameSounds/ArcherWhat1.wav",
+    Necromancer: "./gameSounds/NecromancerWhat3.wav",
+    Ghoul:       "./gameSounds/GhoulReady1.wav",
+    Sorcerer:    "./gameSounds/SorceressReady1.wav",
+    Palatine:    "./gameSounds/UtherWhat1.wav"
+  }
+  //spell sound effects
+  spellSounds = {
+    "Deathcoil": "./gameSounds/DeathCoilSpecialArt1.wav",
+    "Holylight": "./gameSounds/HolyBolt.wav",
+    "Fireball" : "./gameSounds/FireBallMissileDeath.wav",
+    "RaiseDead": "./gameSounds/RaiseSkeleton.wav"
+  }
 
 spells = { // had to define raise dead here, because declaring functions requires that the variable used in the function be in the same scope
   "Deathcoil": [16,"human",13,"undead"],
@@ -81,10 +106,7 @@ spells = { // had to define raise dead here, because declaring functions require
         var klass = team[person].klass;
         team[person] = skel; team[person].health = 50; team[person].health_percentage = 100;
         team[person].klass = klass;
-        highlightRED(nec);
         nec.turn -=1;
-        checkForDead(); //affects number of turns before AI acts
-        enemyActions();
       }
     }
   }
@@ -248,6 +270,10 @@ var turn_counter = 0;
       $(this).addClass('highlighted');
       action = $(this).attr('id');
       return spells.RaiseDead();
+      turn ++;
+      highlightRED(nec);
+      checkForDead(); //affects number of turns before AI acts
+      enemyActions();
     }
   });
 
@@ -333,37 +359,12 @@ var turn_counter = 0;
   }
 
  //calculate damage on target
-     function damageCalculator(damage,armor,armorType){
+    function damageCalculator(damage,armor,armorType){
       var reductionByType = {cloth: 0.01, leather: 0.012, mail: 0.014, plate: 0.016};
       var c = reductionByType[armorType]
       damage = damage*(1-( (armor*c)/(1+(armor*c)) ) );
       return Math.ceil(damage);
     }
- //attack sound effect
- attackSounds={
-    DeathKnight: "./gameSounds/MetalHeavySliceMetal3.wav",
-    Archer:      "./gameSounds/ArrowAttack1.wav",
-    Necromancer: "./gameSounds/NecromancerMissileLaunch2.wav",
-    Ghoul:       "./gameSounds/MetalLightChopFlesh2.wav",
-    Sorcerer:    "./gameSounds/SorceressMissileHit1.wav",
-    Palatine:    "./gameSounds/MetalHeavyBashFlesh2.wav"
-  };
-  //response sound effects
-  responseSounds ={
-    DeathKnight: "./gameSounds/HeroFirelordWhat2.wav",
-    Archer:      "./gameSounds/ArcherWhat1.wav",
-    Necromancer: "./gameSounds/NecromancerWhat3.wav",
-    Ghoul:       "./gameSounds/GhoulReady1.wav",
-    Sorcerer:    "./gameSounds/SorceressReady1.wav",
-    Palatine:    "./gameSounds/UtherWhat1.wav"
-  }
-  //spell sound effects
-  spellSounds = {
-    "Deathcoil": "./gameSounds/DeathCoilSpecialArt1.wav",
-    "Holylight": "./gameSounds/HolyBolt.wav",
-    "Fireball" : "./gameSounds/FireBallMissileDeath.wav",
-    "RaiseDead": "./gameSounds/RaiseSkeleton.wav"
-  }
 
  function playSound(file){
    var snd = new Audio(file);
