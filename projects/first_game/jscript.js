@@ -206,6 +206,7 @@ var turn_counter = 0;
    if(race == "undead"){
      target.health = target.health - spells["Holylight"][0];
      target.health_percentage = 100*target.health / target.original_health;
+      var log = $('#combat_log').html();
      $('#combat_log').html(log+"<br><br>"+" Palatine dealt " + String(damage) + " damage to " + target.klass + "! ");
     }
     playSound(spellSounds["Holylight"]);
@@ -236,6 +237,7 @@ var turn_counter = 0;
     alert("cast fireball");
     target.health = target.health - 20;
     target.health_percentage = 100*target.health / target.original_health;
+     var log = $('#combat_log').html();
     $('#combat_log').html(log+"<br><br>"+" Sorcerer dealt " + String(damage) + " damage to " + target.klass + "! ");
     playSound(spellSounds["Fireball"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
@@ -271,6 +273,7 @@ var turn_counter = 0;
    if(race == "human"){
      target.health = target.health - spells["Deathcoil"][2];
      target.health_percentage = 100*target.health / target.original_health;
+      var log = $('#combat_log').html();
      $('#combat_log').html(log+"<br><br>"+" DeathKnight dealt " + String(damage) + " damage to " + target.klass + "! ");
     }
     playSound(spellSounds["Deathcoil"]);
