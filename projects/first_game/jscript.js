@@ -20,7 +20,7 @@ arthus = new person(110,100,15,"plate","DeathKnight",1,"arthus",[14,15],"undead"
 nec = new person(80,100,9,"cloth","Necromancer",1,"nec",[8,9],"undead");
 timmy = new person(90,100,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
 
-skel =  new person(50,100,13,"cloth","skeleton",1,"skel",[10,11,12,13],"undead");
+skel =  new person(50,100,13,"cloth","Skeleton",1,"skel",[10,11,12,13],"undead");
 //humans
 uther =  new person(110,100,16,"plate","Palatine",1,"uther",[10,11,12,13],"human");
 mage = new person(80,100,10,"cloth","Sorcerer",1,"mage",[5,6,7,8],"human");
@@ -32,10 +32,10 @@ uther.mana = 80;
 mage.mana = 120;
 nec.mana = 120;
 
-arthus.spells = {1: "death coil"};
-uther.spells = {1: "holy light"};
-mage.spells = {1: "fire ball"};
-nec.spells = {1: "raise dead"};
+arthus.spells = {1:"death coil"};
+uther.spells = {1:"holy light"};
+mage.spells = {1:"fire ball"};
+nec.spells = {1:"raise dead"};
 
 var humans = [uther,arch,mage];
 var undead = [arthus,nec,timmy];
@@ -49,8 +49,13 @@ spells = {
   "holy light": [13,"undead",16,"human"],
   "fireball": 20,
   "raise dead": function(){
-    for(thing in team2){
-      if(thing.health <= 0){ walking_dead = true;}
+    for(person in team){
+      if(team[person].health <= 0){
+        $("."+team[person].klass).src = "./skeletonedited.jpg";
+        var klass = team[person].klass;
+        team[person] = skel;
+        team[person].klass = klass;
+      }
     }
    }
 };
@@ -121,6 +126,7 @@ var turn_counter = 0;
     if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
       $('.highlighted').removeClass('highlighted');
       $(this).addClass('highlighted');
+
       action = $(this).attr('id');
     }
   });
@@ -270,7 +276,7 @@ var turn_counter = 0;
               //code for slice animation
           playSound(attackSounds[team[person].klass]);
           $(health_id).width(String(damage_reciever.health_percentage)+"%");
-          $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass+"! ");
+          $('#combat_log').html("<br>"+giver+" dealt "+String(damage)+" to "+damage_reciever.klass+"! ");
           team[person].turn -=1;
           highlightRED(team[person]);
           checkIfBattleOver();
