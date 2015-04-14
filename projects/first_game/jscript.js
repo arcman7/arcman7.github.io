@@ -265,16 +265,16 @@ var turn_counter = 0;
 
   function deathcoil(race,target){
     if(race == "undead"){
-     target.health = target.health + spells["Deathcoil"][0];
+     target.health = target.health + spells["Deathcoil"][2];
      target.health_percentage = 100*target.health / target.original_health;
      var log = $('#combat_log').html();
      $('#combat_log').html(log+"<br><br>"+"DeathKnight healed "+target.klass+ "for"+String(spells["Deathcoil"][0]) + " damage! ");
     }
    if(race == "human"){
-     target.health = target.health - spells["Deathcoil"][2];
+     target.health = target.health - spells["Deathcoil"][0];
      target.health_percentage = 100*target.health / target.original_health;
       var log = $('#combat_log').html();
-     $('#combat_log').html(log+"<br><br>"+" DeathKnight dealt " + String(spells["Deathcoil"][2]) + " damage to " + target.klass + "! ");
+     $('#combat_log').html(log+"<br><br>"+" DeathKnight dealt " + String(spells["Deathcoil"][0]) + " damage to " + target.klass + "! ");
     }
     playSound(spellSounds["Deathcoil"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
