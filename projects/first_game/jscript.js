@@ -16,7 +16,7 @@ function person(health,health_percentage,armor,armor_type,klass,level,id,damage,
     }
 
 //undead
-arthus = new person(110,100,15,"plate","DeathKnight",1,"arthus",[14,15],"undead");
+arthus = new person(110,100,14,"plate","DeathKnight",1,"arthus",[14,15],"undead");
 nec = new person(80,100,9,"cloth","Necromancer",1,"nec",[8,9],"undead");
 timmy = new person(90,100,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
 
@@ -63,6 +63,7 @@ spells = {
 
 
 $(document).ready(function(){
+$(".Spell").fadeOut('fast');
 var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
 
