@@ -247,7 +247,7 @@ var turn_counter = 0;
           damage_reciever.health = damage_reciever.health - damage;
           damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
               //code for slice animation
-          playSound(attacSounds[team[person].klass]);
+          playSound(attackSounds[team[person].klass]);
           $(health_id).width(String(damage_reciever.health_percentage)+"%");
           $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass+"! ");
           team[person].turn -=1;
