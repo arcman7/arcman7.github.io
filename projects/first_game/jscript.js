@@ -66,7 +66,7 @@ spells = {
   }
 };
 
-
+var maxTurn = 3;
 
 $(document).ready(function(){
 //$(".Spell").fadeOut('fast');
@@ -216,11 +216,10 @@ var turn_counter = 0;
       }
   }
   //check if one of your characters is dead, and update turn counter
-  var maxTurn = 3;
+
   function checkForDead(){
     maxTurn = 0;
     for(person in team){
-      alert("maxTurn = " + maxTurn+", "+team[person].klass+" = "+team[person].health );
       if(team[person].health >= 0){
          maxTurn +=1;
          alert("maxTurn = " + maxTurn);
