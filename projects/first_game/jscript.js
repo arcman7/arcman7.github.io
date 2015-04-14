@@ -49,6 +49,7 @@ spells = {
   "Holylight": [13,"undead",16,"human"],
   "Fireball": 20,
   "RaiseDead": function(){
+    alert("RaiseDead casted");
     for(person in team){
       if(team[person].health <= 0){
         $("."+team[person].klass).attr("src","./skeletonedited.jpg");
@@ -57,7 +58,7 @@ spells = {
         team[person].klass = klass;
       }
     }
-   }
+  }
 };
 
 
@@ -289,8 +290,8 @@ var turn_counter = 0;
   spellSounds = {
     "Deathcoil": "./gameSounds/DeathCoilSpecialArt1.wav",
     "Holylight": "./gameSounds/HolyBolt.wav",
-    "Fireball"  : "./gameSounds/FireBallMissileDeath.wav",
-    "RaiseDead": "./gamesounds/RaiseSkeleton.wav"
+    "Fireball" : "./gameSounds/FireBallMissileDeath.wav",
+    "RaiseDead": "./gameSounds/RaiseSkeleton.wav"
   }
 
  function playSound(file){
