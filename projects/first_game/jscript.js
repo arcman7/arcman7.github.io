@@ -79,7 +79,7 @@ spells = {
         playSound(spellSounds["RaiseDead"]);
         $("."+team[person].klass).attr("src","./skeletonedited.jpg");
         var klass = team[person].klass;
-        team[person] = skel;
+        team[person] = new person(50,100,13,"cloth","Skeleton",1,"skel",[10,11,12,13],"undead");
         team[person].klass = klass;
       }
     }
