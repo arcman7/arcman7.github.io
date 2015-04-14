@@ -32,10 +32,10 @@ uther.mana = 80;
 mage.mana = 120;
 nec.mana = 120;
 
-arthus.spells = {1:"death coil"};
-uther.spells = {1:"holy light"};
-mage.spells = {1:"fire ball"};
-nec.spells = {1:"raise dead"};
+arthus.spells = {1:"Deathcoil"};
+uther.spells = {1:"Holylight"};
+mage.spells = {1:"Fireball"};
+nec.spells = {1:"RaiseDead"};
 
 var humans = [uther,arch,mage];
 var undead = [arthus,nec,timmy];
@@ -45,10 +45,10 @@ var walking_dead = false;
 // if spell has array, then it has effects beyond just damage
 //dmg is followed by what race the spell damages, hp is followed by what race the spell heals
 spells = {
-  "death coil": [16,"human",13,"undead"],
-  "holy light": [13,"undead",16,"human"],
-  "fireball": 20,
-  "raise dead": function(){
+  "Deathcoil": [16,"human",13,"undead"],
+  "Holylight": [13,"undead",16,"human"],
+  "Fireball": 20,
+  "RaiseDead": function(){
     for(person in team){
       if(team[person].health <= 0){
         $("."+team[person].klass).src = "./skeletonedited.jpg";
@@ -63,8 +63,8 @@ spells = {
 
 
 $(document).ready(function(){
-$(".Spell").fadeOut('fast');
-$("#")
+//$(".Spell").fadeOut('fast');
+
 var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
 
@@ -128,7 +128,6 @@ var turn_counter = 0;
     if(giver !="" && ("."+giver+"spell") == (race1tag + "spell")){
       $('.highlighted').removeClass('highlighted');
       $(this).addClass('highlighted');
-
       action = $(this).attr('id');
     }
   });
@@ -146,6 +145,37 @@ var turn_counter = 0;
       $('.highlighted').removeClass('highlighted');
       $(this).addClass('highlighted');
       action = $(this).attr('id');
+    }
+  });
+  //spell selectors
+  $("#Holylight").click(function(){
+    if(giver !="" && (giver == "Palatine")){
+      $('.highlighted').removeClass('highlighted');
+      $(this).addClass('highlighted');
+      action = $(this).attr('id');
+    }
+  });
+  $("#Fireball").click(function(){
+    if(giver !="" && (giver == "Sorcerer")){
+      $('.highlighted').removeClass('highlighted');
+      $(this).addClass('highlighted');
+      action = $(this).attr('id');
+    }
+  });
+  $("#Deathcoil").click(function(){
+    if(giver !="" && (giver == "DeathKnight")){
+      $('.highlighted').removeClass('highlighted');
+      $(this).addClass('highlighted');
+      action = $(this).attr('id');
+    }
+  });
+  $("#RaiseDead").click(function(){
+    if(giver !="" && (giver == "Necromancer")){
+      $('.highlighted').removeClass('highlighted');
+      $(this).addClass('highlighted');
+      action = $(this).attr('id');
+      playSound("RaiseDead");
+      spells[nec.spells[1]]();
     }
   });
 
@@ -247,10 +277,10 @@ var turn_counter = 0;
   }
   //spell sound effects
   spellSounds = {
-    "Death Coil": "./gameSounds/DeathCoilSpecialArt1.wav",
-    "Holy light": "./gameSounds/HolyBolt.wav",
+    "Deathcoil": "./gameSounds/DeathCoilSpecialArt1.wav",
+    "Holylight": "./gameSounds/HolyBolt.wav",
     "Fireball"  : "./gameSounds/FireBallMissileDeath.wav",
-    "Raise Dead": "./gamesounds/RaiseSkeleton.wav"
+    "RaiseDead": "./gamesounds/RaiseSkeleton.wav"
   }
 
  function playSound(file){
