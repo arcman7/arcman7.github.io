@@ -226,7 +226,8 @@ var turn_counter = 0;
     Palatine:    "./gameSounds/MetalHeavyBashFlesh2.wav"
   };
  function playSound(file){
-   var snd = new Audio(file); snd.play();
+   var snd = new Audio(file);
+   return snd.play();
  }
 
  //implement attack
