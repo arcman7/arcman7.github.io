@@ -201,13 +201,13 @@ var turn_counter = 0;
      target.health = target.health + spells["Holylight"][2];
      target.health_percentage = 100*target.health / target.original_health;
      var log = $('#combat_log').html();
-       $('#combat_log').html(log+"<br><br>"+"Palatine healed "+target.klass+ "for"+String(damage) + " damage! ");
+       $('#combat_log').html(log+"<br><br>"+"Palatine healed "+target.klass+ "for"+String(spells["Holylight"][2]) + " damage! ");
     }
    if(race == "undead"){
      target.health = target.health - spells["Holylight"][0];
      target.health_percentage = 100*target.health / target.original_health;
       var log = $('#combat_log').html();
-     $('#combat_log').html(log+"<br><br>"+" Palatine dealt " + String(damage) + " damage to " + target.klass + "! ");
+     $('#combat_log').html(log+"<br><br>"+" Palatine dealt " + String(spells["Holylight"][0]) + " damage to " + target.klass + "! ");
     }
     playSound(spellSounds["Holylight"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
@@ -238,7 +238,7 @@ var turn_counter = 0;
     target.health = target.health - 20;
     target.health_percentage = 100*target.health / target.original_health;
      var log = $('#combat_log').html();
-    $('#combat_log').html(log+"<br><br>"+" Sorcerer dealt " + String(damage) + " damage to " + target.klass + "! ");
+    $('#combat_log').html(log+"<br><br>"+" Sorcerer dealt "+String(20)+" damage to "+target.klass + "! ");
     playSound(spellSounds["Fireball"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
     for(person in team){
@@ -268,13 +268,13 @@ var turn_counter = 0;
      target.health = target.health + spells["Deathcoil"][0];
      target.health_percentage = 100*target.health / target.original_health;
      var log = $('#combat_log').html();
-       $('#combat_log').html(log+"<br><br>"+"DeathKnight healed "+target.klass+ "for"+String(damage) + " damage! ");
+     $('#combat_log').html(log+"<br><br>"+"DeathKnight healed "+target.klass+ "for"+String(spells["Deathcoil"][0]) + " damage! ");
     }
    if(race == "human"){
      target.health = target.health - spells["Deathcoil"][2];
      target.health_percentage = 100*target.health / target.original_health;
       var log = $('#combat_log').html();
-     $('#combat_log').html(log+"<br><br>"+" DeathKnight dealt " + String(damage) + " damage to " + target.klass + "! ");
+     $('#combat_log').html(log+"<br><br>"+" DeathKnight dealt " + String(spells["Deathcoil"][2]) + " damage to " + target.klass + "! ");
     }
     playSound(spellSounds["Deathcoil"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
