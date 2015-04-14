@@ -241,7 +241,7 @@ var turn_counter = 0;
   spellSounds = {
     "Death Coil": "./gameSounds/DeathCoilSpecialArt1.wav",
     "Holy light": "./gameSounds/HolyBolt.wav",
-    "Fireball"  : "./gameSounds/FireBallMissileDeath.wav"
+    "Fireball"  : "./gameSounds/FireBallMissileDeath.wav",
     "Raise Dead": "./gamesounds/RaiseSkeleton.wav"
   }
 
