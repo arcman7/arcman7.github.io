@@ -18,7 +18,7 @@ function person(health,health_percentage,armor,armor_type,klass,level,id,damage,
 //undead
 arthus = new person(110,100,14,"plate","DeathKnight",1,"arthus",[14,15],"undead");
 nec = new person(80,100,9,"cloth","Necromancer",1,"nec",[8,9],"undead");
-timmy = new person(0,100,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
+timmy = new person(0,0,13,"leather","Ghoul",1,"timmy",[11,12,13,14],"undead");
 
 skel =  new person(50,100,13,"cloth","Skeleton",1,"skel",[10,11,12,13],"undead");
 //humans
@@ -218,7 +218,7 @@ var turn_counter = 0;
   var maxTurn = 3;
   function checkForDead(){
     for(person in team){
-      alert("maxTurn = " + maxTurn);
+      alert("maxTurn = " + maxTurn+", "+team[person].klass+" = "+team[person].health );
       if(team[person].heath <= 0){
          maxTurn -= 1;
          alert("maxTurn = " + maxTurn);
