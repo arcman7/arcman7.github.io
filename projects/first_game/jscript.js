@@ -83,6 +83,8 @@ spells = { // had to define raise dead here, because declaring functions require
         team[person].klass = klass;
         highlightRED(nec);
         nec.turn -=1;
+        checkForDead(); //affects number of turns before AI acts
+        enemyActions();
       }
     }
   }
@@ -174,8 +176,8 @@ var turn_counter = 0;
     }
     playSound(spellSounds["Holylight"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
-    team[person].turn -=1;
-    highlightRED(team[person]);
+    uther.turn -=1;
+    highlightRED(uther);
     checkIfBattleOver();
     turn++;
     giver = "";
@@ -198,8 +200,8 @@ var turn_counter = 0;
     $('#combat_log').html(log+"<br><br>"+" Sorcerer dealt " + String(damage) + " damage to " + target.klass + "! ");
     playSound(spellSounds["Fireball"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
-    team[person].turn -=1;
-    highlightRED(team[person]);
+    mage.turn -=1;
+    highlightRED(mage);
     checkIfBattleOver();
     turn++;
     giver = "";
@@ -230,8 +232,8 @@ var turn_counter = 0;
     }
     playSound(spellSounds["Deathcoil"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
-    team[person].turn -=1;
-    highlightRED(team[person]);
+    arthus.turn -=1;
+    highlightRED(arthus);
     checkIfBattleOver();
     turn++;
     giver = "";
