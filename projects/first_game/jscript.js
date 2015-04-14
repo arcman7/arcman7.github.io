@@ -81,6 +81,7 @@ spells = { // had to define raise dead here, because declaring functions require
         var klass = team[person].klass;
         team[person] = skel; team[person].health = 50; team[person].health_percentage = 100;
         team[person].klass = klass;
+        highlightRED(nec);
         nec.turn -=1;
       }
     }
@@ -402,9 +403,6 @@ var turn_counter = 0;
     }
   }
 
-
-
-
     $("."+otherteam[0].klass).click(function(){         //damage_reciever and health_id set
         target = $(this).attr('class');
         if(action == "attack") get_DamageRecieverInfo(target);
@@ -415,26 +413,20 @@ var turn_counter = 0;
      $("."+otherteam[1].klass).click(function(){      //damage_reciever and health_id set
         target = $(this).attr('class');
         if(action == "attack") get_DamageRecieverInfo(target);
-        if(action == "Holylight") Holylight(otherteam[0].race,otherteam[0]);
-        if(action == "Deathcoil") Death(otherteam[0].race,otherteam[0]);
-        if(action == "Fireball")  Fireball(otherteam[0]);
+        if(action == "Holylight") Holylight(otherteam[1].race,otherteam[1]);
+        if(action == "Deathcoil") Death(otherteam[1].race,otherteam[1]);
+        if(action == "Fireball")  Fireball(otherteam[1]);
     });
      $("."+otherteam[2].klass).click(function(){       //damage_reciever and health_id set
         target = $(this).attr('class');
         if(action == "attack") get_DamageRecieverInfo(target);
-        if(action == "attack") get_DamageRecieverInfo(target);
-        if(action == "Holylight") Holylight(otherteam[0].race,otherteam[0]);
-        if(action == "Deathcoil") Death(otherteam[0].race,otherteam[0]);
-        if(action == "Fireball")  Fireball(otherteam[0]);
+        if(action == "Holylight") Holylight(otherteam[2].race,otherteam[2]);
+        if(action == "Deathcoil") Death(otherteam[2].race,otherteam[2]);
+        if(action == "Fireball")  Fireball(otherteam[2]);
     });
 
-
-  if(turn_counter == 0){
-    //$('#combat_log').html("Battle start! Your turn, select a character and then an action...");
-  }
-
     //each team gets 3 turns (one for each character)
-//once target person has recieved damage its the next character's turn
+   //once target person has recieved damage its the next character's turn
 
  turn_counter++;
 
