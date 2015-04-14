@@ -173,6 +173,14 @@ var turn_counter = 0;
     }
     playSound(spellSounds["Holylight"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
+    team[person].turn -=1;
+    highlightRED(team[person]);
+    checkIfBattleOver();
+    turn++;
+    giver = "";
+    action = "";
+    checkForDead(); //affects number of turns before AI acts
+    enemyActions();
   }
 
   $("#Fireball").click(function(){
@@ -189,6 +197,14 @@ var turn_counter = 0;
     $('#combat_log').html(log+"<br><br>"+" Sorcerer dealt " + String(damage) + " damage to " + target.klass + "! ");
     playSound(spellSounds["Fireball"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
+    team[person].turn -=1;
+    highlightRED(team[person]);
+    checkIfBattleOver();
+    turn++;
+    giver = "";
+    action = "";
+    checkForDead(); //affects number of turns before AI acts
+    enemyActions();
   }
 
   $("#Deathcoil").click(function(){
@@ -199,7 +215,7 @@ var turn_counter = 0;
     }
   });
 
-  function Deathcoil(target){
+  function Deathcoil(race,target){
     if(race == "undead"){
      target.health = target.health + spells["Deathcoil"][0];
      target.health_percentage = 100*target.health / target.original_health;
@@ -213,6 +229,14 @@ var turn_counter = 0;
     }
     playSound(spellSounds["Deathcoil"]);
    $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
+    team[person].turn -=1;
+    highlightRED(team[person]);
+    checkIfBattleOver();
+    turn++;
+    giver = "";
+    action = "";
+    checkForDead(); //affects number of turns before AI acts
+    enemyActions();
   }
 
   $("#RaiseDead").click(function(){
