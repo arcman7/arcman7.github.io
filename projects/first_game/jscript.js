@@ -384,23 +384,24 @@ var turn_counter = 0;
     $("."+otherteam[0].klass).click(function(){         //damage_reciever and health_id set
         target = $(this).attr('class');
         if(action == "attack") get_DamageRecieverInfo(target);
-        if(action == "Holylight")
-        if(action == "Deathcoil")
-        if(action == "Fireball")
+        if(action == "Holylight") Holylight(otherteam[0].race,otherteam[0]);
+        if(action == "Deathcoil") Death(otherteam[0].race,otherteam[0]);
+        if(action == "Fireball")  Fireball(otherteam[0]);
     });
      $("."+otherteam[1].klass).click(function(){      //damage_reciever and health_id set
         target = $(this).attr('class');
         if(action == "attack") get_DamageRecieverInfo(target);
-        if(action == "Holylight")
-        if(action == "Deathcoil")
-        if(action == "Fireball")
+        if(action == "Holylight") Holylight(otherteam[0].race,otherteam[0]);
+        if(action == "Deathcoil") Death(otherteam[0].race,otherteam[0]);
+        if(action == "Fireball")  Fireball(otherteam[0]);
     });
      $("."+otherteam[2].klass).click(function(){       //damage_reciever and health_id set
         target = $(this).attr('class');
         if(action == "attack") get_DamageRecieverInfo(target);
-        if(action == "Holylight")
-        if(action == "Deathcoil")
-        if(action == "Fireball")
+        if(action == "attack") get_DamageRecieverInfo(target);
+        if(action == "Holylight") Holylight(otherteam[0].race,otherteam[0]);
+        if(action == "Deathcoil") Death(otherteam[0].race,otherteam[0]);
+        if(action == "Fireball")  Fireball(otherteam[0]);
     });
 
 
