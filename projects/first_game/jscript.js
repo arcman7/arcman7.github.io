@@ -51,11 +51,12 @@ spells = {
   "RaiseDead": function(){
     for(person in team){
       if(team[person].health <= 0){
-        alert("RaiseDead casted");
         $("."+team[person].klass).attr("src","./skeletonedited.jpg");
         var klass = team[person].klass;
         team[person] = skel;
+        alert(team[person].klass);
         team[person].klass = klass;
+        alert(team[person].klass);
       }
     }
   }
@@ -214,6 +215,7 @@ var turn_counter = 0;
   var maxTurn = 3;
   function checkForDead(){
     for(person in team){
+      alert("maxTurn = " + maxTurn);
       if(team[person].heath <= 0){
          maxTurn -= 1;
          alert("maxTurn = " + maxTurn);
@@ -244,7 +246,7 @@ var turn_counter = 0;
           //code for slice animation
        $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
        var log = $('#combat_log').html();
-       $('#combat_log').html(log+"<br>"+" "+enemycharacter.klass + " dealt " + String(damage) + " damage to " + target.klass + "! ");
+       $('#combat_log').html(log+"<br><br>"+" "+enemycharacter.klass + " dealt " + String(damage) + " damage to " + target.klass + "! ");
     }
  //AI actions - team actions
   function enemyActions(){
