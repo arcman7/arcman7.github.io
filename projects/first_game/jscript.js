@@ -231,12 +231,20 @@ var turn_counter = 0;
   //response sound effects
   responseSounds ={
     DeathKnight: "./gameSounds/HeroFirelordWhat2.wav",
-    Archer:      "./gameSounds/ArrowAttack1.wav",
+    Archer:      "./gameSounds/ArcherWhat1.wav",
     Necromancer: "./gameSounds/NecromancerWhat3.wav",
     Ghoul:       "./gameSounds/GhoulReady1.wav",
     Sorcerer:    "./gameSounds/SorceressReady1.wav",
     Palatine:    "./gameSounds/UtherWhat1.wav"
   }
+  //spell sound effects
+  spellSounds = {
+    "Death Coil": "./gameSounds/DeathCoilSpecialArt1.wav",
+    "Holy light": "./gameSounds/HolyBolt.wav",
+    "Fireball"  : "./gameSounds/FireBallMissileDeath.wav"
+    "Raise Dead": "./gamesounds/RaiseSkeleton.wav"
+  }
+
  function playSound(file){
    var snd = new Audio(file);
    return snd.play();
