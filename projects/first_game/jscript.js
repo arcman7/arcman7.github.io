@@ -87,6 +87,7 @@ var turn_counter = 0;
 
   //character selector functions
   $(race1tag).click(function(){
+    playSound(responseSounds[race[0].klass]);
       if(race[0].turn > 0 && race[0].health > 0){
         giver = $(this).attr('class');
         //alert("giver = " + giver);
@@ -96,6 +97,7 @@ var turn_counter = 0;
     });
 
     $(race2tag).click(function(){
+      playSound(responseSounds[race[1].klass]);
         if(race[1].turn > 0 && race[1].health > 0){
           giver = $(this).attr('class');
           //alert("giver = " + giver);
@@ -105,7 +107,8 @@ var turn_counter = 0;
     });
 
   $(race3tag).click(function(){
-      if(race[2].turn > 0 && race[1].health > 0){
+    playSound(responseSounds[race[2].klass]);
+      if(race[2].turn > 0 && race[2].health > 0){
         giver = $(this).attr('class');
         //alert("giver = " + giver);
         action = "";
@@ -225,6 +228,15 @@ var turn_counter = 0;
     Sorcerer:    "./gameSounds/SorceressMissileHit1.wav",
     Palatine:    "./gameSounds/MetalHeavyBashFlesh2.wav"
   };
+  //response sound effects
+  responseSounds ={
+    DeathKnight: "./gameSounds/HeroFirelordWhat2.wav",
+    Archer:      "./gameSounds/ArrowAttack1.wav",
+    Necromancer: "./gameSounds/NecromancerWhat3.wav",
+    Ghoul:       "./gameSounds/GhoulReady1.wav",
+    Sorcerer:    "./gameSounds/SorceressReady1.wav",
+    Palatine:    "./gameSounds/UtherWhat1.wav"
+  }
  function playSound(file){
    var snd = new Audio(file);
    return snd.play();
