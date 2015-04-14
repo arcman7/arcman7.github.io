@@ -242,7 +242,7 @@ var turn_counter = 0;
           //code for slice animation
        $("#"+target.klass+"Health").width(String(target.health_percentage)+"%");
        var log = $('#combat_log').html();
-       $('#combat_log').html(log+"<br>"+" "+enemycharacter.klass + " dealt " + String(damage) + " to " + target.klass + "! ");
+       $('#combat_log').html(log+"<br>"+" "+enemycharacter.klass + " dealt " + String(damage) + " damage to " + target.klass + "! ");
     }
  //AI actions - team actions
   function enemyActions(){
@@ -318,13 +318,14 @@ var turn_counter = 0;
               //code for slice animation
           playSound(attackSounds[team[person].klass]);
           $(health_id).width(String(damage_reciever.health_percentage)+"%");
-          $('#combat_log').html("<br>"+giver+" dealt "+String(damage)+" to "+damage_reciever.klass+"! ");
+          $('#combat_log').html("<br>"+giver+" dealt "+String(damage)+" damage to "+damage_reciever.klass+"! ");
           team[person].turn -=1;
           highlightRED(team[person]);
           checkIfBattleOver();
           turn++;
           giver = "";
           action = "";
+          checkForDead(); //affects number of turns before AI acts
           enemyActions();
         }
       }
