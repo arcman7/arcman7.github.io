@@ -44,27 +44,7 @@ var walking_dead = false;
 
 // if spell has array, then it has effects beyond just damage
 //dmg is followed by what race the spell damages, hp is followed by what race the spell heals
-spells = {
-  "Deathcoil": [16,"human",13,"undead"],
-  "Holylight": [13,"undead",16,"human"],
-  "Fireball": 20,
-  "RaiseDead": function(){
-    for(person in team){
-      alert(" "+team[person].klass+" = "+team[person].health );
-      if(team[person].health <= 0){
-        alert(team[person].klass +"0");
-        $("."+team[person].klass).attr("src","./skeletonedited.jpg");
-        alert(team[person].klass + "1");
-        var klass = team[person].klass;
-        alert(team[person].klass + "2");
-        team[person] = skel;
-        alert(team[person].klass);
-        team[person].klass = klass;
-        alert(team[person].klass);
-      }
-    }
-  }
-};
+
 
 var maxTurn = 3;
 
@@ -89,7 +69,27 @@ else{
 var team = race; //quick fix for problems below
  //$('#combat_log').html("Battle start! Your turn, select a character and then an action.");
 //$(".DeathKnight").attr("src","#");
-
+spells = {
+  "Deathcoil": [16,"human",13,"undead"],
+  "Holylight": [13,"undead",16,"human"],
+  "Fireball": 20,
+  "RaiseDead": function(){
+    for(person in team){
+      alert(" "+team[person].klass+" = "+team[person].health );
+      if(team[person].health <= 0){
+        alert(team[person].klass +"0");
+        $("."+team[person].klass).attr("src","./skeletonedited.jpg");
+        alert(team[person].klass + "1");
+        var klass = team[person].klass;
+        alert(team[person].klass + "2");
+        team[person] = skel;
+        alert(team[person].klass);
+        team[person].klass = klass;
+        alert(team[person].klass);
+      }
+    }
+  }
+};
 var game = 1;
 var turn_counter = 0;
   var turn = 0;
@@ -222,7 +222,6 @@ var turn_counter = 0;
     for(person in team){
       if(team[person].health > 0){
          maxTurn +=1;
-         alert("maxTurn = " + maxTurn);
       }
     }
   }
