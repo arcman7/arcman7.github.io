@@ -87,7 +87,7 @@ var turn_counter = 0;
 
   //character selector functions
   $(race1tag).click(function(){
-      if(race[0].turn > 0){
+      if(race[0].turn > 0 && race[0].health > 0){
         giver = $(this).attr('class');
         //alert("giver = " + giver);
         action = "";
@@ -96,7 +96,7 @@ var turn_counter = 0;
     });
 
     $(race2tag).click(function(){
-        if(race[1].turn > 0){
+        if(race[1].turn > 0 && race[1].health > 0){
           giver = $(this).attr('class');
           //alert("giver = " + giver);
           action = "";
@@ -105,7 +105,7 @@ var turn_counter = 0;
     });
 
   $(race3tag).click(function(){
-      if(race[2].turn > 0){
+      if(race[2].turn > 0 && race[1].health > 0){
         giver = $(this).attr('class');
         //alert("giver = " + giver);
         action = "";
@@ -197,7 +197,9 @@ var turn_counter = 0;
   function enemyActions(){
     if(turn >= 3){
       for(person in otherteam){
-        AIattack(otherteam[person]);
+        if(otherteam[person].health > 0){
+          AIattack(otherteam[person]);
+        }
       }
       turn = 0;
       $('.highlightedRED').removeClass('highlightedRED');
@@ -214,6 +216,18 @@ var turn_counter = 0;
       damage = damage*(1-( (armor*c)/(1+(armor*c)) ) );
       return Math.ceil(damage);
     }
+ //attack sound effect
+ attackSounds={
+    DeathKnight: "./gameSounds/MetalHeavySliceMetal3.wav",
+    Archer:      "./gameSounds/ArrowAttack1.wav",
+    Necromancer: "./gameSounds/NecromancerMissileLaunch2.wav",
+    Ghoul:       "./gameSounds/MetalLightChopFlesh2.wav",
+    Sorcerer:    "./gameSounds/SorceressMissileHit1.wav",
+    Palatine:    "./gameSounds/MetalHeavyBashFlesh2.wav"
+  };
+ function playSound(file){
+   var snd = new Audio(file); snd.play();
+ }
 
  //implement attack
   function get_DamageRecieverInfo(target){
@@ -233,6 +247,7 @@ var turn_counter = 0;
           damage_reciever.health = damage_reciever.health - damage;
           damage_reciever.health_percentage = 100*damage_reciever.health / damage_reciever.original_health;
               //code for slice animation
+          playSound(attacSounds[team[person].klass]);
           $(health_id).width(String(damage_reciever.health_percentage)+"%");
           $('#combat_log').html(giver + " dealt " + String(damage) + " to " + damage_reciever.klass+"! ");
           team[person].turn -=1;
