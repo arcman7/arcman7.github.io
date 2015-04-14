@@ -67,9 +67,9 @@ else{
   otherteam = humans;
 }
 var team = race; //quick fix for problems below
- //$('#combat_log').html("Battle start! Your turn, select a character and then an action.");
-//$(".DeathKnight").attr("src","#");
-spells = {
+
+
+spells = { // had to define raise dead here, because declaring functions requires that the variable used in the function be in the same scope
   "Deathcoil": [16,"human",13,"undead"],
   "Holylight": [13,"undead",16,"human"],
   "Fireball": 20,
@@ -79,7 +79,7 @@ spells = {
         playSound(spellSounds["RaiseDead"]);
         $("."+team[person].klass).attr("src","./skeletonedited.jpg");
         var klass = team[person].klass;
-        team[person] = new person(50,100,13,"cloth","Skeleton",1,"skel",[10,11,12,13],"undead");
+        team[person] = skel; team[person].health = 50; team[person].health_percentage = 100;
         team[person].klass = klass;
       }
     }
@@ -177,6 +177,11 @@ var turn_counter = 0;
       $(this).addClass('highlighted');
       action = $(this).attr('id');
       return spells.RaiseDead();
+    }
+    for(person in team){
+      if(team[person].klass == "Necromancer"){
+        team[person].turn -=1;
+      }
     }
   });
 
