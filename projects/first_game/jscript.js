@@ -233,8 +233,8 @@ var turn_counter = 0;
   });
 
   function fireball(target){
-    alert("cast fireball")
-    target.health = target.health - spells["Fireball"];
+    alert("cast fireball");
+    target.health = target.health - 20;
     target.health_percentage = 100*target.health / target.original_health;
     $('#combat_log').html(log+"<br><br>"+" Sorcerer dealt " + String(damage) + " damage to " + target.klass + "! ");
     playSound(spellSounds["Fireball"]);
