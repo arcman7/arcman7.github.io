@@ -51,7 +51,7 @@ spells = {
   "RaiseDead": function(){
     for(person in team){
       if(team[person].health <= 0){
-        $("."+team[person].klass).src = "./skeletonedited.jpg";
+        $("."+team[person].klass).attr ("src","./skeletonedited.jpg")
         var klass = team[person].klass;
         team[person] = skel;
         team[person].klass = klass;
@@ -82,7 +82,7 @@ else{
 }
 var team = race; //quick fix for problems below
  //$('#combat_log').html("Battle start! Your turn, select a character and then an action.");
-$(".DeathKnight").attr("src","#");
+//$(".DeathKnight").attr("src","#");
 
 var game = 1;
 var turn_counter = 0;
@@ -347,15 +347,6 @@ var turn_counter = 0;
     //each team gets 3 turns (one for each character)
 //once target person has recieved damage its the next character's turn
 
-
-  if(race[0].health && race[1].health && race[2].health <=0){
-    game = 0;
-    alert("Your whole team died, you lost.");
-  }
-  if(otherteam[0].health && otherteam[1].health && otherteam[2].health <= 0){
-    game = 0;
-    alert("You have defeated the enemy team!");
-  }
  turn_counter++;
 
 });
