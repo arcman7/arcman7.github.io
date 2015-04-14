@@ -176,7 +176,7 @@ var turn_counter = 0;
       $(this).addClass('highlighted');
       action = $(this).attr('id');
       playSound(spellSounds["RaiseDead"]);
-      spells.RaiseDead();
+      return spells.RaiseDead();
     }
   });
 
@@ -210,10 +210,10 @@ var turn_counter = 0;
       }
   }
   //check if one of your characters is dead, and update turn counter
-  var maxTurn  = 3;
+  var maxTurn = 3;
   function checkForDead(){
     for(person in team){
-      if(team[person].heath < 0){
+      if(team[person].heath <= 0){
          maxTurn -= 1;
       }
     }
