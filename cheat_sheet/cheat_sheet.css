@@ -1,0 +1,82 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+
+a:link {
+    text-decoration: none;
+    color: #2d76bf;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #a80136;
+}
+
+a:hover {
+    text-decoration: none;
+    color:yellow;
+}
+
+a:active {
+    text-decoration: none;
+    color:yellow;
+}
+
+h1,h2 {
+  color:black;
+}
+
+#background {
+  background:url(./imgs/darkdenim3.png);
+  width:100%;
+  height:100%;
+}
+#content{
+  border-top: 2px solid grey;
+  border-right:2px solid grey;
+  border-radius: 0 1% 1% 0;
+  margin-top:2em;
+  padding:1em;
+  background:white;
+  color:#7a7a7a ; /*#848484*/
+  display:inline-block;
+  float:left;
+  width:75%;
+  padding-left:13em;
+}
+#side_bar{
+position:fixed;
+border-top: 2px solid grey;
+border-bottom:2px solid grey;
+border-right:2px solid grey;
+margin-top:2em;
+width: 12em;
+background-color:#eaeaea;
+display:inline-block;
+float:left;
+}
+details>summary>code {
+  font-size: 1.5em;
+  font-family:'Lato';
+}
+details>summary{
+  border-bottom: 1px dashed #ccc5c5;
+  color:#898888;
+}
+details{
+  padding:1em;
+}
+
+
+
+#page_header {
+background: -moz-linear-gradient(top, rgba(235,241,246,1) 0%, rgba(171,211,238,1) 50%, rgba(137,195,235,1) 51%, rgba(213,235,251,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(235,241,246,1)), color-stop(50%,rgba(171,211,238,1)), color-stop(51%,rgba(137,195,235,1)), color-stop(100%,rgba(213,235,251,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1f6', endColorstr='#d5ebfb',GradientType=0 ); /* IE6-9 */
+float:top;
+font-size: 4em;
+font-family: 'Vollkorn', 'Open Sans';
+font-weight: bold;
+}
