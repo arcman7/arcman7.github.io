@@ -49,20 +49,20 @@ var walking_dead = false;
 var maxTurn = 3;
 
 $(document).ready(function(){
-//$(".Spell").fadeOut('fast');
+//$(".human .Spell").fadeOut('fast');
 
 var race = prompt("Chose your race, 'undead' or 'humans'.");
 var otherteam;
 
 if(race == "humans"){
-  $("tr.undead > div.icon").fadeOut('fast');
+  $("tr.undead  div.icon").fadeOut('fast');
   race = humans;
    $('#combat_log').html("You have chosen Humans. Battle start! Select a character and then an action.");
   otherteam = undead;
 }
 else{
   race = undead;
-   $("tr.human > div.icon").fadeOut('fast');
+   $("tr.human  div.icon").fadeOut('fast');
    $('#combat_log').html("You have chosen Undead. Battle start! Select a character and then an action.");
   otherteam = humans;
 }
