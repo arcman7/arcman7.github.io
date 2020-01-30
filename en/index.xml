@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo Zzo Theme</title>
+    <link>https://arcman7.github.io/en/</link>
+    <description>Recent content on Hugo Zzo Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>arcytech77@gmail.com (Andrew Ryan Carpenter)</managingEditor>
+    <webMaster>arcytech77@gmail.com (Andrew Ryan Carpenter)</webMaster>
+    <copyright>©2020, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 30 Jan 2020 12:50:46 +0900</lastBuildDate>
+    
+        <atom:link href="https://arcman7.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>About</title>
+        <link>https://arcman7.github.io/en/about/</link>
+        <pubDate>Thu, 30 Jan 2020 12:50:46 +0900</pubDate>
+        <author>arcytech77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/about/</guid>
+        <description>The Author I&amp;rsquo;m a fullstack engineer, living in San Francisco. I&amp;rsquo;ve been working in the bay area for the past four years with a focus on building clean UI&amp;rsquo;s for the end user.
+I recieved my bachelors degree in Physics at the University of Hawaii in 2013 and continued to do research on the mini Time Cube (mTC) experiment before switching to software.</description>
+      </item>
+      
+    
+  </channel>
+</rss>
