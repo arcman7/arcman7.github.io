@@ -158,6 +158,3 @@ commento = false
 # possible share name: ["facebook","twitter", "reddit", "linkedin", "tumblr", "weibo", "douban", "line"]
 [[share]]
   name = "facebook"
-[[share]]
-  name = "twitter"
-  username = ""
