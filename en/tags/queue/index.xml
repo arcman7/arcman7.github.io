@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>queue on Hugo Zzo Theme</title>
+    <link>https://arcman7.github.io/en/tags/queue/</link>
+    <description>Recent content in queue on Hugo Zzo Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>arcytech77@gmail.com (Andrew Ryan Carpenter)</managingEditor>
+    <webMaster>arcytech77@gmail.com (Andrew Ryan Carpenter)</webMaster>
+    <copyright>©2020, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 30 Jan 2020 11:36:23 -0800</lastBuildDate>
+    
+        <atom:link href="https://arcman7.github.io/en/tags/queue/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>Javascript: Squential Task Que</title>
+        <link>https://arcman7.github.io/en/posts/javascript-squential-task-que/</link>
+        <pubDate>Thu, 30 Jan 2020 11:36:23 -0800</pubDate>
+        <author>arcytech77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/posts/javascript-squential-task-que/</guid>
+        <description>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronus tasks in a specified order with javascript. It came as a surprise to me that this isn&amp;rsquo;t supported out of the box in any modern browers javascript engine.
+After googling around for a few minutes I came across this related blog post Decembersoft Inc. which comes close but doesn&amp;rsquo;t yield a working solution.</description>
+      </item>
+      
+    
+  </channel>
+</rss>

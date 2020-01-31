@@ -1,12 +1,12 @@
 [
 {
-	"uri": "https://arcman7.github.io/en/about/",
-	"title": "About",
+	"uri": "https://arcman7.github.io/en/tags/game/",
+	"title": "game",
 	"tags": [],
 	"categories": [],
 	"series": [],
-	"description": "The Author",
-	"content": "The Author I\u0026rsquo;m a fullstack engineer, living in San Francisco. I\u0026rsquo;ve been working in the bay area for the past four years with a focus on building clean UI\u0026rsquo;s for the end user.\nI recieved my bachelors degree in Physics at the University of Hawaii in 2013 and continued to do research on the mini Time Cube (mTC) experiment before switching to software.\n"
+	"description": "",
+	"content": ""
 },
 {
 	"uri": "https://arcman7.github.io/en/",
@@ -16,6 +16,105 @@
 	"series": [],
 	"description": "",
 	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/javascript/",
+	"title": "javascript",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/posts/",
+	"title": "Posts",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/",
+	"title": "Tags",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/vue/",
+	"title": "vue",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/posts/vue-js-game/",
+	"title": "Vue.js Game",
+	"tags": ["javascript", "vue", "game"],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": "So I build a game engine in javascript using Vue.js to do the rendering.\n"
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/asynchronus/",
+	"title": "asynchronus",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/posts/javascript-squential-task-que/",
+	"title": "Javascript: Squential Task Que",
+	"tags": ["javascript", "promises", "asynchronus", "sequential order", "queue"],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": "I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronus tasks in a specified order with javascript. It came as a surprise to me that this isn\u0026rsquo;t supported out of the box in any modern browers javascript engine.\nAfter googling around for a few minutes I came across this related blog post Decembersoft Inc. which comes close but doesn\u0026rsquo;t yield a working solution. I would reccomend checking it out as it was useful for me, and perhaps may hold some value for you as well. However, I will give you the gist of it here:\n Javascript allows you to chain promises in a serial fashion when the tasks are known beforehand and can be hard coded:   return task1.then(task2).then(task3);\n   This pattern does not allow you to programatically execute an unspecified number of asynchronus operations in a given order\n  Reduce to the rescue:\n   We\u0026rsquo;re going to use the Array.reduce() function to collapse the array of promises into a single promise chain.\n  // Serial return [ task1, task2, task3, ].reduce((promiseChain, currentTask) =\u0026gt; { // Note: promiseChain === initialPromise // on the first time through this function /* TODO */ }, initialPromise); (from the blog post)\n Which then leads to:   const reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(chainResults =\u0026gt; currentTask.then(currentResult =\u0026gt; [ ...chainResults, currentResult ] ) ); } const tasks = getTaskArray(); tasks.reduce(reducer, Promise.resolve([])); Okay cool, this is where you realize that it is their authors aim to collect the RESULTS of the promise chain in a sequential order, but not actually fire them off one after another. If you\u0026rsquo;re not sure or don\u0026rsquo;t believe me try this in your console:\n function getTasks() { const task1 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task1'); resolve() }, 2 * 1000); }); const task2 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task2'); resolve() }, 2 * 1000); }); const task3 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task3'); resolve() }, 2 * 1000); }); return [ task1, task2, task3, ] } var reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(currentTask); } var tasks = getTasks(); tasks.reduce(reducer, Promise.resolve()); All of these pending promises fire off at the same time as they\u0026rsquo;ve already been instantiated. Well shoot, back to square one. Just kidding, this pattern actually get\u0026rsquo;s us 90% of the way there. However, instead of having an array of already existing promises we want to use an array of functions that RETURN the promises we want to fire off. This looks like this:\nfunction getTasks() { const task1 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task1'); resolve() }, 2 * 1000); }); } const task2 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task2'); resolve() }, 2 * 1000); }); } const task3 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task3'); resolve() }, 2 * 1000); }); } return [ task1, task2, task3, ] } var reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(currentTask); } var tasks = getTasks(); tasks.reduce(reducer, Promise.resolve()); There, now you can can execute any arbitrary number of promises one after another. All you need to do in your code is collect an array of references to the functions that create/instantiate/return the promise that is the asynchronus operation you want to perform.\n"
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/promises/",
+	"title": "promises",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/queue/",
+	"title": "queue",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/sequential-order/",
+	"title": "sequential order",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/about/",
+	"title": "About",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "The Author",
+	"content": "The Author I\u0026rsquo;m a fullstack engineer, living in San Francisco. I\u0026rsquo;ve been working in the bay area for the past four years with a focus on building clean UI\u0026rsquo;s for the end user.\nI recieved my bachelors degree in Physics at the University of Hawaii in 2013 and continued to do research on the mini Time Cube (mTC) experiment before switching to software.\n"
 },
 {
 	"uri": "https://arcman7.github.io/en/categories/",
@@ -29,15 +128,6 @@
 {
 	"uri": "https://arcman7.github.io/en/series/",
 	"title": "Series",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://arcman7.github.io/en/tags/",
-	"title": "Tags",
 	"tags": [],
 	"categories": [],
 	"series": [],
