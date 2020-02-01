@@ -6,8 +6,8 @@
     <description>Recent content in promises on Hugo Zzo Theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <managingEditor>arcytech77@gmail.com (Andrew Ryan Carpenter)</managingEditor>
-    <webMaster>arcytech77@gmail.com (Andrew Ryan Carpenter)</webMaster>
+    <managingEditor>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</managingEditor>
+    <webMaster>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</webMaster>
     <copyright>©2020, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 30 Jan 2020 11:36:23 -0800</lastBuildDate>
     
@@ -20,7 +20,7 @@
         <title>Javascript: Squential Task Que</title>
         <link>https://arcman7.github.io/en/posts/javascript-squential-task-que/</link>
         <pubDate>Thu, 30 Jan 2020 11:36:23 -0800</pubDate>
-        <author>arcytech77@gmail.com (Andrew Ryan Carpenter)</author>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
         <guid>https://arcman7.github.io/en/posts/javascript-squential-task-que/</guid>
         <description>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronus tasks in a specified order with javascript. It came as a surprise to me that this isn&amp;rsquo;t supported out of the box in any modern browers javascript engine.
 After googling around for a few minutes I came across this related blog post Decembersoft Inc. which comes close but doesn&amp;rsquo;t yield a working solution.</description>
