@@ -1354,6 +1354,8 @@ var tasks = getTasks();
 tasks.reduce(reducer, Promise.resolve());
 
 </code></pre><p>There, now you can can execute any arbitrary number of promises one after another. All you need to do in your code is collect an array of references to the functions that create/instantiate/return the promise that is the asynchronus operation you want to perform.</p>
+<p>EDIT: Further googling has shown me that this pattern is not so unique as I initially thought. There are various implementations that already exist out there on the web, heres another one:</p>
+<p><a href="https://github.com/BalassaMarton/sequential-task-queue">https://github.com/BalassaMarton/sequential-task-queue</a></p>
 
     </article>
     
