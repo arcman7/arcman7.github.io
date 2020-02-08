@@ -3,13 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://arcman7.github.io/en/tags/game/</loc>
-    <lastmod>2020-01-30T16:30:43-08:00</lastmod>
+    <loc>https://arcman7.github.io/en/games/</loc>
+    <lastmod>2020-02-08T15:48:57-08:00</lastmod>
   </url>
   
   <url>
     <loc>https://arcman7.github.io/en/</loc>
-    <lastmod>2020-01-30T16:30:43-08:00</lastmod>
+    <lastmod>2020-02-08T15:48:57-08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
@@ -20,6 +20,16 @@
                 hreflang="en"
                 href="https://arcman7.github.io/en/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/games/ice-age/</loc>
+    <lastmod>2020-02-08T15:48:57-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/game/</loc>
+    <lastmod>2020-01-30T16:30:43-08:00</lastmod>
   </url>
   
   <url>

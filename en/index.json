@@ -1,7 +1,7 @@
 [
 {
-	"uri": "https://arcman7.github.io/en/tags/game/",
-	"title": "game",
+	"uri": "https://arcman7.github.io/en/games/",
+	"title": "Games",
 	"tags": [],
 	"categories": [],
 	"series": [],
@@ -11,6 +11,24 @@
 {
 	"uri": "https://arcman7.github.io/en/",
 	"title": "Hugo Zzo Theme",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/games/ice-age/",
+	"title": "Ice Age",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": "Adventure throughout Azeroth and beyond following the events of the Frozen Throne, utilizing a real-time combat game system.\n"
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/game/",
+	"title": "game",
 	"tags": [],
 	"categories": [],
 	"series": [],
