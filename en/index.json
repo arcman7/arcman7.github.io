@@ -1,16 +1,16 @@
 [
 {
-	"uri": "https://arcman7.github.io/en/games/",
-	"title": "Games",
+	"uri": "https://arcman7.github.io/en/",
+	"title": "",
 	"tags": [],
 	"categories": [],
 	"series": [],
 	"description": "",
-	"content": ""
+	"content": "_index.md\n"
 },
 {
-	"uri": "https://arcman7.github.io/en/",
-	"title": "Hugo Zzo Theme",
+	"uri": "https://arcman7.github.io/en/games/",
+	"title": "Games",
 	"tags": [],
 	"categories": [],
 	"series": [],

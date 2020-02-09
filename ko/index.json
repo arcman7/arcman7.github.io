@@ -1,7 +1,7 @@
 [
 {
-	"uri": "https://arcman7.github.io/ko/categories/",
-	"title": "Categories",
+	"uri": "https://arcman7.github.io/ko/",
+	"title": "ARC",
 	"tags": [],
 	"categories": [],
 	"series": [],
@@ -9,8 +9,8 @@
 	"content": ""
 },
 {
-	"uri": "https://arcman7.github.io/ko/",
-	"title": "Hugo Zzo Theme",
+	"uri": "https://arcman7.github.io/ko/categories/",
+	"title": "Categories",
 	"tags": [],
 	"categories": [],
 	"series": [],
