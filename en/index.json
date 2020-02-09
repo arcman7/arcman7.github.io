@@ -1,12 +1,21 @@
 [
 {
 	"uri": "https://arcman7.github.io/en/",
-	"title": "",
+	"title": "ARC",
 	"tags": [],
 	"categories": [],
 	"series": [],
 	"description": "",
-	"content": "_index.md\n"
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/game/",
+	"title": "game",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
 },
 {
 	"uri": "https://arcman7.github.io/en/games/",
@@ -20,33 +29,15 @@
 {
 	"uri": "https://arcman7.github.io/en/games/ice-age/",
 	"title": "Ice Age",
-	"tags": [],
+	"tags": ["javascript", "vue", "game"],
 	"categories": [],
 	"series": [],
 	"description": "",
-	"content": "Adventure throughout Azeroth and beyond following the events of the Frozen Throne, utilizing a real-time combat game system.\n"
-},
-{
-	"uri": "https://arcman7.github.io/en/tags/game/",
-	"title": "game",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
+	"content": "Adventure throughout Azeroth and beyond following the events of the Frozen Throne, utilizing a real-time combat game system.\nPlay here\n"
 },
 {
 	"uri": "https://arcman7.github.io/en/tags/javascript/",
 	"title": "javascript",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://arcman7.github.io/en/posts/",
-	"title": "Posts",
 	"tags": [],
 	"categories": [],
 	"series": [],
@@ -72,13 +63,22 @@
 	"content": ""
 },
 {
+	"uri": "https://arcman7.github.io/en/posts/",
+	"title": "Posts",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
 	"uri": "https://arcman7.github.io/en/posts/vue-js-game/",
 	"title": "Vue.js Game",
 	"tags": ["javascript", "vue", "game"],
 	"categories": [],
 	"series": [],
 	"description": "",
-	"content": "So I built a game engine in javascript using Vue.js to do the rendering. It\u0026rsquo;s in an in-progress project, and therefore this post is as well.\nCheck back here in a little bit to see the game; it\u0026rsquo;ll be great.\n"
+	"content": "So I built a game engine in javascript using Vue.js to do the rendering. It\u0026rsquo;s in an in-progress project, and therefore this post is as well.\nPlay here\n"
 },
 {
 	"uri": "https://arcman7.github.io/en/notes/",
