@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://arcman7.github.io/en/tags/alorithm/</loc>
+    <lastmod>2020-02-18T16:51:19-08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://arcman7.github.io/en/</loc>
     <lastmod>2020-02-18T16:51:19-08:00</lastmod>
     <xhtml:link
@@ -18,13 +23,43 @@
   </url>
   
   <url>
+    <loc>https://arcman7.github.io/en/tags/k-means/</loc>
+    <lastmod>2020-02-18T16:51:19-08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://arcman7.github.io/en/posts/k_means_clustering/</loc>
+    <lastmod>2020-02-18T16:51:19-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/machine-learning/</loc>
     <lastmod>2020-02-18T16:51:19-08:00</lastmod>
   </url>
   
   <url>
     <loc>https://arcman7.github.io/en/posts/</loc>
     <lastmod>2020-02-18T16:51:19-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/python/</loc>
+    <lastmod>2020-02-18T16:51:19-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/</loc>
+    <lastmod>2020-02-18T16:51:19-08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://arcman7.github.io/ko/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://arcman7.github.io/en/tags/"
+                />
   </url>
   
   <url>
@@ -45,21 +80,6 @@
   <url>
     <loc>https://arcman7.github.io/en/tags/javascript/</loc>
     <lastmod>2020-02-08T15:48:57-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://arcman7.github.io/en/tags/</loc>
-    <lastmod>2020-02-08T15:48:57-08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://arcman7.github.io/ko/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://arcman7.github.io/en/tags/"
-                />
   </url>
   
   <url>
