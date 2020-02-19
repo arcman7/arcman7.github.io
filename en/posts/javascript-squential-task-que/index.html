@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Javascript: Sequential Task Que – ARC</title>
+    <title>Javascript: Sequential Task Queue – ARC</title>
     
 
 
@@ -904,13 +904,13 @@
 
 
 <meta property="og:site_name" content="ARC">
-<meta property="og:title" content="Javascript: Sequential Task Que">
+<meta property="og:title" content="Javascript: Sequential Task Queue">
 <meta property="og:url" content="https://arcman7.github.io/en/posts/javascript-squential-task-que/">
 <meta property="og:type" content="article">
 <meta property="og:description" content="Andrew Ryan Carpenter Fullstack Engineer / Web Development">
 
 
-<meta name="generator" content="Hugo 0.63.2" />
+<meta name="generator" content="Hugo 0.64.1" />
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://arcman7.github.io/en/posts/javascript-squential-task-que/">
@@ -925,12 +925,12 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "headline": "Javascript: Sequential Task Que",
+    "headline": "Javascript: Sequential Task Queue",
     "datePublished": "2020-01-30T11:36:23-08:00",
     "dateModified": "2020-01-30T11:36:23-08:00",
     "url" : "https://arcman7.github.io/en/posts/javascript-squential-task-que/",
-    "description": "I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronus tasks in a specified order with javascript. It came as …",
-    "keywords": ["javascript","promises","asynchronus","sequential order","queue"],
+    "description": "I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronous tasks in a specified order with javascript. It came as …",
+    "keywords": ["javascript","promises","asynchronous","sequential order","queue"],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://arcman7.github.io/"
@@ -1189,7 +1189,7 @@ if (!doNotTrack) {
   
   <li  class="is-active" >
     
-      <span>Javascript: Sequential Task Que</span>
+      <span>Javascript: Sequential Task Queue</span>
     
   </li>
   
@@ -1198,7 +1198,7 @@ if (!doNotTrack) {
 </nav>
   
   <div class="single">
-    <h2 class="single__title">Javascript: Sequential Task Que</h2>
+    <h2 class="single__title">Javascript: Sequential Task Queue</h2>
     <div class="single__meta">
       
 <div class="single__infos">
@@ -1232,8 +1232,8 @@ if (!doNotTrack) {
   
   
   <li>
-    <a href="/en/tags/asynchronus" class="single__tag" title="asynchronus">
-      #asynchronus
+    <a href="/en/tags/asynchronous" class="single__tag" title="asynchronous">
+      #asynchronous
     </a>
   </li>
     
@@ -1260,7 +1260,7 @@ if (!doNotTrack) {
     </div>    
     <article class="single__contents" data-dir="ltr">
       
-      <p>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronus tasks in a specified order with javascript. It came as a surprise to me that this isn&rsquo;t supported out of the box in any modern browers javascript engine.</p>
+      <p>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronous tasks in a specified order with javascript. It came as a surprise to me that this isn&rsquo;t supported out of the box in any modern browers javascript engine.</p>
 <p>After googling around for a few minutes I came across this related blog post <a href="https://decembersoft.com/posts/promises-in-serial-with-array-reduce/">Decembersoft Inc.</a> which comes close but doesn&rsquo;t yield a working solution. I would reccomend checking it out as it was useful for me, and perhaps may hold some value for you as well. However, I will give you the gist of it here:</p>
 <ul>
 <li>Javascript allows you to chain promises in a serial fashion when the tasks are known beforehand and can be hard coded:</li>
@@ -1270,7 +1270,7 @@ if (!doNotTrack) {
 </blockquote>
 <ul>
 <li>
-<p>This pattern does not allow you to programatically execute an unspecified number of asynchronus operations in a given order</p>
+<p>This pattern does not allow you to programatically execute an unspecified number of asynchronous operations in a given order</p>
 </li>
 <li>
 <p>Reduce to the rescue:</p>
@@ -1385,7 +1385,7 @@ var tasks = getTasks();
 
 tasks.reduce(reducer, Promise.resolve());
 
-</code></pre><p>There, now you can can execute any arbitrary number of promises one after another. All you need to do in your code is collect an array of references to the functions that create/instantiate/return the promise that is the asynchronus operation you want to perform.</p>
+</code></pre><p>There, now you can can execute any arbitrary number of promises one after another. All you need to do in your code is collect an array of references to the functions that create/instantiate/return the promise that is the asynchronous operation you want to perform.</p>
 <p>EDIT: This pattern is not as unique as I initially thought. There are various implementations that already exist out there on the web, heres another one:</p>
 <p><a href="https://github.com/BalassaMarton/sequential-task-queue">https://github.com/BalassaMarton/sequential-task-queue</a></p>
 
@@ -1406,13 +1406,13 @@ tasks.reduce(reducer, Promise.resolve());
       
     
       
-        <a href="https://twitter.com/intent/tweet?text=Javascript%3a%20Sequential%20Task%20Que&url=https%3a%2f%2farcman7.github.io%2fen%2fposts%2fjavascript-squential-task-que%2f&hashtags=javascript%2cpromises%2casynchronus%2csequential%20order%2cqueue&via=srslyletmesleep" title="Twitter" aria-label="Twitter Share Button" class="donation__item" target="_blank" rel="noreferrer" data-type="share">
+        <a href="https://twitter.com/intent/tweet?text=Javascript%3a%20Sequential%20Task%20Queue&url=https%3a%2f%2farcman7.github.io%2fen%2fposts%2fjavascript-squential-task-que%2f&hashtags=javascript%2cpromises%2casynchronous%2csequential%20order%2cqueue&via=srslyletmesleep" title="Twitter" aria-label="Twitter Share Button" class="donation__item" target="_blank" rel="noreferrer" data-type="share">
           <svg data-name="twitter" enable-background="new 0 0 24 24" viewBox="0 0 24 24" width="35" height="35" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m21.534 7.113c.976-.693 1.797-1.558 2.466-2.554v-.001c-.893.391-1.843.651-2.835.777 1.02-.609 1.799-1.566 2.165-2.719-.951.567-2.001.967-3.12 1.191-.903-.962-2.19-1.557-3.594-1.557-2.724 0-4.917 2.211-4.917 4.921 0 .39.033.765.114 1.122-4.09-.2-7.71-2.16-10.142-5.147-.424.737-.674 1.58-.674 2.487 0 1.704.877 3.214 2.186 4.089-.791-.015-1.566-.245-2.223-.606v.054c0 2.391 1.705 4.377 3.942 4.835-.401.11-.837.162-1.29.162-.315 0-.633-.018-.931-.084.637 1.948 2.447 3.381 4.597 3.428-1.674 1.309-3.8 2.098-6.101 2.098-.403 0-.79-.018-1.177-.067 2.18 1.405 4.762 2.208 7.548 2.208 8.683 0 14.342-7.244 13.986-14.637z"/></svg>
         </a>
       
     
       
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2farcman7.github.io%2fen%2fposts%2fjavascript-squential-task-que%2f&title=Javascript%3a%20Sequential%20Task%20Que &summary=&source=Andrew%20Ryan%20Carpenter%20Fullstack%20Engineer%20%2f%20Web%20Development" target="_blank" rel="noreferer" title="LinkedIn" aria-label="LinkedIn Share Button" class="donation__item" data-type="share">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2farcman7.github.io%2fen%2fposts%2fjavascript-squential-task-que%2f&title=Javascript%3a%20Sequential%20Task%20Queue &summary=&source=Andrew%20Ryan%20Carpenter%20Fullstack%20Engineer%20%2f%20Web%20Development" target="_blank" rel="noreferer" title="LinkedIn" aria-label="LinkedIn Share Button" class="donation__item" data-type="share">
           <svg data-name="linkedin" enable-background="new 0 0 24 24" viewBox="0 0 24 24" width="35" height="35" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m23.994 24v-.001h.006v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07v-2.185h-4.773v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243v7.801z"/><path d="m.396 7.977h4.976v16.023h-4.976z"/><path d="m2.882 0c-1.591 0-2.882 1.291-2.882 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909c-.001-1.591-1.292-2.882-2.882-2.882z"/></svg>
         </a>
       
@@ -1556,7 +1556,7 @@ tasks.reduce(reducer, Promise.resolve());
 <script>
   var gitalk = new Gitalk({
     id: '2020-01-30 11:36:23 -0800 PST',
-    title: 'Javascript: Sequential Task Que',
+    title: 'Javascript: Sequential Task Queue',
     clientID: '1d8910d8d1f3ebd2ddcb',
     clientSecret: '464af863cd3b7ee3ba82acf4222b60c5133ac48d',
     repo: 'arcman7.github.io',

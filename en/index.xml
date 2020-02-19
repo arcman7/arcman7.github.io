@@ -9,12 +9,22 @@
     <managingEditor>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</managingEditor>
     <webMaster>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</webMaster>
     <copyright>©2020, All Rights Reserved</copyright>
-    <lastBuildDate>Sat, 08 Feb 2020 15:48:57 -0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Feb 2020 16:51:19 -0800</lastBuildDate>
     
         <atom:link href="https://arcman7.github.io/en/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>K-Means Clustering</title>
+        <link>https://arcman7.github.io/en/posts/k_means_clustering/</link>
+        <pubDate>Tue, 18 Feb 2020 16:51:19 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/posts/k_means_clustering/</guid>
+        <description>In this post we will implement the K-Means Clustering algorithm in python. You will not need to know any python libraries such as numpy or pandas as this will be done in vanilla python. The key take aways here are:
+ The algorithm by itself is naive, and not guaranteed to converge on the best fit centroid locations We need an optimizer of sorts to find an acceptable centroid fit  The goal of the K-means clustering algorithm is to fit a given set of data points into K specified groups or clusters.</description>
+      </item>
       
       <item>
         <title>Ice Age</title>
@@ -47,12 +57,12 @@ Also, Hugo is awesome, I used it to create this site.</description>
       </item>
       
       <item>
-        <title>Javascript: Sequential Task Que</title>
+        <title>Javascript: Sequential Task Queue</title>
         <link>https://arcman7.github.io/en/posts/javascript-squential-task-que/</link>
         <pubDate>Thu, 30 Jan 2020 11:36:23 -0800</pubDate>
         <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
         <guid>https://arcman7.github.io/en/posts/javascript-squential-task-que/</guid>
-        <description>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronus tasks in a specified order with javascript. It came as a surprise to me that this isn&amp;rsquo;t supported out of the box in any modern browers javascript engine.
+        <description>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronous tasks in a specified order with javascript. It came as a surprise to me that this isn&amp;rsquo;t supported out of the box in any modern browers javascript engine.
 After googling around for a few minutes I came across this related blog post Decembersoft Inc. which comes close but doesn&amp;rsquo;t yield a working solution.</description>
       </item>
       
@@ -62,7 +72,7 @@ After googling around for a few minutes I came across this related blog post Dec
         <pubDate>Thu, 30 Jan 2020 12:50:46 +0900</pubDate>
         <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
         <guid>https://arcman7.github.io/en/about/</guid>
-        <description>The Author I&amp;rsquo;m a fullstack engineer, living in San Francisco. I&amp;rsquo;ve been working in the bay area for the past four years with a focus on building clean UI&amp;rsquo;s for the end user.
+        <description>The Author My name is Andrew Carpenter. I&amp;rsquo;m a fullstack engineer, living in San Francisco. I&amp;rsquo;ve been working in the bay area for the past four years with a focus on building clean UI&amp;rsquo;s for the end user.
 I recieved my bachelors degree in Physics at the University of Hawaii in 2013 and continued to do research on the mini Time Cube (mTC) experiment before switching to software.</description>
       </item>
       

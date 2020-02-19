@@ -37,12 +37,12 @@ Play here</description>
       </item>
       
       <item>
-        <title>Javascript: Sequential Task Que</title>
+        <title>Javascript: Sequential Task Queue</title>
         <link>https://arcman7.github.io/en/posts/javascript-squential-task-que/</link>
         <pubDate>Thu, 30 Jan 2020 11:36:23 -0800</pubDate>
         <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
         <guid>https://arcman7.github.io/en/posts/javascript-squential-task-que/</guid>
-        <description>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronus tasks in a specified order with javascript. It came as a surprise to me that this isn&amp;rsquo;t supported out of the box in any modern browers javascript engine.
+        <description>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronous tasks in a specified order with javascript. It came as a surprise to me that this isn&amp;rsquo;t supported out of the box in any modern browers javascript engine.
 After googling around for a few minutes I came across this related blog post Decembersoft Inc. which comes close but doesn&amp;rsquo;t yield a working solution.</description>
       </item>
       

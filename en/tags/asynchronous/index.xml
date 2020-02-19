@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>sequential order on ARC</title>
-    <link>https://arcman7.github.io/en/tags/sequential-order/</link>
-    <description>Recent content in sequential order on ARC</description>
+    <title>asynchronous on ARC</title>
+    <link>https://arcman7.github.io/en/tags/asynchronous/</link>
+    <description>Recent content in asynchronous on ARC</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</managingEditor>
@@ -11,7 +11,7 @@
     <copyright>©2020, All Rights Reserved</copyright>
     <lastBuildDate>Thu, 30 Jan 2020 11:36:23 -0800</lastBuildDate>
     
-        <atom:link href="https://arcman7.github.io/en/tags/sequential-order/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://arcman7.github.io/en/tags/asynchronous/index.xml" rel="self" type="application/rss+xml" />
     
     
     
