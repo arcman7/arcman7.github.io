@@ -1172,7 +1172,7 @@ if (!doNotTrack) {
     <div class="single__meta">
       
 <div class="single__infos">
-  <time class="single__info" title="Written At">📅&nbsp;Feb 18, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 7 min read </span>
+  <time class="single__info" title="Written At">📅&nbsp;Feb 18, 2020 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 10 min read </span>
   <span class="single__info">
     
   </span>
@@ -1226,6 +1226,8 @@ if (!doNotTrack) {
 <li>The algorithm by itself is naive, and not guaranteed to converge on the best fit centroid locations</li>
 <li>We need an optimizer of sorts to find an <em>acceptable</em> centroid fit</li>
 </ul>
+<h3 id="setup">Setup</h3>
+<p>To generate your own fake data sets and try out a basic implementation of the k-means algorithm download and run the following file <a href="https://arcman7.github.io/kmeans.py">kmeans.py</a></p>
 <p>The goal of the K-means clustering algorithm is to fit a given set of data points into K specified groups or clusters. For example, say we have the following xy-coordinate data:</p>
 <style>
     .control {
@@ -1498,17 +1500,109 @@ if (!doNotTrack) {
 </script>
 <h3 id="0-initialize">0) Initialize</h3>
 <p>The first step in the algorithm is to randomly assign (x,y) coordinates to the values of each of the centroids.</p>
-<p>From here on the following sequence is followed until convergence:</p>
+<pre><code>def get_random_data(n_points = 5, xmin = 0, xmax = 100, ymin = 0, ymax = 100):
+    data = []
+    x = 0
+    y = 0
+    for i in range(0, n_points):
+        x = random.randrange(xmin, xmax)
+        y = random.randrange(ymin, ymax)
+        data.append([x,y])
+    return data
+# initialize with random (x,y) points
+k_centroids = get_random_data()
+# each centroids cluster data points
+# are stored in a bucket
+buckets = []
+for i in range(0, k):
+    # initialize empty buckets for each centroid
+    buckets.append([])
+</code></pre><p>Steps one and two are followed until convergence:</p>
 <h3 id="1-for-each-data-point">1) For each data point</h3>
 <ul>
 <li>Determine which centroid location is closest, centroid_closest</li>
 <li>Add data point to the collection of data points belonging to centroid_closest</li>
 </ul>
-<h3 id="2-for-each-centroid-point">2) For each centroid point</h3>
+<pre><code># now we iterate across each data point x_i
+# and determine which centroid it's closest to
+# by determining which centroid as the least distance    
+for i in range(0, len(data)):
+    x = data[i]
+    # intialize distance to first centroid k_0
+    best_centroid_index = 0
+    min_distance = distance(x, k_centroids[best_centroid_index])
+    for j in range(0, len(k_centroids)):
+        k = k_centroids[j]
+        if distance(x, k) &lt; min_distance:
+            min_distance = distance(x, k)
+            best_centroid_index = j
+    buckets[best_centroid_index].append(x)
+</code></pre><h3 id="2-for-each-centroid-point">2) For each centroid point</h3>
 <ul>
 <li>Update the centroids (x,y) location by taking the average coordinate values of its collection of data points</li>
 </ul>
-<p>This procdedure is guaranteed convergence, where additional iterations of the algorithm does not result in location updates for any of the centroids. However, the resulting fitted centroid locations may not be best suited to to the actual existing clusters of data. This is because the procedure we just defined is highly reliant on the initial positions of centroids defined in step 0. This procedure is demonstrated in the figure below:</p>
+<pre><code># now we take the average x and y values
+# of the data points assigned to each centroid k
+# which is stored in buckets[k]
+for i in range(0, len(buckets)):
+    k_centroids[i] = average_coords(buckets[i])
+</code></pre><h3 id="3-repeat">3) Repeat</h3>
+<p>Steps one and two are now executed in a while-loop that runs untill the centroid locations are no longer changing.</p>
+<pre><code>def kmeans(k, data,  xmin = 0, xmax = 100, ymin = 0, ymax = 100):
+    k_centroids = []
+    buckets = []
+    # we start off by making a random guess 
+    # for the starting point of each centroid, k_i
+    for i in range(0, k):
+        x = random.randrange(xmin, xmax)
+        y = random.randrange(ymin, ymax)
+        k_centroids.append([x, y])
+    # we need a variable to keep track of whether or not we should keep iterating
+    stop_yet = False
+    while stop_yet == False:
+        buckets = []
+        for i in range(0, k):
+            # re-initialize empty buckets for each centroid
+            buckets.append([])
+        # now we iterate across each data point x_i
+        # and determine which centroid it's closest to
+        # by determining which centroid as the least distance    
+        for i in range(0, len(data)):
+            x = data[i]
+            # intialize to distance to first centroid k_0
+            best_centroid_index = 0
+            min_distance = distance(x, k_centroids[best_centroid_index])
+            for j in range(0, len(k_centroids)):
+                k = k_centroids[j]
+                if distance(x, k) &lt; min_distance:
+                    min_distance = distance(x, k)
+                    best_centroid_index = j
+            buckets[best_centroid_index].append(x)
+        old_centroids = k_centroids
+        # now we take the average x and y values
+        # of the data points assigned to each centroid k
+        # which is stored in buckets[k]
+        for i in range(0, len(buckets)):
+            k_centroids[i] = average_coords(buckets[i])
+        # now we compare each of the previous centroid coordinates (old_centroids)
+        # and check to see if even one of them has changed its position 
+        # since we want to stop only when none of the centroids have moved their postions
+        #  ^ this is called convergence
+        did_anything_change = False
+        for i in range(0, len(old_centroids)):
+            old = old_centroids[i]
+            new = k_centroids[i]
+            if old != new:
+                did_anything_change = True
+        # if any of the centroids have moved locations
+        # then we need to keep iterating
+        if did_anything_change:
+            stop_yet = False
+        else:
+            stop_yet = True
+    return k_centroids
+</code></pre><p>This procdedure is guaranteed convergence, where additional iterations of the algorithm does not result in location updates for any of the centroids. However, the resulting fitted centroid locations may not be best suited to to the actual existing clusters of data. This is because the procedure we just defined is highly reliant on the initial positions of centroids defined in step 0. This procedure is demonstrated in the figure below.</p>
+<h3 id="results">Results</h3>
 <div id="demo-2" class="demo">
     <div id="table-container-2" style="overflow-y: scroll; width: 100px;"></div>
     <div id="graph-container-2" style="width: 500px; height: 500px;"></div>
@@ -2216,9 +2310,12 @@ document.addEventListener('DOMContentLoaded', function () {
   <ul>
     <li>
       <ul>
+        <li><a href="#setup">Setup</a></li>
         <li><a href="#0-initialize">0) Initialize</a></li>
         <li><a href="#1-for-each-data-point">1) For each data point</a></li>
         <li><a href="#2-for-each-centroid-point">2) For each centroid point</a></li>
+        <li><a href="#3-repeat">3) Repeat</a></li>
+        <li><a href="#results">Results</a></li>
       </ul>
     </li>
   </ul>
