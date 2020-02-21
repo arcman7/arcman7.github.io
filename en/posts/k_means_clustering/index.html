@@ -1558,8 +1558,8 @@ for i in range(0, len(buckets)):
         y = random.randrange(ymin, ymax)
         k_centroids.append([x, y])
     # we need a variable to keep track of whether or not we should keep iterating
-    stop_yet = False
-    while stop_yet == False:
+    keep_going = true
+    while keep_going:
         buckets = []
         for i in range(0, k):
             # re-initialize empty buckets for each centroid
@@ -1596,12 +1596,9 @@ for i in range(0, len(buckets)):
                 did_anything_change = True
         # if any of the centroids have moved locations
         # then we need to keep iterating
-        if did_anything_change:
-            stop_yet = False
-        else:
-            stop_yet = True
+        keep_going = did_anything_change
     return k_centroids
-</code></pre><p>This procdedure is guaranteed convergence, where additional iterations of the algorithm does not result in location updates for any of the centroids. However, the resulting fitted centroid locations may not be best suited to to the actual existing clusters of data. This is because the procedure we just defined is highly reliant on the initial positions of centroids defined in step 0. This procedure is demonstrated in the figure below.</p>
+</code></pre><p>This procedure is guaranteed convergence, where additional iterations of the algorithm does not result in location updates for any of the centroids. However, the resulting fitted centroid locations may not be best suited to to the actual existing clusters of data. This is because the procedure we just defined is highly reliant on the initial positions of centroids defined in step 0. This procedure is demonstrated in the figure below.</p>
 <h3 id="results">Results</h3>
 <div id="demo-2" class="demo">
     <div id="table-container-2" style="overflow-y: scroll; width: 100px;"></div>
