@@ -59,7 +59,6 @@ print(a[1] == 0.5)
 
 def kmeans(k, data,  xmin = 0, xmax = 100, ymin = 0, ymax = 100):
     k_centroids = []
-    buckets = []
     # we start off by making a random guess 
     # for the starting point of each centroid, k_i
     for i in range(0, k):
@@ -67,8 +66,8 @@ def kmeans(k, data,  xmin = 0, xmax = 100, ymin = 0, ymax = 100):
         y = random.randrange(ymin, ymax)
         k_centroids.append([x, y])
     # we need a variable to keep track of whether or not we should keep iterating
-    stop_yet = False
-    while stop_yet == False:
+    keep_going = True
+    while keep_going:
         buckets = []
         for i in range(0, k):
             # re-initialize empty buckets for each centroid
@@ -105,10 +104,7 @@ def kmeans(k, data,  xmin = 0, xmax = 100, ymin = 0, ymax = 100):
                 did_anything_change = True
         # if any of the centroids have moved locations
         # then we need to keep iterating
-        if did_anything_change:
-            stop_yet = False
-        else:
-            stop_yet = True
+        keep_going = did_anything_change;
     return k_centroids
 
 test_data_1 = [[1,1], [0,0], [1,1], [0,0]]
@@ -137,7 +133,7 @@ print(result)
 center_x = 0
 center_y = 0
 pi = math.pi
-delta_rad = (2*pi/8)
+delta_rad = (2 * (pi/8))
 radius = 5
 circle_data = []
 for i in range(0, 8):
