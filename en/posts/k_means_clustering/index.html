@@ -1781,6 +1781,7 @@ for i in range(0, len(buckets)):
 <p>The occurence of miss-fits observed in the above plot makes it quite clear how dependent this algorithm is on the randomized starting points for each of the centroids. One way to solve this would be to run hundreds, if not thousands of trials and assess the results of each trial by some measurement to evaluate for the best fits. Depending on the size of the data, and the number of presumed k-clusters this procedure can prove to be costly and impractical in a lot of cases.</p>
 <p>It is clear that we need some way to optimize this procedure that does not involve running many instances of the k-convergence algorithm and hoping for the best. To do so requires that we have an optimizer at our disposal and as it so happens there are already a number of &ldquo;good&rdquo; optimizer algorithms that have been worked out for us. We need only apply them to the problem at hand.</p>
 <p>In the next post I will introduce the Adam optimizer and apply it to a much simpler problem before tackling this one. Thanks for reading, and until then!</p>
+<p>NOTE: If you&rsquo;re interested in checking out a numpy based implementation check out this <a href="https://jihan1218.github.io/en/posts/k-means-clustering/">post</a> from a colleague covering the same topics.</p>
 
     </article>
     
