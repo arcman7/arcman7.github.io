@@ -1,6 +1,10 @@
 import random
 import math
 
+
+def get_n_random_index(n, data):
+    return random.sample(range(0, len(data)), n)
+
 def get_random_data(n_points = 5, xmin = 0, xmax = 100, ymin = 0, ymax = 100):
     data = []
     x = 0
@@ -18,11 +22,9 @@ def get_k_clusers_data(k = 5, spread = 10, n_points = 100):
     for index in range(0, k):
         cx = centroids[index][0]
         cy = centroids[index][1]
-        # data.append([])
         for n in range(0, n_points):
             x = cx + random.randrange(-spread, spread)
             y = cy + random.randrange(-spread, spread)
-            # data[index].append([x, y])
             data.append([x, y])
     return data
 # check that my data function works
@@ -59,12 +61,13 @@ print(a[1] == 0.5)
 
 def kmeans(k, data,  xmin = 0, xmax = 100, ymin = 0, ymax = 100):
     k_centroids = []
+    buckets = []
     # we start off by making a random guess 
     # for the starting point of each centroid, k_i
+    # by setting it to a random data point from the collection
+    k_rand_idxs = get_n_random_index(data, k)
     for i in range(0, k):
-        x = random.randrange(xmin, xmax)
-        y = random.randrange(ymin, ymax)
-        k_centroids.append([x, y])
+        k_centroids.append(data[k_rand_idxs[i]])
     # we need a variable to keep track of whether or not we should keep iterating
     keep_going = True
     while keep_going:

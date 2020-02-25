@@ -1499,24 +1499,16 @@ if (!doNotTrack) {
     selectElement.addEventListener('change', initDemo1);
 </script>
 <h3 id="0-initialize">0) Initialize</h3>
-<p>The first step in the algorithm is to randomly assign (x,y) coordinates to the values of each of the centroids.</p>
-<pre><code>def get_random_data(n_points = 5, xmin = 0, xmax = 100, ymin = 0, ymax = 100):
-    data = []
-    x = 0
-    y = 0
-    for i in range(0, n_points):
-        x = random.randrange(xmin, xmax)
-        y = random.randrange(ymin, ymax)
-        data.append([x,y])
-    return data
-# initialize with random (x,y) points
-k_centroids = get_random_data()
-# each centroids cluster data points
-# are stored in a bucket
-buckets = []
+<p>The first step in the algorithm is to assign each centroid a random (x,y) coordinate from the data as it&rsquo;s initial value</p>
+<pre><code>def get_n_random_index(n, data):
+    return random.sample(range(0, len(data)), n)
+
+k_centroids = []
+k_rand_idxs = get_n_random_index(data, k)
+
 for i in range(0, k):
-    # initialize empty buckets for each centroid
-    buckets.append([])
+    k_centroids.append(data[k_rand_idxs[i]])
+
 </code></pre><p>Steps one and two are followed until convergence:</p>
 <h3 id="1-for-each-data-point">1) For each data point</h3>
 <ul>
@@ -1624,6 +1616,19 @@ for i in range(0, len(buckets)):
     </div>
 </div>
 <script>
+    function getRandomSample(n, arr) {
+        var result = new Array(n),
+            len = arr.length,
+            taken = new Array(len);
+        if (n > len)
+            throw new RangeError("getRandom: more elements taken than available");
+        while (n--) {
+            var x = Math.floor(Math.random() * len);
+            result[n] = arr[x in taken ? taken[x] : x];
+            taken[x] = --len in taken ? taken[len] : len;
+        }
+        return result;
+    }
     function averageCoords(data) {
         if (data.length === 0) {
             return [0, 0];
@@ -1645,8 +1650,7 @@ for i in range(0, len(buckets)):
         // return Math.pow(xSquared + ySquared, 0.5);
     }
     function kMeans(k, data) {
-        // const kCentroids = data.centroids;
-        const kCentroids = getRandomData({ n_points: k });
+        const kCentroids = getRandomSample(k, data)
         kCentroids.forEach((datum) => {
             datum.color = 'red';
         });
