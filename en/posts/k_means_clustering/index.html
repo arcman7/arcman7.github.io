@@ -1500,15 +1500,10 @@ if (!doNotTrack) {
 </script>
 <h3 id="0-initialize">0) Initialize</h3>
 <p>The first step in the algorithm is to assign each centroid a random (x,y) coordinate from the data as it&rsquo;s initial value</p>
-<pre><code>def get_n_random_index(n, data):
-    return random.sample(range(0, len(data)), n)
+<pre><code>def get_n_random_samples(data, n):
+    return random.sample(data, n)
 
-k_centroids = []
-k_rand_idxs = get_n_random_index(data, k)
-
-for i in range(0, k):
-    k_centroids.append(data[k_rand_idxs[i]])
-
+k_centroids = get_n_random_samples(data, k)
 </code></pre><p>Steps one and two are followed until convergence:</p>
 <h3 id="1-for-each-data-point">1) For each data point</h3>
 <ul>
@@ -1541,14 +1536,11 @@ for i in range(0, len(buckets)):
 </code></pre><h3 id="3-repeat">3) Repeat</h3>
 <p>Steps one and two are now executed in a while-loop that runs untill the centroid locations are no longer changing.</p>
 <pre><code>def kmeans(k, data,  xmin = 0, xmax = 100, ymin = 0, ymax = 100):
-    k_centroids = []
-    buckets = []
-    # we start off by making a random guess 
+    # we start off by making a guess 
     # for the starting point of each centroid, k_i
-    for i in range(0, k):
-        x = random.randrange(xmin, xmax)
-        y = random.randrange(ymin, ymax)
-        k_centroids.append([x, y])
+    # by assigning it the (x,y) coordinate of a random data point
+    k_centroids = get_n_random_samples(data, k)
+    buckets = []
     # we need a variable to keep track of whether or not we should keep iterating
     keep_going = True
     while keep_going:
@@ -1562,8 +1554,8 @@ for i in range(0, len(buckets)):
         for i in range(0, len(data)):
             x = data[i]
             # intialize to distance to first centroid k_0
-            best_centroid_index = 0
             min_distance = distance(x, k_centroids[best_centroid_index])
+            best_centroid_index = 0
             for j in range(0, len(k_centroids)):
                 k = k_centroids[j]
                 if distance(x, k) &lt; min_distance:

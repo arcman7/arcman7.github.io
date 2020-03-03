@@ -1,9 +1,8 @@
 import random
 import math
 
-
-def get_n_random_index(n, data):
-    return random.sample(range(0, len(data)), n)
+def get_n_random_samples(data, n):
+    return random.sample(data, n)
 
 def get_random_data(n_points = 5, xmin = 0, xmax = 100, ymin = 0, ymax = 100):
     data = []
@@ -65,9 +64,7 @@ def kmeans(k, data,  xmin = 0, xmax = 100, ymin = 0, ymax = 100):
     # we start off by making a random guess 
     # for the starting point of each centroid, k_i
     # by setting it to a random data point from the collection
-    k_rand_idxs = get_n_random_index(data, k)
-    for i in range(0, k):
-        k_centroids.append(data[k_rand_idxs[i]])
+    k_centroids = get_n_random_samples(data, k)
     # we need a variable to keep track of whether or not we should keep iterating
     keep_going = True
     while keep_going:
