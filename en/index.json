@@ -231,7 +231,7 @@
 	"categories": [],
 	"series": [],
 	"description": "",
-	"content": "I just made this blog. If there\u0026rsquo;s anything glaringly obvious that I\u0026rsquo;ve missed and need to or should fix please let me know in the comments below.\nAlso, Hugo is awesome, I used it to create this site.\n"
+	"content": "These are the opensource npm modules that I currently maintain:\npython-enum homepage: https://github.com/arcman7/python-enum\nnpm: https://www.npmjs.com/package/python-enum\nThis package should not be considered as a performant extension of javascript nor should int enums be considered a good thing to have in a language. This package exists because I have need of bringing over existing repositories from python to javascript.\n"
 },
 {
 	"uri": "https://arcman7.github.io/en/posts/javascript-squential-task-que/",
