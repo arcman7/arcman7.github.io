@@ -18,6 +18,132 @@
 	"content": ""
 },
 {
+	"uri": "https://arcman7.github.io/en/tags/asynchronous/",
+	"title": "asynchronous",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/coffmangraham-algorithm/",
+	"title": "Coffman–Graham algorithm",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/dependencies/",
+	"title": "dependencies",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/dependency/",
+	"title": "dependency",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/graph/",
+	"title": "graph",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/javascript/",
+	"title": "javascript",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/posts/javascript_build_dependency_tree/",
+	"title": "Javascript Dependency Tree",
+	"tags": ["Coffman–Graham algorithm", "algorithm", "javascript", "promises", "asynchronous", "partial order", "tree", "graph", "dependency", "dependencies", "job", "scheduling"],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": "Introduction In this post I will outline how to run tasks/jobs that have dependencies on other tasks such as builds or testing. When one task is dependent on another it means that the task cannot be be started or executed until it has the results from a previous task/job.\nImagine you plan on making an omelette, this task requires that you have eggs among other things. We can say then that this task, \u0026ldquo;make-omelette\u0026rdquo;, has a dependency on eggs. If you have eggs then the task of making the omelette can be started, otherwise you will have to delay the execution of that task until you have acquired eggs; going forward with this analogy we can introduce other tasks as well such as finding your keys and wallet before leaving your home, driving to the nearest grocery store, getting gas, etc.\n(For those of you that are RTS gamers think about your tech tree build order)\nAs is the case with everyday life, many automated software systems are comprised of one or more jobs, and often times these jobs depend on the results of other jobs. It is therefore useful to have an idea of how to think about these dependencies and at the very least understand the essential algorithms used to work with them.\nProblem Statement  In the version of the job shop scheduling problem solved by the Coffman–Graham algorithm, one is given a set of n jobs J1, J2, \u0026hellip;, Jn, together with a system of precedence constraints Ji \u0026lt; Jj requiring that job Ji be completed before job Jj begins. Each job is assumed to take unit time to complete. The scheduling task is to assign each of these jobs to time slots on a system of W identical processors, minimizing the makespan of the assignment (the time from the beginning of the first job until the completion of the final job). Abstractly, the precedence constraints define a partial order on the jobs, so the problem can be rephrased as one of assigning the elements of this partial order to levels (time slots) in such a way that each time slot has at most as many jobs as processors (at most W elements per level), respecting the precedence constraints.\n Before we continue to the real meat of this writeup, lets take a naive approach at solving this sort of problem without a structured approach. That way we can identify what it truly is that the Coffman-Graham algorithm solves and appreciate the value in having such a procedure as well as an understanding of when to use it.\nConsider the following code:\nfunction simulatedTask(timeToCompletion = 500, jobName) { let resolve; const p = new Promise((res) =\u0026gt; { resolve = res; }); setTimeout(() =\u0026gt; { console.log('task \u0026quot;', jobName, '\u0026quot; completed.') resolve(); }, timeToCompletion); return p; } var demoTasks = { a: () =\u0026gt; { return simulatedTask(500, 'a').then(() =\u0026gt; { return 'a'; }); }, b: () =\u0026gt; { return simulatedTask(1600, 'b').then(() =\u0026gt; { return 'b'; }); }, c: () =\u0026gt; { return simulatedTask(1300, 'c').then(() =\u0026gt; { return 'c'; }); }, d: () =\u0026gt; { return simulatedTask(850, 'd').then(() =\u0026gt; { return 'd'; }); }, e: () =\u0026gt; { return simulatedTask(5000, 'e').then(() =\u0026gt; { return 'e'; }); }, f: () =\u0026gt; { return simulatedTask(10, 'f').then(() =\u0026gt; { return 'f'; }); }, }; var demoTree = { d: ['b', 'c', 'e'], // we expect this one to finish last a: [], b: ['a'], c: ['a'], e: [], f: ['e'], }; The demoTree variable stores a set an unordered set of tasks or jobs. First we have must determine wich job(s) are the root nodes, meaning the jobs that have no dependencies. At a glance we can see that the jobs \u0026lsquo;a\u0026rsquo; and \u0026lsquo;e\u0026rsquo; don\u0026rsquo;t depend on anything so we can assign those as our root nodes/jobs. We\u0026rsquo;re going to build a tree (a graph) that allows us to visually see which jobs depened on which. Once we have this tree we can begin to implement some logic that will iteratively queue up the jobs and execute them one after another.\n(This task is called graph drawing)\nWhat we are doing is performing a topological sort.\nclass JobNode { constructor(name, parents = [], childs = []) { this.name = name; this.parents = parents; this.childs = childs; } } function buildDepsTree(tree) { const depsTree = {}; const rootNodes = []; Object.keys(tree).forEach((jobName) =\u0026gt; { const jobDeps = tree[jobName]; const node = depsTree[jobName] || new JobNode(jobName); if (jobDeps.length === 0) { rootNodes.push(node); depsTree[jobName] = node; return; } jobDeps.forEach((parentJobName) =\u0026gt; { const parentNode = depsTree[parentJobName] || new JobNode(parentJobName); parentNode.childs.push(node) node.parents.push(parentNode); depsTree[parentJobName] = parentNode; }); }); depsTree._sudoRoot = new JobNode('init jobs', [], rootNodes); return depsTree; } Now that we have some code that performs the sort we can then traverse the tree that results from the execution of this sort. Essentially we are chaining each job such that once all dependencies (parents) of a given node/job are finished we immediately kick off it\u0026rsquo;s execution.\nfunction executeBuildWithDeps(tree = demoTree) { const depsTree = buildDepsTree(tree); const runningTasks = {}; function traverse(node, cb) { if (node.childs.length === 0) { return; } node.childs.forEach((childNode) =\u0026gt; { // start every task at a given level // in the deps tree at the same time cb(childNode); }) node.childs.forEach((childNode) =\u0026gt; { traverse(childNode, cb); }); } traverse(depsTree._sudoRoot, (node) =\u0026gt; { // avoid re-calling on nodes // with more than one parent dependency if (runningTasks[node.name]) { return; } const pendingParentJobs = []; node.parents.forEach((parentNode) =\u0026gt; { pendingParentJobs.push(runningTasks[parentNode.name]); }) runningTasks[node.name] = Promise.all(pendingParentJobs).then((results) =\u0026gt; { if (results \u0026amp;\u0026amp; results.length \u0026gt; 0) { console.log('results: ', results, ' passed to task \u0026quot;', node.name, '\u0026quot;'); } if (!demoTasks[node.name]) { return; } return demoTasks[node.name](results) }); }); } executeBuildWithDeps(); Take a moment to consider what that means, namely we provide no constraint on the number processesors being used to execute these jobs. If the jobs you\u0026rsquo;re kicking off are relatively in expensive in both time and money, then this procedure works just fine; there\u0026rsquo;s no need to limit how many concurrent tasks can be running at a given time. This however is an entirely different problem from the case where we have a constraint on the number of tasks that can be running in parallel to eachother.\nIn our analogy with the shopping list, this means we could summon any number of people to go out and independently aquire whatever ingredients are necessary for the omelette we are preparing.\nConsider our first step; drawing the graph - By placing the constraint \u0026lsquo;W\u0026rsquo; as mentioned in the problem statement we have fundementally introduced an underlying structure to the tree we need to draw such that it cannot have any level with more than w nodes present in it. Imagine you\u0026rsquo;re setting up for an event such as a birthday party or a wedding. This constrait W represents the number of people you have on hand to help you execute tasks independently of eachother.\nEnter: The Coffman-Graham Algorithm Wikipedia:\n In job shop scheduling and graph drawing, the Coffman–Graham algorithm is an algorithm, named after Edward G. Coffman, Jr. and Ronald Graham, for arranging the elements of a partially ordered set into a sequence of levels.\n Each \u0026lsquo;level\u0026rsquo; here represents a unit of time, where zero represents the moment this entire set of jobs is started and the last level represents the time when everything is finished. Each level can be thought of as some integer value on a vertical y-axis.\nLet\u0026rsquo;s get acquainted with some terminology:\n Directed Acyclic Graph   a directed acyclic graph is a finite directed graph with no directed cycles. That is, it consists of finitely many vertices and edges (also called arcs), with each edge directed from one vertex to another, such that there is no way to start at any vertex v and follow a consistently-directed sequence of edges that eventually loops back to v again.\n  Feedback Arc Set   A feedback arc set (FAS) or feedback edge set is a set of edges which, when removed from the graph, leave a DAG. Put another way, it\u0026rsquo;s a set containing at least one edge of every cycle in the graph.\n Please take the time to familiarize yourself with these terms if you don\u0026rsquo;t already know them.\nThe Coffman-Graham algorithm is defined by the following procedure:\n Represent the partial order by its transitive reduction or covering relation, a directed acyclic graph G that has an edge from x to y whenever x \u0026lt; y and there does not exist any third element z of the partial order for which x \u0026lt; z \u0026lt; y.   In the graph drawing applications of the Coffman–Graham algorithm, the resulting directed acyclic graph may not be the same as the graph being drawn, and in the scheduling applications it may not have an edge for every precedence constraint of the input: in both cases, the transitive reduction removes redundant edges that are not necessary for defining the partial order.  Construct a topological ordering of G in which the vertices are ordered lexicographically by the set of positions of their incoming neighbors. To do so, add the vertices one at a time to the ordering, at each step choosing a vertex v to add such that the incoming neighbors of v are all already part of the partial ordering, and such that the most recently added incoming neighbor of v is earlier than the most recently added incoming neighbor of any other vertex that could be added in place of v.   If two vertices have the same most recently added incoming neighbor, the algorithm breaks the tie in favor of the one whose second most recently added incoming neighbor is earlier, etc.  Assign the vertices of G to levels in the reverse of the topological ordering constructed in the previous step. For each vertex v, add v to a level that is at least one step higher than the highest level of any outgoing neighbor of v, that does not already have W elements assigned to it, and that is as low as possible subject to these two constraints.  "
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/job/",
+	"title": "job",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/partial-order/",
+	"title": "partial order",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/posts/",
+	"title": "Posts",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/promises/",
+	"title": "promises",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/scheduling/",
+	"title": "scheduling",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/",
+	"title": "Tags",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/tree/",
+	"title": "tree",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
 	"uri": "https://arcman7.github.io/en/tags/k-means/",
 	"title": "k-means",
 	"tags": [],
@@ -45,26 +171,8 @@
 	"content": ""
 },
 {
-	"uri": "https://arcman7.github.io/en/posts/",
-	"title": "Posts",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
 	"uri": "https://arcman7.github.io/en/tags/python/",
 	"title": "python",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://arcman7.github.io/en/tags/",
-	"title": "Tags",
 	"tags": [],
 	"categories": [],
 	"series": [],
@@ -99,15 +207,6 @@
 	"content": "Adventure throughout Azeroth and beyond following the events of the Frozen Throne, utilizing a real-time combat game system.\nPlay here\n"
 },
 {
-	"uri": "https://arcman7.github.io/en/tags/javascript/",
-	"title": "javascript",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
 	"uri": "https://arcman7.github.io/en/tags/vue/",
 	"title": "vue",
 	"tags": [],
@@ -135,15 +234,6 @@
 	"content": "I just made this blog. If there\u0026rsquo;s anything glaringly obvious that I\u0026rsquo;ve missed and need to or should fix please let me know in the comments below.\nAlso, Hugo is awesome, I used it to create this site.\n"
 },
 {
-	"uri": "https://arcman7.github.io/en/tags/asynchronous/",
-	"title": "asynchronous",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
 	"uri": "https://arcman7.github.io/en/posts/javascript-squential-task-que/",
 	"title": "Javascript: Sequential Task Queue",
 	"tags": ["javascript", "promises", "asynchronous", "sequential order", "queue"],
@@ -151,15 +241,6 @@
 	"series": [],
 	"description": "",
 	"content": "I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronous tasks in a specified order with javascript. It came as a surprise to me that this isn\u0026rsquo;t supported out of the box in any modern browers javascript engine.\nAfter googling around for a few minutes I came across this related blog post Decembersoft Inc. which comes close but doesn\u0026rsquo;t yield a working solution. I would reccomend checking it out as it was useful for me, and perhaps may hold some value for you as well. However, I will give you the gist of it here:\n Javascript allows you to chain promises in a serial fashion when the tasks are known beforehand and can be hard coded:   return task1.then(task2).then(task3);\n   This pattern does not allow you to programatically execute an unspecified number of asynchronous operations in a given order\n  Reduce to the rescue:\n   We\u0026rsquo;re going to use the Array.reduce() function to collapse the array of promises into a single promise chain.\n  // Serial return [ task1, task2, task3, ].reduce((promiseChain, currentTask) =\u0026gt; { // Note: promiseChain === initialPromise // on the first time through this function /* TODO */ }, initialPromise); (from the blog post)\n Which then leads to:   const reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(chainResults =\u0026gt; currentTask.then(currentResult =\u0026gt; [ ...chainResults, currentResult ] ) ); } const tasks = getTaskArray(); tasks.reduce(reducer, Promise.resolve([])); Okay cool, this is where you realize that it is their authors aim to collect the RESULTS of the promise chain in a sequential order, but not actually fire them off one after another. If you\u0026rsquo;re not sure or don\u0026rsquo;t believe me try this in your console:\n function getTasks() { const task1 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task1'); resolve() }, 2 * 1000); }); const task2 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task2'); resolve() }, 2 * 1000); }); const task3 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task3'); resolve() }, 2 * 1000); }); return [ task1, task2, task3, ] } var reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(currentTask); } var tasks = getTasks(); tasks.reduce(reducer, Promise.resolve()); All of these pending promises fire off at the same time as they\u0026rsquo;ve already been instantiated. Well shoot, back to square one. Just kidding, this pattern actually get\u0026rsquo;s us 90% of the way there. However, instead of having an array of already existing promises we want to use an array of functions that RETURN the promises we want to fire off. This looks like this:\nfunction getTasks() { const task1 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task1'); resolve() }, 2 * 1000); }); } const task2 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task2'); resolve() }, 2 * 1000); }); } const task3 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task3'); resolve() }, 2 * 1000); }); } return [ task1, task2, task3, ] } var reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(currentTask); } var tasks = getTasks(); tasks.reduce(reducer, Promise.resolve()); There, now you can can execute any arbitrary number of promises one after another. All you need to do in your code is collect an array of references to the functions that create/instantiate/return the promise that is the asynchronous operation you want to perform.\nEDIT: This pattern is not as unique as I initially thought. There are various implementations that already exist out there on the web, heres another one:\nhttps://github.com/BalassaMarton/sequential-task-queue\n"
-},
-{
-	"uri": "https://arcman7.github.io/en/tags/promises/",
-	"title": "promises",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
 },
 {
 	"uri": "https://arcman7.github.io/en/tags/queue/",

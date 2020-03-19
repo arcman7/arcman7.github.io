@@ -4,12 +4,12 @@
   
   <url>
     <loc>https://arcman7.github.io/en/tags/algorithm/</loc>
-    <lastmod>2020-02-18T16:51:19-08:00</lastmod>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
   </url>
   
   <url>
     <loc>https://arcman7.github.io/en/</loc>
-    <lastmod>2020-02-18T16:51:19-08:00</lastmod>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
@@ -20,6 +20,86 @@
                 hreflang="en"
                 href="https://arcman7.github.io/en/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/asynchronous/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/coffmangraham-algorithm/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/dependencies/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/dependency/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/graph/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/javascript/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/posts/javascript_build_dependency_tree/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/job/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/partial-order/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/posts/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/promises/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/scheduling/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://arcman7.github.io/ko/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://arcman7.github.io/en/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://arcman7.github.io/en/tags/tree/</loc>
+    <lastmod>2020-03-03T13:12:16-08:00</lastmod>
   </url>
   
   <url>
@@ -38,28 +118,8 @@
   </url>
   
   <url>
-    <loc>https://arcman7.github.io/en/posts/</loc>
-    <lastmod>2020-02-18T16:51:19-08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://arcman7.github.io/en/tags/python/</loc>
     <lastmod>2020-02-18T16:51:19-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://arcman7.github.io/en/tags/</loc>
-    <lastmod>2020-02-18T16:51:19-08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://arcman7.github.io/ko/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://arcman7.github.io/en/tags/"
-                />
   </url>
   
   <url>
@@ -74,11 +134,6 @@
   
   <url>
     <loc>https://arcman7.github.io/en/games/ice-age/</loc>
-    <lastmod>2020-02-08T15:48:57-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://arcman7.github.io/en/tags/javascript/</loc>
     <lastmod>2020-02-08T15:48:57-08:00</lastmod>
   </url>
   
@@ -98,17 +153,7 @@
   </url>
   
   <url>
-    <loc>https://arcman7.github.io/en/tags/asynchronous/</loc>
-    <lastmod>2020-01-30T11:36:23-08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://arcman7.github.io/en/posts/javascript-squential-task-que/</loc>
-    <lastmod>2020-01-30T11:36:23-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://arcman7.github.io/en/tags/promises/</loc>
     <lastmod>2020-01-30T11:36:23-08:00</lastmod>
   </url>
   

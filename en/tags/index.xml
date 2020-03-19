@@ -9,7 +9,7 @@
     <managingEditor>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</managingEditor>
     <webMaster>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</webMaster>
     <copyright>©2020, All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 18 Feb 2020 16:51:19 -0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Mar 2020 13:12:16 -0800</lastBuildDate>
     
         <atom:link href="https://arcman7.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,9 +19,108 @@
       <item>
         <title>algorithm</title>
         <link>https://arcman7.github.io/en/tags/algorithm/</link>
-        <pubDate>Tue, 18 Feb 2020 16:51:19 -0800</pubDate>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
         <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
         <guid>https://arcman7.github.io/en/tags/algorithm/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>asynchronous</title>
+        <link>https://arcman7.github.io/en/tags/asynchronous/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/asynchronous/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Coffman–Graham algorithm</title>
+        <link>https://arcman7.github.io/en/tags/coffmangraham-algorithm/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/coffmangraham-algorithm/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>dependencies</title>
+        <link>https://arcman7.github.io/en/tags/dependencies/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/dependencies/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>dependency</title>
+        <link>https://arcman7.github.io/en/tags/dependency/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/dependency/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>graph</title>
+        <link>https://arcman7.github.io/en/tags/graph/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/graph/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>javascript</title>
+        <link>https://arcman7.github.io/en/tags/javascript/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/javascript/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>job</title>
+        <link>https://arcman7.github.io/en/tags/job/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/job/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>partial order</title>
+        <link>https://arcman7.github.io/en/tags/partial-order/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/partial-order/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>promises</title>
+        <link>https://arcman7.github.io/en/tags/promises/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/promises/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>scheduling</title>
+        <link>https://arcman7.github.io/en/tags/scheduling/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/scheduling/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>tree</title>
+        <link>https://arcman7.github.io/en/tags/tree/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/tags/tree/</guid>
         <description></description>
       </item>
       
@@ -62,38 +161,11 @@
       </item>
       
       <item>
-        <title>javascript</title>
-        <link>https://arcman7.github.io/en/tags/javascript/</link>
-        <pubDate>Sat, 08 Feb 2020 15:48:57 -0800</pubDate>
-        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
-        <guid>https://arcman7.github.io/en/tags/javascript/</guid>
-        <description></description>
-      </item>
-      
-      <item>
         <title>vue</title>
         <link>https://arcman7.github.io/en/tags/vue/</link>
         <pubDate>Sat, 08 Feb 2020 15:48:57 -0800</pubDate>
         <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
         <guid>https://arcman7.github.io/en/tags/vue/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>asynchronous</title>
-        <link>https://arcman7.github.io/en/tags/asynchronous/</link>
-        <pubDate>Thu, 30 Jan 2020 11:36:23 -0800</pubDate>
-        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
-        <guid>https://arcman7.github.io/en/tags/asynchronous/</guid>
-        <description></description>
-      </item>
-      
-      <item>
-        <title>promises</title>
-        <link>https://arcman7.github.io/en/tags/promises/</link>
-        <pubDate>Thu, 30 Jan 2020 11:36:23 -0800</pubDate>
-        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
-        <guid>https://arcman7.github.io/en/tags/promises/</guid>
         <description></description>
       </item>
       
