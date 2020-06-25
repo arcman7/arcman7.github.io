@@ -9,12 +9,32 @@
     <managingEditor>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</managingEditor>
     <webMaster>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</webMaster>
     <copyright>©2020, All Rights Reserved</copyright>
-    <lastBuildDate>Thu, 30 Jan 2020 16:30:43 -0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Mar 2020 13:12:16 -0800</lastBuildDate>
     
         <atom:link href="https://arcman7.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     
+      
+      <item>
+        <title>Javascript Dependency Tree</title>
+        <link>https://arcman7.github.io/en/posts/javascript_build_dependency_tree/</link>
+        <pubDate>Tue, 03 Mar 2020 13:12:16 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/posts/javascript_build_dependency_tree/</guid>
+        <description>Introduction In this post I will outline how to run tasks/jobs that have dependencies on other tasks such as builds or testing. When one task is dependent on another it means that the task cannot be be started or executed until it has the results from a previous task/job.
+Imagine you plan on making an omelette, this task requires that you have eggs among other things. We can say then that this task, &amp;ldquo;make-omelette&amp;rdquo;, has a dependency on eggs.</description>
+      </item>
+      
+      <item>
+        <title>K-Means Clustering</title>
+        <link>https://arcman7.github.io/en/posts/k_means_clustering/</link>
+        <pubDate>Tue, 18 Feb 2020 16:51:19 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/posts/k_means_clustering/</guid>
+        <description>In this post we will implement the K-Means Clustering algorithm in python. You will not need to know any python libraries such as numpy or pandas as this will be done in vanilla python. The key take aways here are:
+ The algorithm by itself is naive, and not guaranteed to converge on the best fit centroid locations We need an optimizer of sorts to find an acceptable centroid fit  Setup To generate your own fake data sets and try out a basic implementation of the k-means algorithm download and run the following file kmeans.</description>
+      </item>
       
       <item>
         <title>Vue.js Game</title>
@@ -27,12 +47,12 @@ Play here</description>
       </item>
       
       <item>
-        <title>Javascript: Sequential Task Que</title>
+        <title>Javascript: Sequential Task Queue</title>
         <link>https://arcman7.github.io/en/posts/javascript-squential-task-que/</link>
         <pubDate>Thu, 30 Jan 2020 11:36:23 -0800</pubDate>
         <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
         <guid>https://arcman7.github.io/en/posts/javascript-squential-task-que/</guid>
-        <description>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronus tasks in a specified order with javascript. It came as a surprise to me that this isn&amp;rsquo;t supported out of the box in any modern browers javascript engine.
+        <description>I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronous tasks in a specified order with javascript. It came as a surprise to me that this isn&amp;rsquo;t supported out of the box in any modern browers javascript engine.
 After googling around for a few minutes I came across this related blog post Decembersoft Inc. which comes close but doesn&amp;rsquo;t yield a working solution.</description>
       </item>
       

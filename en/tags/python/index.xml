@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on ARC</title>
+    <link>https://arcman7.github.io/en/tags/python/</link>
+    <description>Recent content in python on ARC</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</managingEditor>
+    <webMaster>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</webMaster>
+    <copyright>©2020, All Rights Reserved</copyright>
+    <lastBuildDate>Tue, 18 Feb 2020 16:51:19 -0800</lastBuildDate>
+    
+        <atom:link href="https://arcman7.github.io/en/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+      
+      <item>
+        <title>K-Means Clustering</title>
+        <link>https://arcman7.github.io/en/posts/k_means_clustering/</link>
+        <pubDate>Tue, 18 Feb 2020 16:51:19 -0800</pubDate>
+        <author>andrewryancarpenter77@gmail.com (Andrew Ryan Carpenter)</author>
+        <guid>https://arcman7.github.io/en/posts/k_means_clustering/</guid>
+        <description>In this post we will implement the K-Means Clustering algorithm in python. You will not need to know any python libraries such as numpy or pandas as this will be done in vanilla python. The key take aways here are:
+ The algorithm by itself is naive, and not guaranteed to converge on the best fit centroid locations We need an optimizer of sorts to find an acceptable centroid fit  Setup To generate your own fake data sets and try out a basic implementation of the k-means algorithm download and run the following file kmeans.</description>
+      </item>
+      
+    
+  </channel>
+</rss>

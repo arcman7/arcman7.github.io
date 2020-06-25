@@ -1,7 +1,178 @@
 [
 {
+	"uri": "https://arcman7.github.io/en/tags/algorithm/",
+	"title": "algorithm",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
 	"uri": "https://arcman7.github.io/en/",
 	"title": "ARC",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/asynchronous/",
+	"title": "asynchronous",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/coffmangraham-algorithm/",
+	"title": "Coffman–Graham algorithm",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/dependencies/",
+	"title": "dependencies",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/dependency/",
+	"title": "dependency",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/graph/",
+	"title": "graph",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/javascript/",
+	"title": "javascript",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/posts/javascript_build_dependency_tree/",
+	"title": "Javascript Dependency Tree",
+	"tags": ["Coffman–Graham algorithm", "algorithm", "javascript", "promises", "asynchronous", "partial order", "tree", "graph", "dependency", "dependencies", "job", "scheduling"],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": "Introduction In this post I will outline how to run tasks/jobs that have dependencies on other tasks such as builds or testing. When one task is dependent on another it means that the task cannot be be started or executed until it has the results from a previous task/job.\nImagine you plan on making an omelette, this task requires that you have eggs among other things. We can say then that this task, \u0026ldquo;make-omelette\u0026rdquo;, has a dependency on eggs. If you have eggs then the task of making the omelette can be started, otherwise you will have to delay the execution of that task until you have acquired eggs; going forward with this analogy we can introduce other tasks as well such as finding your keys and wallet before leaving your home, driving to the nearest grocery store, getting gas, etc.\n(For those of you that are RTS gamers think about your tech tree build order)\nAs is the case with everyday life, many automated software systems are comprised of one or more jobs, and often times these jobs depend on the results of other jobs. It is therefore useful to have an idea of how to think about these dependencies and at the very least understand the essential algorithms used to work with them.\nProblem Statement  In the version of the job shop scheduling problem solved by the Coffman–Graham algorithm, one is given a set of n jobs J1, J2, \u0026hellip;, Jn, together with a system of precedence constraints Ji \u0026lt; Jj requiring that job Ji be completed before job Jj begins. Each job is assumed to take unit time to complete. The scheduling task is to assign each of these jobs to time slots on a system of W identical processors, minimizing the makespan of the assignment (the time from the beginning of the first job until the completion of the final job). Abstractly, the precedence constraints define a partial order on the jobs, so the problem can be rephrased as one of assigning the elements of this partial order to levels (time slots) in such a way that each time slot has at most as many jobs as processors (at most W elements per level), respecting the precedence constraints.\n Before we continue to the real meat of this writeup, lets take a naive approach at solving this sort of problem without a structured approach. That way we can identify what it truly is that the Coffman-Graham algorithm solves and appreciate the value in having such a procedure as well as an understanding of when to use it.\nConsider the following code:\nfunction simulatedTask(timeToCompletion = 500, jobName) { let resolve; const p = new Promise((res) =\u0026gt; { resolve = res; }); setTimeout(() =\u0026gt; { console.log('task \u0026quot;', jobName, '\u0026quot; completed.') resolve(); }, timeToCompletion); return p; } var demoTasks = { a: () =\u0026gt; { return simulatedTask(500, 'a').then(() =\u0026gt; { return 'a'; }); }, b: () =\u0026gt; { return simulatedTask(1600, 'b').then(() =\u0026gt; { return 'b'; }); }, c: () =\u0026gt; { return simulatedTask(1300, 'c').then(() =\u0026gt; { return 'c'; }); }, d: () =\u0026gt; { return simulatedTask(850, 'd').then(() =\u0026gt; { return 'd'; }); }, e: () =\u0026gt; { return simulatedTask(5000, 'e').then(() =\u0026gt; { return 'e'; }); }, f: () =\u0026gt; { return simulatedTask(10, 'f').then(() =\u0026gt; { return 'f'; }); }, }; var demoTree = { d: ['b', 'c', 'e'], // we expect this one to finish last a: [], b: ['a'], c: ['a'], e: [], f: ['e'], }; The demoTree variable stores a set an unordered set of tasks or jobs. First we have must determine wich job(s) are the root nodes, meaning the jobs that have no dependencies. At a glance we can see that the jobs \u0026lsquo;a\u0026rsquo; and \u0026lsquo;e\u0026rsquo; don\u0026rsquo;t depend on anything so we can assign those as our root nodes/jobs. We\u0026rsquo;re going to build a tree (a graph) that allows us to visually see which jobs depened on which. Once we have this tree we can begin to implement some logic that will iteratively queue up the jobs and execute them one after another.\n(This task is called graph drawing)\nWhat we are doing is performing a topological sort.\nclass JobNode { constructor(name, parents = [], childs = []) { this.name = name; this.parents = parents; this.childs = childs; } } function buildDepsTree(tree) { const depsTree = {}; const rootNodes = []; Object.keys(tree).forEach((jobName) =\u0026gt; { const jobDeps = tree[jobName]; const node = depsTree[jobName] || new JobNode(jobName); if (jobDeps.length === 0) { rootNodes.push(node); depsTree[jobName] = node; return; } jobDeps.forEach((parentJobName) =\u0026gt; { const parentNode = depsTree[parentJobName] || new JobNode(parentJobName); parentNode.childs.push(node) node.parents.push(parentNode); depsTree[parentJobName] = parentNode; }); }); depsTree._sudoRoot = new JobNode('init jobs', [], rootNodes); return depsTree; } Now that we have some code that performs the sort we can then traverse the tree that results from the execution of this sort. Essentially we are chaining each job such that once all dependencies (parents) of a given node/job are finished we immediately kick off it\u0026rsquo;s execution.\nfunction executeBuildWithDeps(tree = demoTree) { const depsTree = buildDepsTree(tree); const runningTasks = {}; function traverse(node, cb) { if (node.childs.length === 0) { return; } node.childs.forEach((childNode) =\u0026gt; { // start every task at a given level // in the deps tree at the same time cb(childNode); }) node.childs.forEach((childNode) =\u0026gt; { traverse(childNode, cb); }); } traverse(depsTree._sudoRoot, (node) =\u0026gt; { // avoid re-calling on nodes // with more than one parent dependency if (runningTasks[node.name]) { return; } const pendingParentJobs = []; node.parents.forEach((parentNode) =\u0026gt; { pendingParentJobs.push(runningTasks[parentNode.name]); }) runningTasks[node.name] = Promise.all(pendingParentJobs).then((results) =\u0026gt; { if (results \u0026amp;\u0026amp; results.length \u0026gt; 0) { console.log('results: ', results, ' passed to task \u0026quot;', node.name, '\u0026quot;'); } if (!demoTasks[node.name]) { return; } return demoTasks[node.name](results) }); }); } executeBuildWithDeps(); Take a moment to consider what that means, namely we provide no constraint on the number processesors being used to execute these jobs. If the jobs you\u0026rsquo;re kicking off are relatively in expensive in both time and money, then this procedure works just fine; there\u0026rsquo;s no need to limit how many concurrent tasks can be running at a given time. This however is an entirely different problem from the case where we have a constraint on the number of tasks that can be running in parallel to eachother.\nIn our analogy with the shopping list, this means we could summon any number of people to go out and independently aquire whatever ingredients are necessary for the omelette we are preparing.\nConsider our first step; drawing the graph - By placing the constraint \u0026lsquo;W\u0026rsquo; as mentioned in the problem statement we have fundementally introduced an underlying structure to the tree we need to draw such that it cannot have any level with more than w nodes present in it. Imagine you\u0026rsquo;re setting up for an event such as a birthday party or a wedding. This constrait W represents the number of people you have on hand to help you execute tasks independently of eachother.\nEnter: The Coffman-Graham Algorithm Wikipedia:\n In job shop scheduling and graph drawing, the Coffman–Graham algorithm is an algorithm, named after Edward G. Coffman, Jr. and Ronald Graham, for arranging the elements of a partially ordered set into a sequence of levels.\n Each \u0026lsquo;level\u0026rsquo; here represents a unit of time, where zero represents the moment this entire set of jobs is started and the last level represents the time when everything is finished. Each level can be thought of as some integer value on a vertical y-axis.\nLet\u0026rsquo;s get acquainted with some terminology:\n Directed Acyclic Graph   a directed acyclic graph is a finite directed graph with no directed cycles. That is, it consists of finitely many vertices and edges (also called arcs), with each edge directed from one vertex to another, such that there is no way to start at any vertex v and follow a consistently-directed sequence of edges that eventually loops back to v again.\n  Feedback Arc Set   A feedback arc set (FAS) or feedback edge set is a set of edges which, when removed from the graph, leave a DAG. Put another way, it\u0026rsquo;s a set containing at least one edge of every cycle in the graph.\n Please take the time to familiarize yourself with these terms if you don\u0026rsquo;t already know them.\nThe Coffman-Graham algorithm is defined by the following procedure:\n Represent the partial order by its transitive reduction or covering relation, a directed acyclic graph G that has an edge from x to y whenever x \u0026lt; y and there does not exist any third element z of the partial order for which x \u0026lt; z \u0026lt; y.   In the graph drawing applications of the Coffman–Graham algorithm, the resulting directed acyclic graph may not be the same as the graph being drawn, and in the scheduling applications it may not have an edge for every precedence constraint of the input: in both cases, the transitive reduction removes redundant edges that are not necessary for defining the partial order.  Construct a topological ordering of G in which the vertices are ordered lexicographically by the set of positions of their incoming neighbors. To do so, add the vertices one at a time to the ordering, at each step choosing a vertex v to add such that the incoming neighbors of v are all already part of the partial ordering, and such that the most recently added incoming neighbor of v is earlier than the most recently added incoming neighbor of any other vertex that could be added in place of v.   If two vertices have the same most recently added incoming neighbor, the algorithm breaks the tie in favor of the one whose second most recently added incoming neighbor is earlier, etc.  Assign the vertices of G to levels in the reverse of the topological ordering constructed in the previous step. For each vertex v, add v to a level that is at least one step higher than the highest level of any outgoing neighbor of v, that does not already have W elements assigned to it, and that is as low as possible subject to these two constraints.  "
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/job/",
+	"title": "job",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/partial-order/",
+	"title": "partial order",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/posts/",
+	"title": "Posts",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/promises/",
+	"title": "promises",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/scheduling/",
+	"title": "scheduling",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/",
+	"title": "Tags",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/tree/",
+	"title": "tree",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/k-means/",
+	"title": "k-means",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/posts/k_means_clustering/",
+	"title": "K-Means Clustering",
+	"tags": ["python", "k-means", "machine learning", "algorithm"],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": "In this post we will implement the K-Means Clustering algorithm in python. You will not need to know any python libraries such as numpy or pandas as this will be done in vanilla python. The key take aways here are:\n The algorithm by itself is naive, and not guaranteed to converge on the best fit centroid locations We need an optimizer of sorts to find an acceptable centroid fit  Setup To generate your own fake data sets and try out a basic implementation of the k-means algorithm download and run the following file kmeans.py\nThe goal of the K-means clustering algorithm is to fit a given set of data points into K specified groups or clusters. For example, say we have the following xy-coordinate data:\n .control { margin-top: 10px; margin-right: 5px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 3px; font-weight: bold; height: 20px; } .demo { display: flex; width: 100%; height: 500px; justify-content: center; } .demo-controls { margin-top: 5px; margin-bottom: 35px; display: flex; width: 100%; justify-content: center; margin-left: 75px; }     K-Clusters  N points per cluster  Cluster spread    // generate data: function getRandomArbitrary(min, max) { return Math.random() * (max - min) + min; } function getLinearData(n_points = 20, m = 2, b = 7, variance = 3) { const y_train = []; const x_train = []; for (let x = 0; x { const td = document.createElement('td'); td.innerText = data[key] + (i === 0 ? ',' : ''); tr.appendChild(td); }); return tr; } function getTable(data = [['X', 'Y'], [0, 0], [1, 1], [2, 2], [3, 3], [4, 4]]) { const table = document.createElement('table'); Object.keys(data).forEach((key) = { if (key === 'centroids') { return; } table.appendChild(getRow(data[key])) }); return table } function setFakeDataInDom(data, id) { const container = document.getElementById(id); container.innerHTML = ''; container.appendChild(getTable([['X', 'Y']].concat(data))); } function getFakeData(kid, nid, sid) { const kEle = document.getElementById(kid); const k = Number(kEle.value); const nEle = document.getElementById(nid); const n_points = Number(nEle.value); const spreadEle = document.getElementById(sid); const spread = Number(spreadEle.value); const data = getKCluserData(k, spread, n_points); return data; } // svg graph: function getGraphBrackGround(width, height) { const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect'); rect.classList.add('background-canvas'); rect.setAttribute('x', 0); rect.setAttribute('y', 0); rect.setAttribute('width', width); rect.setAttribute('height', height); rect.setAttribute('fill', '#FFFFFF'); rect.setAttribute('stroke','none'); rect.setAttribute('stroke-width', 0); rect.setAttribute('viewBox', `0 0 ${500} ${500}`); return rect; //  } function getBoldAxis(x1, y1, x2, y2) { const g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); g.classList.add('bold-axis'); const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline'); polyline.setAttribute('points', `${x1,y1} ${x1,y2} ${x2, y2}`); polyline.setAttribute('fill', 'none'); polyline.setAttribute('shape-rendering', 'crispEdges'); polyline.setAttribute('stroke', '#444'); polyline.setAttribute('stroke-width', 1); g.appendChild(polyline); return g; /*   */ } function getGridLine(x1, y1, x2, y2) { const line = document.createElementNS('http://www.w3.org/2000/svg', 'line'); line.setAttribute('x1', x1); line.setAttribute('x2', x2); line.setAttribute('y1', y1); line.setAttribute('y2', y2); line.setAttribute('fill', 'none'); line.setAttribute('shape-rendering', 'crispEdges'); line.setAttribute('stroke', '#ccc'); line.setAttribute('stroke-dasharray', \"5,2\"); line.setAttribute('stroke-width', 1); return line; // vertical //  // horizontal //  } function getGrid(width = 500, height = 500, marginX = 32, marginY = 32) { const g = document.createElementNS('http://www.w3.org/2000/svg', 'g'); g.classList.add('grid'); const yS = marginY; const yE = height - marginY; const xS = marginX; const xE = width - marginX; let spacing = Math.floor((xE - xS) / 10); // vertical lines for (let x = xS - spacing; x a[0] - b[0]); const xMin = sortByX[0][0]; const xMax = Math.max(sortByX[sortByX.length - 1][0], 100); const sortByY = data.sort((a, b) = a[1] - b[1]); const yMin = sortByY[0][1]; const yMax = Math.max(sortByY[sortByY.length - 1][1], 100); const xScale = xWidth / (xMax - xMin); const yScale = yWidth / (yMax - yMin); const xOffset = xS; const yOffset = yS; // console.log(`xOffset: ${xOffset} yOffset: ${yOffset} xE: ${xE} yE: ${yE} xS: ${xS} yS: ${yS} xMin: ${xMin}`) data.forEach((datum) = { const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); const cx = Math.round((xScale * (datum[0] - xMin)) + xOffset); const cy = Math.round(yE - (yScale * (datum[1] - yMin))); // if ((cx  xE) || (cy  yE)|| (cx 0) Initialize The first step in the algorithm is to assign each centroid a random (x,y) coordinate from the data as it\u0026rsquo;s initial value\ndef get_n_random_samples(data, n): return random.sample(data, n) k_centroids = get_n_random_samples(data, k) Steps one and two are followed until convergence:\n1) For each data point  Determine which centroid location is closest, centroid_closest Add data point to the collection of data points belonging to centroid_closest  # now we iterate across each data point x_i # and determine which centroid it's closest to # by determining which centroid as the least distance for i in range(0, len(data)): x = data[i] # intialize distance to first centroid k_0 best_centroid_index = 0 min_distance = distance(x, k_centroids[best_centroid_index]) for j in range(0, len(k_centroids)): k = k_centroids[j] if distance(x, k) \u0026lt; min_distance: min_distance = distance(x, k) best_centroid_index = j buckets[best_centroid_index].append(x) 2) For each centroid point  Update the centroids (x,y) location by taking the average coordinate values of its collection of data points  # now we take the average x and y values # of the data points assigned to each centroid k # which is stored in buckets[k] for i in range(0, len(buckets)): k_centroids[i] = average_coords(buckets[i]) 3) Repeat Steps one and two are now executed in a while-loop that runs untill the centroid locations are no longer changing.\ndef kmeans(k, data, xmin = 0, xmax = 100, ymin = 0, ymax = 100): # we start off by making a guess # for the starting point of each centroid, k_i # by assigning it the (x,y) coordinate of a random data point k_centroids = get_n_random_samples(data, k) buckets = [] # we need a variable to keep track of whether or not we should keep iterating keep_going = True while keep_going: buckets = [] for i in range(0, k): # re-initialize empty buckets for each centroid buckets.append([]) # now we iterate across each data point x_i # and determine which centroid it's closest to # by determining which centroid as the least distance for i in range(0, len(data)): x = data[i] # intialize to distance to first centroid k_0 min_distance = distance(x, k_centroids[best_centroid_index]) best_centroid_index = 0 for j in range(0, len(k_centroids)): k = k_centroids[j] if distance(x, k) \u0026lt; min_distance: min_distance = distance(x, k) best_centroid_index = j buckets[best_centroid_index].append(x) old_centroids = k_centroids # now we take the average x and y values # of the data points assigned to each centroid k # which is stored in buckets[k] for i in range(0, len(buckets)): k_centroids[i] = average_coords(buckets[i]) # now we compare each of the previous centroid coordinates (old_centroids) # and check to see if even one of them has changed its position # since we want to stop only when none of the centroids have moved their postions # ^ this is called convergence did_anything_change = False for i in range(0, len(old_centroids)): old = old_centroids[i] new = k_centroids[i] if old != new: did_anything_change = True # if any of the centroids have moved locations # then we need to keep iterating keep_going = did_anything_change return k_centroids This procedure is guaranteed convergence, where additional iterations of the algorithm does not result in location updates for any of the centroids. However, the resulting fitted centroid locations may not be best suited to to the actual existing clusters of data. This is because the procedure we just defined is highly reliant on the initial positions of centroids defined in step 0. This procedure is demonstrated in the figure below.\nResults    K-Clusters  N points per cluster  Cluster spread  Pause    function getRandomSample(n, arr) { var result = new Array(n), len = arr.length, taken = new Array(len); if (n  len) throw new RangeError(\"getRandom: more elements taken than available\"); while (n--) { var x = Math.floor(Math.random() * len); result[n] = arr[x in taken ? taken[x] : x]; taken[x] = --len in taken ? taken[len] : len; } return result; } function averageCoords(data) { if (data.length === 0) { return [0, 0]; } let x_avg = 0; let y_avg = 0; data.forEach((coord) = { x_avg += coord[0]; y_avg += coord[1]; }); x_avg = x_avg / data.length; y_avg = y_avg / data.length; return [x_avg, y_avg]; } function distance(a, b) { const xSquared = Math.pow(a[0] - b[0], 2); const ySquared = Math.pow(a[1] - b[1], 2); return xSquared + ySquared; // return Math.pow(xSquared + ySquared, 0.5); } function kMeans(k, data) { const kCentroids = getRandomSample(k, data) kCentroids.forEach((datum) = { datum.color = 'red'; }); const buckets = []; const oldCentroidsStore = []; let x; let y; let oldCentroids = kCentroids.concat([]); oldCentroidsStore.push(oldCentroids); let keepGoing = true; let count = 0; while (keepGoing) { // re-initialize empty buckets for each centroid for (let i = 0; i { let best = 0; let minDistance = distance(coord, kCentroids[best]); kCentroids.forEach((centroid, index) = { const currD = distance(coord, centroid); if (currD { kCentroids[index] = averageCoords(bucket); kCentroids[index].color = 'red'; }); let didAnythingChange = false; oldCentroids.forEach((oldCentroid, index) = { const centroid = kCentroids[index]; if (distance(oldCentroid, centroid)) { didAnythingChange = true; } }); oldCentroids = kCentroids.concat([]); if (didAnythingChange) { oldCentroidsStore.push(oldCentroids); } count += 1; keepGoing = didAnythingChange; } console.log('Done! After ', count, ' iterations'); return { kCentroids, oldCentroidsStore }; } let intervalTimer; let displayIteration; function pause() { clearInterval(intervalTimer); } function resume() { intervalTimer = setInterval(displayIteration, 1000); } let isPaused = false; let ele; function execute() { if (isPaused) { ele.innerText = 'Pause'; resume(); } else { pause(); ele.innerText = 'Resume'; } isPaused = !isPaused; } function listenForPauseResume(id) { ele = document.getElementById(id); ele.removeEventListener('click', execute); ele.addEventListener('click', execute); } let demo2Svg; function initDemo2(_, globalData) { const data = globalData || getFakeData('k-clusters-2', 'n-data-points-2', 's-spread-2'); setFakeDataInDom(data, 'table-container-2'); const k = data.centroids.length; const { kCentroids, oldCentroidsStore } = kMeans(k, data); const xS = marginX; // const xE = demo2Svg.width.baseVal.value - marginX; const xE = 500 - marginX; const yS = marginY; // const yE = demo2Svg.height.baseVal.value - marginY; const yE = 500 - marginY; let step = 0; let count = 0; let text; let currCentroids; pause(); displayIteration = function () { step = count % oldCentroidsStore.length; if (text \u0026\u0026 text.parentElement === demo2Svg) { demo2Svg.removeChild(text); } if (currCentroids \u0026\u0026 currCentroids.parentElement === demo2Svg) { demo2Svg.removeChild(currCentroids); } const temp = []; oldCentroidsStore.forEach((oldCentroids, stepIndex) = { oldCentroids.forEach((datum) = { if (stepIndex === step) { datum.color = 'red'; } else { datum.color = 'rgba(1,1,1,0)'; } temp.push(datum); }); }) demo2Svg = gridXYScatterPlot(temp.concat(data), 'graph-container-2'); text = document.createElementNS('http://www.w3.org/2000/svg', 'text'); text.setAttribute('x', ((xE - xS) * 0.5) + xS - 40); text.setAttribute('y', marginY - 5); const txt = document.createTextNode(`iteration: ${step} of ${oldCentroidsStore.length - 1}`); text.appendChild(txt); demo2Svg.appendChild(text); count += 1; }; intervalTimer = setInterval(displayIteration, 1000); } listenForPauseResume('demo-2-pause-resume'); initDemo2(null, window.data); selectElement = document.getElementById('k-clusters-2'); selectElement.addEventListener('change', initDemo2); selectElement = document.getElementById('n-data-points-2'); selectElement.addEventListener('change', initDemo2); selectElement = document.getElementById('s-spread-2'); selectElement.addEventListener('change', initDemo2);  I encourage you to test out varitions with the parameters K-Clusters, N points per cluster and Cluster spread. You will quickly see that the locations of the centroids that the algorithm converges on are quite often far from ideal. Some centroids end up with no points in their cluster group while other centroids end up in the middle between two or more clusters that have been assigned to it.\nThe occurence of miss-fits observed in the above plot makes it quite clear how dependent this algorithm is on the randomized starting points for each of the centroids. One way to solve this would be to run hundreds, if not thousands of trials and assess the results of each trial by some measurement to evaluate for the best fits. Depending on the size of the data, and the number of presumed k-clusters this procedure can prove to be costly and impractical in a lot of cases.\nIt is clear that we need some way to optimize this procedure that does not involve running many instances of the k-convergence algorithm and hoping for the best. To do so requires that we have an optimizer at our disposal and as it so happens there are already a number of \u0026ldquo;good\u0026rdquo; optimizer algorithms that have been worked out for us. We need only apply them to the problem at hand.\nIn the next post I will introduce the Adam optimizer and apply it to a much simpler problem before tackling this one. Thanks for reading, and until then!\nNOTE: If you\u0026rsquo;re interested in checking out a numpy based implementation check out this post from a colleague covering the same topics.\n"
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/machine-learning/",
+	"title": "machine learning",
+	"tags": [],
+	"categories": [],
+	"series": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://arcman7.github.io/en/tags/python/",
+	"title": "python",
 	"tags": [],
 	"categories": [],
 	"series": [],
@@ -33,38 +204,11 @@
 	"categories": [],
 	"series": [],
 	"description": "",
-	"content": "Adventure throughout Azeroth and beyond following the events of the Frozen Throne, utilizing a real-time combat game system.\nPlay here\n"
-},
-{
-	"uri": "https://arcman7.github.io/en/tags/javascript/",
-	"title": "javascript",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://arcman7.github.io/en/tags/",
-	"title": "Tags",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
+	"content": "Adventure throughout Azeroth and beyond following the events of the Frozen Throne, utilizing a real-time combat game system.\nPlay here\nNOTE: Game development is currently on hold. Check back here in the near future to see updates! I will be using a generalized RL-agent to improve the game mechanics as well as player experience.\n"
 },
 {
 	"uri": "https://arcman7.github.io/en/tags/vue/",
 	"title": "vue",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
-},
-{
-	"uri": "https://arcman7.github.io/en/posts/",
-	"title": "Posts",
 	"tags": [],
 	"categories": [],
 	"series": [],
@@ -87,34 +231,16 @@
 	"categories": [],
 	"series": [],
 	"description": "",
-	"content": "I just made this blog. If there\u0026rsquo;s anything glaringly obvious that I\u0026rsquo;ve missed and need to or should fix please let me know in the comments below.\nAlso, Hugo is awesome, I used it to create this site.\n"
-},
-{
-	"uri": "https://arcman7.github.io/en/tags/asynchronus/",
-	"title": "asynchronus",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
+	"content": "These are the opensource npm modules that I currently maintain:\npython-enum homepage: https://github.com/arcman7/python-enum\nnpm: https://www.npmjs.com/package/python-enum\nAn implementation of python-like enums in JavaScript.\nNOTE: This package should not be considered as a performant extension of javascript nor should int-enums be considered a good language feature in a scripting language. I created this package because I have need of bringing over existing repositories from python to javascript.\ns2clientprotocol homepage: https://github.com/arcman7/s2clientprotocol\nnpm: https://www.npmjs.com/package/s2clientprotocol\nNPM/Javascript implementation of the python sc2clientprotocol package used in the deepmind/pysc2 project.\n"
 },
 {
 	"uri": "https://arcman7.github.io/en/posts/javascript-squential-task-que/",
-	"title": "Javascript: Sequential Task Que",
-	"tags": ["javascript", "promises", "asynchronus", "sequential order", "queue"],
+	"title": "Javascript: Sequential Task Queue",
+	"tags": ["javascript", "promises", "asynchronous", "sequential order", "queue"],
 	"categories": [],
 	"series": [],
 	"description": "",
-	"content": "I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronus tasks in a specified order with javascript. It came as a surprise to me that this isn\u0026rsquo;t supported out of the box in any modern browers javascript engine.\nAfter googling around for a few minutes I came across this related blog post Decembersoft Inc. which comes close but doesn\u0026rsquo;t yield a working solution. I would reccomend checking it out as it was useful for me, and perhaps may hold some value for you as well. However, I will give you the gist of it here:\n Javascript allows you to chain promises in a serial fashion when the tasks are known beforehand and can be hard coded:   return task1.then(task2).then(task3);\n   This pattern does not allow you to programatically execute an unspecified number of asynchronus operations in a given order\n  Reduce to the rescue:\n   We\u0026rsquo;re going to use the Array.reduce() function to collapse the array of promises into a single promise chain.\n  // Serial return [ task1, task2, task3, ].reduce((promiseChain, currentTask) =\u0026gt; { // Note: promiseChain === initialPromise // on the first time through this function /* TODO */ }, initialPromise); (from the blog post)\n Which then leads to:   const reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(chainResults =\u0026gt; currentTask.then(currentResult =\u0026gt; [ ...chainResults, currentResult ] ) ); } const tasks = getTaskArray(); tasks.reduce(reducer, Promise.resolve([])); Okay cool, this is where you realize that it is their authors aim to collect the RESULTS of the promise chain in a sequential order, but not actually fire them off one after another. If you\u0026rsquo;re not sure or don\u0026rsquo;t believe me try this in your console:\n function getTasks() { const task1 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task1'); resolve() }, 2 * 1000); }); const task2 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task2'); resolve() }, 2 * 1000); }); const task3 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task3'); resolve() }, 2 * 1000); }); return [ task1, task2, task3, ] } var reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(currentTask); } var tasks = getTasks(); tasks.reduce(reducer, Promise.resolve()); All of these pending promises fire off at the same time as they\u0026rsquo;ve already been instantiated. Well shoot, back to square one. Just kidding, this pattern actually get\u0026rsquo;s us 90% of the way there. However, instead of having an array of already existing promises we want to use an array of functions that RETURN the promises we want to fire off. This looks like this:\nfunction getTasks() { const task1 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task1'); resolve() }, 2 * 1000); }); } const task2 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task2'); resolve() }, 2 * 1000); }); } const task3 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task3'); resolve() }, 2 * 1000); }); } return [ task1, task2, task3, ] } var reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(currentTask); } var tasks = getTasks(); tasks.reduce(reducer, Promise.resolve()); There, now you can can execute any arbitrary number of promises one after another. All you need to do in your code is collect an array of references to the functions that create/instantiate/return the promise that is the asynchronus operation you want to perform.\nEDIT: This pattern is not as unique as I initially thought. There are various implementations that already exist out there on the web, heres another one:\nhttps://github.com/BalassaMarton/sequential-task-queue\n"
-},
-{
-	"uri": "https://arcman7.github.io/en/tags/promises/",
-	"title": "promises",
-	"tags": [],
-	"categories": [],
-	"series": [],
-	"description": "",
-	"content": ""
+	"content": "I decided to write this post as the result of attempting to find a pattern for executing any number of asynchronous tasks in a specified order with javascript. It came as a surprise to me that this isn\u0026rsquo;t supported out of the box in any modern browers javascript engine.\nAfter googling around for a few minutes I came across this related blog post Decembersoft Inc. which comes close but doesn\u0026rsquo;t yield a working solution. I would reccomend checking it out as it was useful for me, and perhaps may hold some value for you as well. However, I will give you the gist of it here:\n Javascript allows you to chain promises in a serial fashion when the tasks are known beforehand and can be hard coded:   return task1.then(task2).then(task3);\n   This pattern does not allow you to programatically execute an unspecified number of asynchronous operations in a given order\n  Reduce to the rescue:\n   We\u0026rsquo;re going to use the Array.reduce() function to collapse the array of promises into a single promise chain.\n  // Serial return [ task1, task2, task3, ].reduce((promiseChain, currentTask) =\u0026gt; { // Note: promiseChain === initialPromise // on the first time through this function /* TODO */ }, initialPromise); (from the blog post)\n Which then leads to:   const reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(chainResults =\u0026gt; currentTask.then(currentResult =\u0026gt; [ ...chainResults, currentResult ] ) ); } const tasks = getTaskArray(); tasks.reduce(reducer, Promise.resolve([])); Okay cool, this is where you realize that it is their authors aim to collect the RESULTS of the promise chain in a sequential order, but not actually fire them off one after another. If you\u0026rsquo;re not sure or don\u0026rsquo;t believe me try this in your console:\n function getTasks() { const task1 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task1'); resolve() }, 2 * 1000); }); const task2 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task2'); resolve() }, 2 * 1000); }); const task3 = new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task3'); resolve() }, 2 * 1000); }); return [ task1, task2, task3, ] } var reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(currentTask); } var tasks = getTasks(); tasks.reduce(reducer, Promise.resolve()); All of these pending promises fire off at the same time as they\u0026rsquo;ve already been instantiated. Well shoot, back to square one. Just kidding, this pattern actually get\u0026rsquo;s us 90% of the way there. However, instead of having an array of already existing promises we want to use an array of functions that RETURN the promises we want to fire off. This looks like this:\nfunction getTasks() { const task1 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task1'); resolve() }, 2 * 1000); }); } const task2 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task2'); resolve() }, 2 * 1000); }); } const task3 = function() { return new Promise((resolve) =\u0026gt; { setTimeout(() =\u0026gt; { console.log('resolve task3'); resolve() }, 2 * 1000); }); } return [ task1, task2, task3, ] } var reducer = (promiseChain, currentTask) =\u0026gt; { return promiseChain.then(currentTask); } var tasks = getTasks(); tasks.reduce(reducer, Promise.resolve()); There, now you can can execute any arbitrary number of promises one after another. All you need to do in your code is collect an array of references to the functions that create/instantiate/return the promise that is the asynchronous operation you want to perform.\nEDIT: This pattern is not as unique as I initially thought. There are various implementations that already exist out there on the web, heres another one:\nhttps://github.com/BalassaMarton/sequential-task-queue\n"
 },
 {
 	"uri": "https://arcman7.github.io/en/tags/queue/",
@@ -141,7 +267,7 @@
 	"categories": [],
 	"series": [],
 	"description": "The Author",
-	"content": "The Author I\u0026rsquo;m a fullstack engineer, living in San Francisco. I\u0026rsquo;ve been working in the bay area for the past four years with a focus on building clean UI\u0026rsquo;s for the end user.\nI recieved my bachelors degree in Physics at the University of Hawaii in 2013 and continued to do research on the mini Time Cube (mTC) experiment before switching to software.\n"
+	"content": "The Author My name is Andrew Carpenter. I\u0026rsquo;m a fullstack engineer, living in San Francisco. I\u0026rsquo;ve been working in the bay area for the past four years with a focus on building clean UI\u0026rsquo;s for the end user.\nI recieved my bachelors degree in Physics at the University of Hawaii in 2013 and continued to do research on the mini Time Cube (mTC) experiment before switching to software.\n"
 },
 {
 	"uri": "https://arcman7.github.io/en/categories/",
